@@ -1,16 +1,29 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
+import {StoreModule} from '@ngrx/store';
+import {routerReducer, StoreRouterConnectingModule} from '@ngrx/router-store';
+import {RouterModule} from '@angular/router';
+import {AppComponent} from './app.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    StoreModule.forRoot({
+      router: routerReducer,
+    }),
+    RouterModule.forRoot([
+      // routes
+    ]),
+    // Connects RouterModule with StoreModule, uses MinimalRouterStateSerializer by default
+    StoreRouterConnectingModule.forRoot(),
+
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {
+}
