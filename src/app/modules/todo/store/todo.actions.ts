@@ -1,14 +1,14 @@
-import {Action} from '@ngrx/store';
+import { Action } from '@ngrx/store'
 
 export enum todoActionsType {
   create = '[TODO] Todo create item'
 }
 
 export class TodoCreateAction implements Action {
-  readonly type = todoActionsType.create;
+  readonly type = todoActionsType.create
 
-  constructor(public payload: { name: string }) {
+  constructor( public payload: { name: string } ) {
   }
 }
 
-export type TodoActions = TodoCreateAction;
+export type TodoActions = TodoCreateAction
