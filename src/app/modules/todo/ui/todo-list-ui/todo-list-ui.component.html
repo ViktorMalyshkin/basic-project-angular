@@ -6,5 +6,6 @@
       <del *ngIf="todo.completed"><span>{{todo.name}}</span></del>
       <span *ngIf="!todo.completed">{{todo.name}}</span>
     </label>
+    <span (click)="onDelete(todo.id)" class="delete"> Delete</span>
   </li>
 </ul>

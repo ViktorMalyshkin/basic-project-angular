@@ -25,6 +25,11 @@ export const todoReducer = ( state = initialState, action: TodoActions ) => {
           completed: false,
         }],
       }
+    case todoActionsType.delete:
+      return {
+        ...state,
+        todoList: state.todoList.filter(todo => todo.id !== action.payload.id),
+      }
     default:
       return state
   }
