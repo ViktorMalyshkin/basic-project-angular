@@ -3,6 +3,11 @@
   "cli": {
     "defaultCollection": "@ngrx/schematics"
   },
+  "schematics": {
+    "@ngrx/schematics:container": {
+      "style": "scss"
+    }
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
