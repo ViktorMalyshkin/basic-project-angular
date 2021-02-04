@@ -4,11 +4,12 @@ import { StoreModule } from '@ngrx/store';
 import * as fromPreciousMetals from './store/reducers/precious-metals.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { PreciousMetalsEffects } from './store/effects/precious-metals.effects';
+import { PreciousMetalsPageComponent } from './pages/precious-metals-page/precious-metals-page.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [PreciousMetalsPageComponent],
   imports: [
     CommonModule,
     StoreModule.forFeature(fromPreciousMetals.preciousMetalsFeatureKey, fromPreciousMetals.reducer),
