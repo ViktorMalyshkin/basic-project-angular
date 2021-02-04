@@ -1,17 +1,17 @@
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+import { NgModule } from '@angular/core'
+import { MatSliderModule } from '@angular/material/slider'
+import { BrowserModule } from '@angular/platform-browser'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { RouterModule } from '@angular/router'
+import { EffectsModule } from '@ngrx/effects'
+import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store'
 
-import {StoreModule} from '@ngrx/store';
-import {routerReducer, StoreRouterConnectingModule} from '@ngrx/router-store';
-import {RouterModule} from '@angular/router';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatSliderModule} from '@angular/material/slider';
-import {AppComponent} from './app.component';
-import { reducers, metaReducers } from './reducers';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
-import { EffectsModule } from '@ngrx/effects';
-import { AppEffects } from './app.effects';
+import { StoreModule } from '@ngrx/store'
+import { StoreDevtoolsModule } from '@ngrx/store-devtools'
+import { environment } from '../environments/environment'
+import { AppComponent } from './app.component'
+import { AppEffects } from './store/effects/app.effects'
+import { metaReducers, reducers } from './store/reducers'
 
 @NgModule({
   declarations: [
@@ -25,7 +25,7 @@ import { AppEffects } from './app.effects';
       router: routerReducer,
     }),
     RouterModule.forRoot([
-      {path: '**', redirectTo: ''},
+      { path: '**', redirectTo: '' },
       // routes
     ]),
     // Connects RouterModule with StoreModule, uses MinimalRouterStateSerializer by default
