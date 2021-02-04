@@ -1,1 +1,4 @@
-<p>todo-create-form-ui works!</p>
+<form action="#" (ngSubmit)="onCreate()">
+  <input type="text" name="name" [(ngModel)]="name">
+  <button [disabled]="!name">Create Todo Item</button>
+</form>

@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
+import { FormsModule } from '@angular/forms'
 import { RouterModule } from '@angular/router'
 import { StoreModule } from '@ngrx/store'
 import { TodoComponent } from './page/todo/todo.component'
@@ -15,6 +16,7 @@ import { TodoCreateFormUiComponent } from './ui/todo-create-form-ui/todo-create-
     CommonModule,
     StoreModule.forFeature(TODO_REDUCER_NODE, todoReducer),
     RouterModule.forChild(todoRoutes),
+    FormsModule,
   ],
 })
 export class TodoModule {
