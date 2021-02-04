@@ -7,11 +7,12 @@ import { TodoComponent } from './page/todo/todo.component'
 import { todoRoutes } from './routes/todo.routes'
 import { TODO_REDUCER_NODE, todoReducer } from './store/todo.reducer';
 import { TodoWidgetComponent } from './widget/todo-widget/todo-widget.component';
-import { TodoCreateFormUiComponent } from './ui/todo-create-form-ui/todo-create-form-ui.component'
+import { TodoCreateFormUiComponent } from './ui/todo-create-form-ui/todo-create-form-ui.component';
+import { TodoListUiComponent } from './ui/todo-list-ui/todo-list-ui.component'
 
 
 @NgModule({
-  declarations: [TodoComponent, TodoWidgetComponent, TodoCreateFormUiComponent],
+  declarations: [TodoComponent, TodoWidgetComponent, TodoCreateFormUiComponent, TodoListUiComponent],
   imports: [
     CommonModule,
     StoreModule.forFeature(TODO_REDUCER_NODE, todoReducer),

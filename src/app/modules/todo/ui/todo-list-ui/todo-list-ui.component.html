@@ -1,0 +1,10 @@
+<p>todo-list-ui works!</p>
+<ul>
+  <li *ngFor="let todo of todoList">
+    <label>
+      <input type="checkbox" [checked]="todo.completed">
+      <del *ngIf="todo.completed"><span>{{todo.name}}</span></del>
+      <span *ngIf="!todo.completed">{{todo.name}}</span>
+    </label>
+  </li>
+</ul>

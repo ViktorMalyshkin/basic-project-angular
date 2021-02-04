@@ -1,2 +1,3 @@
 <p>todo-widget works!</p>
 <app-todo-create-form-ui (create)="onCreate($event)"></app-todo-create-form-ui>
+<app-todo-list-ui [todoList]="todoList$ | async"></app-todo-list-ui>
