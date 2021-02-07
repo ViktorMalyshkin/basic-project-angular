@@ -1,15 +1,15 @@
-export interface Ingot {
-  Date: string;
-  MetalID: number;
-  Nominal: number;
-  NoCertificateDollars: string;
-  NoCertificateRubles: number;
-  CertificateDollars: string;
-  CertificateRubles: number;
-  BanksDollars: string;
-  BanksRubles: number;
-  EntitiesDollars: string;
-  EntitiesRubles: number;
+export interface IIngot {
+  Date: string
+  MetalID: number
+  Nominal: number
+  NoCertificateDollars: string
+  NoCertificateRubles: number
+  CertificateDollars: string
+  CertificateRubles: number
+  BanksDollars: string
+  BanksRubles: number
+  EntitiesDollars: string
+  EntitiesRubles: number
 }
 
 // Класс Ingot (PreciousMetalsExchangeRateNbrb) содержит следующие свойства:

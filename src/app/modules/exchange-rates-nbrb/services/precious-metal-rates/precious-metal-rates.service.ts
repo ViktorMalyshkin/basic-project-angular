@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core'
-import { Ingot } from '../../models/ingot.model'
+import { Observable, of } from 'rxjs'
+import { IIngot } from '../../models/ingot.model'
 
 @Injectable({
   providedIn: 'root',
@@ -8,9 +9,9 @@ export class PreciousMetalRatesService {
 
   constructor() { }
 
-  // TODO getMetals
-  public getMetals(): Ingot[] {
-    return [
+  // TODO getMetalRates
+  public getPreciousMetalRates(): Observable<IIngot[]> {
+    return of([
       {
         Date: '2016-07-01T00:00:00',
         MetalID: 0,
@@ -323,6 +324,6 @@ export class PreciousMetalRatesService {
         EntitiesDollars: null,
         EntitiesRubles: 49334.39,
       },
-    ]
+    ])
   }
 }

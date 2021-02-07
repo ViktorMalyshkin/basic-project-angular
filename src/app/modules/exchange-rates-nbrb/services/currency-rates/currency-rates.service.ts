@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core'
-import { Rate } from '../../models/rate.model'
+import { Observable, of } from 'rxjs'
+import { IRate } from '../../models/rate.model'
 
 @Injectable({
   providedIn: 'root',
@@ -9,8 +10,8 @@ export class CurrencyRatesService {
   constructor() { }
 
   // TODO getCurrency
-  public getCurrency(): Rate[] {
-    return [
+  public getCurrencyRates(): Observable<IRate[]> {
+    return of([
       {
         Cur_ID: 170,
         Date: '2021-02-08T00:00:00',
@@ -219,6 +220,6 @@ export class CurrencyRatesService {
         Cur_Name: 'Швейцарский франк',
         Cur_OfficialRate: 2.9105,
       },
-    ]
+    ]);
   }
 }

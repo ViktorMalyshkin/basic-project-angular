@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core'
+import { MatMenuModule } from '@angular/material/menu'
 import { MatSliderModule } from '@angular/material/slider'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
@@ -12,16 +13,21 @@ import { environment } from '../environments/environment'
 import { AppComponent } from './app.component'
 import { ExchangeRatesNbrbModule } from './modules/exchange-rates-nbrb/exchange-rates-nbrb.module'
 import { AppEffects } from './store/effects/app.effects'
-import { reducers } from './store/reducers'
+import { reducers } from './store/reducers';
+import { MainLayoutsComponent } from './layouts/main-layouts/main-layouts.component';
+import { AngularExampleComponent } from './pages/angular-example/angular-example.component'
 
 @NgModule({
   declarations: [
     AppComponent,
+    MainLayoutsComponent,
+    AngularExampleComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatSliderModule,
+    MatMenuModule,
     ExchangeRatesNbrbModule,
     StoreModule.forRoot({
       router: routerReducer,
