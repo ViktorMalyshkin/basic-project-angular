@@ -1,6 +1,7 @@
 export interface Ingot {
-  Date: Date;
-  MetalId: number;
+  Date: string;
+  MetalID: number;
+  Nominal: number;
   NoCertificateDollars: string;
   NoCertificateRubles: number;
   CertificateDollars: string;
@@ -14,7 +15,7 @@ export interface Ingot {
 // Класс Ingot (PreciousMetalsExchangeRateNbrb) содержит следующие свойства:
 //
 // Date – дата, на которую запрашиваются цены
-// MetalId – внутренний код драгоценного металла
+// MetalID – внутренний код драгоценного металла
 // NoCertificateDollars – цена покупки без сертификата качества (в долларах США)
 // NoCertificateRubles – цена покупки без сертификата качества (в белорусских рублях)
 // CertificateDollars – цена покупки с сертификатом качества (в долларах США)
