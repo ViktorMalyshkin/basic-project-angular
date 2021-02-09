@@ -13,11 +13,11 @@ import { ICurrencyRatesState } from '../../store/state/currency-rates.state'
 })
 export class ExchangeRatesNbrbPageComponent implements OnInit {
   // currencyFromService$: Observable<IRate[]>
-  currency$: Observable<ICurrencyRatesState>
+  rates$: Observable<ICurrencyRatesState>
 
 
   constructor( private _store: Store<IExchangeRatesNbrbState> ) {
-    this.currency$ = this._store.pipe(select(selectCurrencyRates))
+    this.rates$ = this._store.select(selectCurrencyRates)
   }
 
   ngOnInit(): void {

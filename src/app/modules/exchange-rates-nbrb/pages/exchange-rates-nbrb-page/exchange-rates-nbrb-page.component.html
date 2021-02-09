@@ -1,5 +1,5 @@
 <p>exchange-rates-nbrb-page works!</p>
 <!--<pre>{{currencyFromService$ | async | json}}</pre>-->
-<pre>{{currency$ | async | json}}</pre>
-
+<pre>{{rates$ | async | json}}</pre>
+<app-currency-rates [rates]="rates$ | async | json"></app-currency-rates>
 
