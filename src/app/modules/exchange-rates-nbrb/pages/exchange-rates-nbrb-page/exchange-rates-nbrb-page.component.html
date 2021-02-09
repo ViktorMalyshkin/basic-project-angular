@@ -1,45 +1,5 @@
 <p>exchange-rates-nbrb-page works!</p>
 <!--<pre>{{currencyFromService$ | async | json}}</pre>-->
-<!--<pre>{{(currency$ | async).rates | json}}</pre>-->
+<pre>{{currency$ | async | json}}</pre>
 
-<table mat-table [dataSource]="(currency$ | async).rates" class="mat-elevation-z8" width="1180">
 
-  <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
-  <!-- Position Column -->
-  <ng-container matColumnDef="Cur_ID">
-    <th mat-header-cell *matHeaderCellDef> Cur_ID </th>
-    <td mat-cell *matCellDef="let element"> {{element.Cur_ID}} </td>
-  </ng-container>
-
-  <!-- Name Column -->
-  <ng-container matColumnDef="Date">
-    <th mat-header-cell *matHeaderCellDef> Date </th>
-    <td mat-cell *matCellDef="let element"> {{element.Date}} </td>
-  </ng-container>
-
-  <!-- Weight Column -->
-  <ng-container matColumnDef="Cur_Abbreviation">
-    <th mat-header-cell *matHeaderCellDef> Cur_Abbreviation </th>
-    <td mat-cell *matCellDef="let element"> {{element.Cur_Abbreviation}} </td>
-  </ng-container>
-
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="Cur_Scale">
-    <th mat-header-cell *matHeaderCellDef> Cur_Scale </th>
-    <td mat-cell *matCellDef="let element"> {{element.Cur_Scale}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="Cur_Name">
-    <th mat-header-cell *matHeaderCellDef> Cur_Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.Cur_Name}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="Cur_OfficialRate">
-    <th mat-header-cell *matHeaderCellDef> Cur_OfficialRate </th>
-    <td mat-cell *matCellDef="let element"> {{element.Cur_OfficialRate}} </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
