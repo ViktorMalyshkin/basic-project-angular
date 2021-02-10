@@ -1,5 +1,9 @@
 <p>exchange-rates-nbrb-page works!</p>
 <!--<pre>{{currencyFromService$ | async | json}}</pre>-->
-<pre>{{rates$ | async | json}}</pre>
-<app-currency-rates [rates]="rates$ | async | json"></app-currency-rates>
+<!--<pre>{{rates$ | async | json}}</pre>-->
+<div class="ex-rates-nbrb">
+  <app-currency-rates></app-currency-rates>
+  <app-precious-metal-rates></app-precious-metal-rates>
+</div>
+
 

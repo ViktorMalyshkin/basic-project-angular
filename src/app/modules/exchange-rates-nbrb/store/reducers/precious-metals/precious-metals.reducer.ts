@@ -5,7 +5,7 @@ export function preciousMetalsReducers( state = initialPreciousMetalsState,
                                         action: PreciousMetalsActions ): IPreciousMetalsState {
   switch (action.type) {
     case EPreciousMetalsActionTypes.GetPreciousMetalsSuccess:
-      return { ...state, ...action.payload }
+      return { ...state, metals: action.payload }
     default:
       return state
   }

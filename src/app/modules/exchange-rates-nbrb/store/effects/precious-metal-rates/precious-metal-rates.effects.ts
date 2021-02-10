@@ -11,7 +11,6 @@ import { EPreciousMetalRatesActionTypes, GetPreciousMetalRatesSuccess, PreciousM
 @Injectable()
 export class PreciousMetalRatesEffects {
 
-
   @Effect()
   getPreciousMetalRatesRates$ = this._actions$.pipe(
     ofType(EPreciousMetalRatesActionTypes.GetPreciousMetalRates),

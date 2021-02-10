@@ -11,11 +11,11 @@ import { StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { environment } from '../environments/environment'
 import { AppComponent } from './app.component'
+import { MainLayoutsComponent } from './layouts/main-layouts/main-layouts.component'
 import { ExchangeRatesNbrbModule } from './modules/exchange-rates-nbrb/exchange-rates-nbrb.module'
-import { AppEffects } from './store/effects/app.effects'
-import { reducers } from './store/reducers';
-import { MainLayoutsComponent } from './layouts/main-layouts/main-layouts.component';
 import { AngularExampleComponent } from './pages/angular-example/angular-example.component'
+import { AppEffects } from './store/effects/app.effects'
+import { reducers } from './store/reducers'
 
 @NgModule({
   declarations: [

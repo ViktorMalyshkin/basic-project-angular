@@ -5,7 +5,7 @@ export function preciousMetalRatesReducers( state = initialPreciousMetalRatesSta
                                             action: PreciousMetalRatesActions ): IPreciousMetalRatesState {
   switch (action.type) {
     case EPreciousMetalRatesActionTypes.GetPreciousMetalRatesSuccess:
-      return { ...state, ...action.payload }
+      return { ...state, ingots: action.payload }
     default:
       return state
   }

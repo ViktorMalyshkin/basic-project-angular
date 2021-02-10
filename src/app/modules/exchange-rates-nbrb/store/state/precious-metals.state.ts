@@ -1,6 +1,6 @@
 import { IMetal } from '../../models/metal.model'
 
-export const preciousMetalsFeatureKey = 'preciousMetals'
+export const PRECIOUS_METALS_FEATURE_KEY = 'PRECIOUS_METALS_FEATURE_KEY'
 
 export interface IPreciousMetalsState {
   metals: IMetal[]

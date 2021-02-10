@@ -1,9 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core'
-import { select, Store } from '@ngrx/store'
+import { Component, OnInit } from '@angular/core'
+import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs'
 import { DISPLAYED_COLUMNS_RATES } from '../../constants/displayed-columns.constants'
 import { selectCurrencyRates } from '../../store/selectors/currency-rates.selectors'
-import { IExchangeRatesNbrbState } from '../../store/state'
 import { ICurrencyRatesState } from '../../store/state/currency-rates.state'
 
 @Component({
@@ -13,13 +12,14 @@ import { ICurrencyRatesState } from '../../store/state/currency-rates.state'
 })
 export class CurrencyRatesComponent implements OnInit {
   DISPLAYED_COLUMNS = DISPLAYED_COLUMNS_RATES
-  @Input() rates: any = []
+  public rates$: Observable<ICurrencyRatesState>
+  // rates: ICurrencyRatesState = []
 
-  constructor( private _store: Store<ICurrencyRatesState> ) {
-    // this.rates$ = this._store.select(selectCurrencyRates)
-  }
+  constructor( private _store: Store ) {}
 
   ngOnInit(): void {
+    setTimeout(() => {
+      // this.rates$ = this._store.select(selectCurrencyRates)
+    }, 2000)
   }
-
 }

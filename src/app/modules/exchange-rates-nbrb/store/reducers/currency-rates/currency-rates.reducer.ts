@@ -4,7 +4,9 @@ import { ICurrencyRatesState, initialCurrencyRatesState } from '../../state/curr
 export function currencyRatesReducers( state = initialCurrencyRatesState, action: CurrencyRatesActions ): ICurrencyRatesState {
   switch (action.type) {
     case ECurrencyRatesActionTypes.GetCurrencyRatesSuccess:
-      return { ...state, ...action.payload }
+      console.log(state)
+      console.log(action.payload)
+      return { ...state, rates: action.payload }
     default:
       return state
   }

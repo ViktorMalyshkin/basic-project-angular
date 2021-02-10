@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core'
-import { select, Store } from '@ngrx/store'
-import { Observable } from 'rxjs'
-import { GetCurrencyRates } from '../../store/actions'
-import { selectCurrencyRates } from '../../store/selectors/currency-rates.selectors'
+import { Store } from '@ngrx/store'
+import { GetCurrencyRates, GetPreciousMetals } from '../../store/actions'
 import { IExchangeRatesNbrbState } from '../../store/state'
 import { ICurrencyRatesState } from '../../store/state/currency-rates.state'
 
@@ -13,15 +11,14 @@ import { ICurrencyRatesState } from '../../store/state/currency-rates.state'
 })
 export class ExchangeRatesNbrbPageComponent implements OnInit {
   // currencyFromService$: Observable<IRate[]>
-  rates$: Observable<ICurrencyRatesState>
+  // rates$: Observable<ICurrencyRatesState>
 
 
-  constructor( private _store: Store<IExchangeRatesNbrbState> ) {
-    this.rates$ = this._store.select(selectCurrencyRates)
-  }
+  constructor( private _store: Store<ICurrencyRatesState> ) {}
 
   ngOnInit(): void {
     this._store.dispatch(new GetCurrencyRates())
+    this._store.dispatch(new GetPreciousMetals())
   }
 
 }
