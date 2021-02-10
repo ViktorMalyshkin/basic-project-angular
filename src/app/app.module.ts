@@ -1,3 +1,5 @@
+import { DatePipe } from '@angular/common'
+import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { MatMenuModule } from '@angular/material/menu'
 import { MatSliderModule } from '@angular/material/slider'
@@ -25,6 +27,7 @@ import { reducers } from './store/reducers'
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MatSliderModule,
     MatMenuModule,
@@ -44,7 +47,7 @@ import { reducers } from './store/reducers'
     EffectsModule.forRoot([AppEffects]),
 
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {

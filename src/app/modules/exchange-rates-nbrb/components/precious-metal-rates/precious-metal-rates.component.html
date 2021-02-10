@@ -1,2 +1,2 @@
-<p>precious-metal-rates works!</p>
-<pre>{{metals$ | async | json}}</pre>
+<h2 class="text-center">Precious Metal Rates</h2>
+<app-el-table [dataSource]="initMetalIngots(metals, ingots)" [displayedColumns]="DISPLAYED_COLUMNS"></app-el-table>

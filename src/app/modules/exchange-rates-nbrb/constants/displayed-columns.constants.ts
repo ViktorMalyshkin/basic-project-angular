@@ -1,22 +1,13 @@
 export const DISPLAYED_COLUMNS_RATES = [
-  'Cur_ID',
-  'Date',
+  'Cur_Name',
   'Cur_Abbreviation',
   'Cur_Scale',
-  'Cur_Name',
   'Cur_OfficialRate',
-]
-
-export const DISPLAYED_COLUMNS_METALS = [
-  'Id',
-  'Name',
-  'NameEng',
-  'NameBel',
-]
-
-export const DISPLAYED_COLUMNS_INGOTS = [
   'Date',
-  'MetalID',
+]
+
+export const DISPLAYED_COLUMNS_METAL_INGOTS = [
+  'Name',
   'Nominal',
   'NoCertificateDollars',
   'NoCertificateRubles',
@@ -26,4 +17,5 @@ export const DISPLAYED_COLUMNS_INGOTS = [
   'BanksRubles',
   'EntitiesDollars',
   'EntitiesRubles',
+  'Date',
 ]

@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   env_name: 'DEV',
-  api_url: 'https://https://www.nbrb.by/api'
-};
+  api_url: 'https://www.nbrb.by/api',
+}
 
 /*
  * For easier debugging in development mode, you can import the following file

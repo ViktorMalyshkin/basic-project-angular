@@ -12,7 +12,8 @@ export class GetPreciousMetalRates implements Action {
 
 export class GetPreciousMetalRatesSuccess implements Action {
   readonly type = EPreciousMetalRatesActionTypes.GetPreciousMetalRatesSuccess
-  constructor(public payload: IIngot[]) {}
+
+  constructor( public payload: IIngot[] ) {}
 }
 
 export type PreciousMetalRatesActions = GetPreciousMetalRates | GetPreciousMetalRatesSuccess

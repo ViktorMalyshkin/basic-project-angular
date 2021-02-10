@@ -12,6 +12,7 @@ export class GetCurrencyRates implements Action {
 
 export class GetCurrencyRatesSuccess implements Action {
   readonly type = ECurrencyRatesActionTypes.GetCurrencyRatesSuccess
+
   constructor( public payload: IRate[] ) {}
 }
 

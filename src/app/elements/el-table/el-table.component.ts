@@ -14,4 +14,8 @@ export class ElTableComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+  checkDataToDisplay( displayedColumn: string ): boolean {
+    return displayedColumn === 'Date'
+  }
 }

@@ -1,6 +1,6 @@
 export interface IIngot {
-  Date: string
   MetalID: number
+  Date: string
   Nominal: number
   NoCertificateDollars: string
   NoCertificateRubles: number

@@ -1,8 +1,2 @@
-<p>currency-rates works!</p>
-<!--<app-el-table [dataSource]="(rates$ | async).rates" [displayedColumns]="DISPLAYED_COLUMNS"></app-el-table>-->
-<div *ngIf="!rates$">aa | {{!rates$}} |
-  <pre>{{rates$ | async | json}}</pre>
-</div>
-<div *ngIf="!!rates$">HI | {{!!rates$}} |
-  <pre>{{rates$ | async | json}}</pre>
-</div>
+<h2 class="text-center">Currency Rates</h2>
+<app-el-table [dataSource]="rates" [displayedColumns]="DISPLAYED_COLUMNS"></app-el-table>

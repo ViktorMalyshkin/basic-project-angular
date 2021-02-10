@@ -5,15 +5,15 @@ import { initialPreciousMetalsState, IPreciousMetalsState } from './precious-met
 
 export interface IExchangeRatesNbrbState {
   router?: RouterReducerState
+  rates: ICurrencyRatesState
   metals: IPreciousMetalsState
   ingots: IPreciousMetalRatesState
-  rates: ICurrencyRatesState
 }
 
 export const initialExchangeRatesNbrbState: IExchangeRatesNbrbState = {
+  rates: initialCurrencyRatesState,
   metals: initialPreciousMetalsState,
   ingots: initialPreciousMetalRatesState,
-  rates: initialCurrencyRatesState,
 }
 
 export function getInitialState(): IExchangeRatesNbrbState {

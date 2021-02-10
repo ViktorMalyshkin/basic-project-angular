@@ -1,9 +1,7 @@
-<p>exchange-rates-nbrb-page works!</p>
-<!--<pre>{{currencyFromService$ | async | json}}</pre>-->
-<!--<pre>{{rates$ | async | json}}</pre>-->
-<div class="ex-rates-nbrb">
-  <app-currency-rates></app-currency-rates>
-  <app-precious-metal-rates></app-precious-metal-rates>
+<h1 class="ex-rates-nbrb-header">Exchange Rates NBRB Page</h1>
+<div class="ex-rates-nbrb-container">
+    <app-currency-rates [rates]="rates$ | async"></app-currency-rates>
+    <app-precious-metal-rates [ingots]="ingots$ | async" [metals]="metals$ | async"></app-precious-metal-rates>
 </div>
 
 

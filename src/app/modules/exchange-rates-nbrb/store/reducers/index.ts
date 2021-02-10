@@ -9,7 +9,7 @@ export const EXCHANGE_RATES_NBRB_REDUCER_NODES = 'EXCHANGE_RATES_NBRB'
 
 export const exchangeRatesNbrbReducers: ActionReducerMap<IExchangeRatesNbrbState, any> = {
   router: routerReducer,
+  rates: currencyRatesReducers,
   metals: preciousMetalsReducers,
   ingots: preciousMetalRatesReducers,
-  rates: currencyRatesReducers,
 }
