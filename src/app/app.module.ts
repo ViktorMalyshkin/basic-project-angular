@@ -10,6 +10,7 @@ import { StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { environment } from '../environments/environment'
 import { AppComponent } from './app.component'
+import { CurrencyRateChartNbrbModule } from './modules/currency-rate-chart-nbrb/currency-rate-chart-nbrb.module'
 import { AppEffects } from './store/effects/app.effects'
 import { reducers } from './store/reducers'
 
@@ -21,6 +22,7 @@ import { reducers } from './store/reducers'
     BrowserModule,
     BrowserAnimationsModule,
     MatSliderModule,
+    CurrencyRateChartNbrbModule,
     StoreModule.forRoot({
       router: routerReducer,
     }),
