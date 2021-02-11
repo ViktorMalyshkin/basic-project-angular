@@ -1,5 +1,8 @@
+import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
-import { MatSliderModule } from '@angular/material/slider'
+import { MatButtonModule } from '@angular/material/button'
+import { MatIconModule } from '@angular/material/icon'
+import { MatToolbarModule } from '@angular/material/toolbar'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { RouterModule } from '@angular/router'
@@ -20,9 +23,11 @@ import { reducers } from './store/reducers'
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
-    MatSliderModule,
     CurrencyRateChartNbrbModule,
+    MatToolbarModule,
+    MatIconModule,
     StoreModule.forRoot({
       router: routerReducer,
     }),
@@ -36,6 +41,7 @@ import { reducers } from './store/reducers'
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     StoreRouterConnectingModule.forRoot(),
     EffectsModule.forRoot([AppEffects]),
+    MatButtonModule,
 
   ],
   providers: [],
