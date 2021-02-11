@@ -1,14 +1,21 @@
 import { Action } from '@ngrx/store'
+import { IDynamicsModel } from '../../models/dynamics.model'
 
-export enum DynamicsActionTypes {
-  LoadDynamicss = '[Dynamics] Load Dynamicss',
-
-
+export enum E_DYNAMICS_ACTION_TYPES {
+  GET_DYNAMICS = '[Dynamics] GET Dynamics',
+  GET_DYNAMICS_SUCCESS = '[Dynamics] GET Dynamics Success',
 }
 
-export class LoadDynamicss implements Action {
-  readonly type = DynamicsActionTypes.LoadDynamicss
+export class GetDynamics implements Action {
+  readonly type = E_DYNAMICS_ACTION_TYPES.GET_DYNAMICS
+
+  constructor( readonly payload: { currency, startDate, endDate } ) {}
 }
 
+export class GetDynamicsSuccess implements Action {
+  readonly type = E_DYNAMICS_ACTION_TYPES.GET_DYNAMICS_SUCCESS
 
-export type DynamicsActions = LoadDynamicss;
+  constructor( public payload: IDynamicsModel[] ) {}
+}
+
+export type DynamicsActions = GetDynamics | GetDynamicsSuccess

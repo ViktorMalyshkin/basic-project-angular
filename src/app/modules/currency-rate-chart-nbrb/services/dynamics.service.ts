@@ -11,9 +11,9 @@ export class DynamicsService {
 
   constructor( private _http: HttpClient ) { }
 
-  public getDynamics(): Observable<IDynamicsModel[]> {
-    if (environment.env_name === 'PROD') {
-      return this._http.get<IDynamicsModel[]>(`${environment.api_url}/ExRates/Rates/Dynamics/145?startDate=2016-6-1&endDate=2016-6-30`)
+  public getDynamics(currency: any, startDate: any, endDate: any): Observable<IDynamicsModel[]> {
+    if (environment.env_name !== 'PROD') {
+      return this._http.get<IDynamicsModel[]>(`${environment.api_url}/ExRates/Rates/Dynamics/${currency}?startDate=${startDate}&endDate=${endDate}`)
     } else {
       return of([
         { Cur_ID: 145, Date: '2016-06-01T00:00:00', Cur_OfficialRate: 19788.00 },

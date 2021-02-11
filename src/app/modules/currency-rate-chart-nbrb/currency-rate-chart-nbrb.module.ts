@@ -14,7 +14,7 @@ import * as fromDynamics from './store/reducers/dynamics.reducer'
   declarations: [CurrencyRateChartNbrbPageComponent],
   imports: [
     CommonModule,
-    StoreModule.forFeature(fromDynamics.dynamicsFeatureKey, fromDynamics.reducer),
+    StoreModule.forFeature(fromDynamics.DYNAMICS_FEATURE_KEY, fromDynamics.dynamicsReducer),
     EffectsModule.forFeature([DynamicsEffects]),
     RouterModule.forChild(exchangeRatesNbrbRoutes),
   ],

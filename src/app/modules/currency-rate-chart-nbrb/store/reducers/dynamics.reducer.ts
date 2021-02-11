@@ -1,18 +1,23 @@
-import { DynamicsActions, DynamicsActionTypes } from '../actions/dynamics.actions'
+import { RouterReducerState } from '@ngrx/router-store'
+import { IDynamicsModel } from '../../models/dynamics.model'
+import { DynamicsActions, E_DYNAMICS_ACTION_TYPES } from '../actions/dynamics.actions'
 
-export const dynamicsFeatureKey = 'dynamics'
+export const DYNAMICS_FEATURE_KEY = 'DYNAMICS'
 
-export interface State {
-
+export interface DynamicsState {
+  router?: RouterReducerState
+  dynamics: IDynamicsModel[]
 }
 
-export const initialState: State = {}
+export const initialDynamicsState: DynamicsState = {
+  dynamics: []
+}
 
-export function reducer( state = initialState, action: DynamicsActions ): State {
+export function dynamicsReducer( state = initialDynamicsState, action: DynamicsActions ): DynamicsState {
   switch (action.type) {
 
-    case DynamicsActionTypes.LoadDynamicss:
-      return state
+    case E_DYNAMICS_ACTION_TYPES.GET_DYNAMICS_SUCCESS:
+      return { ...state, dynamics: action.payload }
 
     default:
       return state

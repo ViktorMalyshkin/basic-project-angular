@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core'
 import { Actions, Effect, ofType } from '@ngrx/effects'
-import { EMPTY } from 'rxjs'
+import { of } from 'rxjs'
 
-import { concatMap } from 'rxjs/operators'
-import { DynamicsActions, DynamicsActionTypes } from '../actions/dynamics.actions'
+import { switchMap } from 'rxjs/operators'
+import { IDynamicsModel } from '../../models/dynamics.model'
+import { DynamicsService } from '../../services/dynamics.service'
+import { DynamicsActions, E_DYNAMICS_ACTION_TYPES, GetDynamics, GetDynamicsSuccess } from '../actions/dynamics.actions'
 
 
 @Injectable()
@@ -11,13 +13,12 @@ export class DynamicsEffects {
 
 
   @Effect()
-  loadDynamicss$ = this.actions$.pipe(
-    ofType(DynamicsActionTypes.LoadDynamicss),
-    /** An EMPTY observable only emits completion. Replace with your own observable API request */
-    concatMap(() => EMPTY),
+  getDynamics$ = this.actions$.pipe(
+    ofType<GetDynamics>(E_DYNAMICS_ACTION_TYPES.GET_DYNAMICS),
+    switchMap(
+      ( action: ReturnType<any> ) => this._service.getDynamics(action.payload.currency, action.payload.startDate, action.payload.endDate)),
+    switchMap(( modelsHttp: IDynamicsModel[] ) => of(new GetDynamicsSuccess(modelsHttp))),
   )
 
-
-  constructor( private actions$: Actions<DynamicsActions> ) {}
-
+  constructor( private actions$: Actions<DynamicsActions>, private _service: DynamicsService ) {}
 }

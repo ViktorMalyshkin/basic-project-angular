@@ -4,7 +4,7 @@ import { selectDynamicsState } from './dynamics.selectors';
 describe('Dynamics Selectors', () => {
   it('should select the feature state', () => {
     const result = selectDynamicsState({
-      [fromDynamics.dynamicsFeatureKey]: {}
+      [fromDynamics.DYNAMICS_FEATURE_KEY]: {}
     });
 
     expect(result).toEqual({});
