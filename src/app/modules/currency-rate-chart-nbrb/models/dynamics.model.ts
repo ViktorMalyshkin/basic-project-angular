@@ -3,3 +3,7 @@ export interface IDynamicsModel {
   Date: string,
   Cur_OfficialRate: number
 }
+
+export interface DynamicsObjectModel {
+  dynamics: IDynamicsModel[]
+}

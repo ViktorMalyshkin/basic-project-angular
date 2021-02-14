@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, OnChanges, OnInit, ViewChild, ViewEncapsulation } from '@angular/core'
 import * as d3 from 'd3'
-import { DataModel } from '../../models/data.model'
+import { ChartDataModel } from '../../models/chart-data.model'
 
 @Component({
   selector: 'app-ui-bar-graph',
@@ -14,7 +14,7 @@ export class UiBarGraphComponent implements OnInit, OnChanges {
   title = 'Currency Rate Chart NBRB'
 
   @Input()
-  data: DataModel[]
+  data: ChartDataModel[]
 
   @ViewChild('chart')
   private chartContainer: ElementRef
@@ -52,14 +52,14 @@ export class UiBarGraphComponent implements OnInit, OnChanges {
 
     const x = d3
       .scaleBand()
-      .rangeRound([0, contentWidth])
+      .rangeRound([ 0, contentWidth])
+      .domain(data.map(d => d.xAxis))
       .padding(0.1)
-      .domain(data.map(d => d.letter))
 
     const y = d3
       .scaleLinear()
       .rangeRound([contentHeight, 0])
-      .domain([0, d3.max(data, d => d.frequency)])
+      .domain([0, d3.max(data, d => d.yAxis)])
 
     const g = svg.append('g')
       .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')')
@@ -71,21 +71,21 @@ export class UiBarGraphComponent implements OnInit, OnChanges {
 
     g.append('g')
       .attr('class', 'axis axis--y')
-      .call(d3.axisLeft(y).ticks(10, '%'))
+      .call(d3.axisLeft(y).ticks(20))
       .append('text')
       .attr('transform', 'rotate(-90)')
       .attr('y', 6)
       .attr('dy', '0.71em')
       .attr('text-anchor', 'end')
-      .text('Frequency')
+      .text('yAxis')
 
     g.selectAll('.bar')
       .data(data)
       .enter().append('rect')
       .attr('class', 'bar')
-      .attr('x', d => x(d.letter))
-      .attr('y', d => y(d.frequency))
+      .attr('x', d => x(d.xAxis))
+      .attr('y', d => y(d.yAxis))
       .attr('width', x.bandwidth())
-      .attr('height', d => contentHeight - y(d.frequency))
+      .attr('height', d => contentHeight - y(d.yAxis))
   }
 }

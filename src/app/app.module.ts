@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common'
 import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { MatButtonModule } from '@angular/material/button'
@@ -43,7 +44,7 @@ import { reducers } from './store/reducers'
     EffectsModule.forRoot([AppEffects]),
     MatButtonModule,
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {

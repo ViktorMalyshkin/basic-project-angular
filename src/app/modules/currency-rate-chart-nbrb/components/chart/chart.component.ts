@@ -1,5 +1,7 @@
+import { DatePipe } from '@angular/common'
 import { Component, Input, OnInit } from '@angular/core'
-import { IDynamicsModel } from '../../models/dynamics.model'
+import { ChartDataModel } from '../../models/chart-data.model'
+import { DynamicsObjectModel, IDynamicsModel } from '../../models/dynamics.model'
 
 @Component({
   selector: 'app-chart',
@@ -7,7 +9,7 @@ import { IDynamicsModel } from '../../models/dynamics.model'
   styleUrls: ['./chart.component.css'],
 })
 export class ChartComponent implements OnInit {
-  @Input() dynamics: IDynamicsModel[]
+  @Input() dynamics: DynamicsObjectModel
   data = [
     {
       letter: 'A',
@@ -114,10 +116,13 @@ export class ChartComponent implements OnInit {
       frequency: 0.00074,
     },
   ]
+  dataChart: ChartDataModel[]
 
-
-  constructor() { }
+  constructor(private _datePipe: DatePipe) {}
 
   ngOnInit(): void {
+    this.dataChart = this.dynamics.dynamics.map(( item ) => {
+      return { xAxis: this._datePipe.transform(item.Date, 'MM/dd'), yAxis: item.Cur_OfficialRate }
+    })
   }
 }
