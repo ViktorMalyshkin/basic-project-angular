@@ -42,7 +42,6 @@ import { reducers } from './store/reducers'
     StoreRouterConnectingModule.forRoot(),
     EffectsModule.forRoot([AppEffects]),
     MatButtonModule,
-
   ],
   providers: [],
   bootstrap: [AppComponent],

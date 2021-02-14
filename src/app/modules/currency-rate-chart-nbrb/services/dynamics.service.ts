@@ -12,7 +12,7 @@ export class DynamicsService {
   constructor( private _http: HttpClient ) { }
 
   public getDynamics(currency: any, startDate: any, endDate: any): Observable<IDynamicsModel[]> {
-    if (environment.env_name !== 'PROD') {
+    if (environment.env_name === 'PROD') {
       return this._http.get<IDynamicsModel[]>(`${environment.api_url}/ExRates/Rates/Dynamics/${currency}?startDate=${startDate}&endDate=${endDate}`)
     } else {
       return of([
