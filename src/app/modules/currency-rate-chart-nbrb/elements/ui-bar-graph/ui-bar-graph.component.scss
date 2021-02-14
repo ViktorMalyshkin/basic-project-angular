@@ -1,47 +1,18 @@
-.tick text {
-  font-size: 12px;
-}
+app-ui-bar-graph {
+  #chart {
+    height: inherit;
+    width: inherit;
+    min-height: 480px;
+    .bar {
+      fill: steelblue;
+    }
 
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #4C5554;
-  stroke-width: 1;
-}
+    .bar:hover {
+      fill: brown;
+    }
 
-.x.axis .tick line {
-  display: none
-}
-
-.domain {
-  display: block !important;
-  stroke: #4C5554 !important;
-  stroke-width: 2 !important;
-}
-
-.legend {
-  font-size: 12px;
-  font-family: sans-serif;
-
-  rect {
-    stroke-width: 2;
-  }
-
-}
-
-#chart {
-  height: 500px;
-  width: 1000px;
-
-  .bar {
-    fill: steelblue;
-  }
-
-  .bar:hover {
-    fill: brown;
-  }
-
-  .axis--x path {
-    display: none;
+    .axis--x path {
+      display: none;
+    }
   }
 }

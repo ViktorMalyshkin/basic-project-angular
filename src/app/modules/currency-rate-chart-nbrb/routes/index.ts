@@ -3,7 +3,7 @@ import { CurrencyRateChartNbrbPageComponent } from '../pages/currency-rate-chart
 
 export const exchangeRatesNbrbRoutes: Route[] = [
   {
-    path: 'chart',
+    path: '',
     component: CurrencyRateChartNbrbPageComponent,
   },
 ]
