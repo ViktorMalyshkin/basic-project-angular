@@ -13,7 +13,9 @@ import { CurrencyRateChartNbrbPageComponent } from './pages/currency-rate-chart-
 import { exchangeRatesNbrbRoutes } from './routes'
 import { DynamicsEffects } from './store/effects/dynamics.effects'
 import * as fromDynamics from './store/reducers/dynamics.reducer';
-import { UiSelectFeatureComponent } from './elements/ui-select-feature/ui-select-feature.component'
+import { UiSelectFeatureComponent } from './elements/ui-select-feature/ui-select-feature.component';
+import * as fromCurrency from './store/reducers/currency.reducer';
+import { CurrencyEffects } from './store/effects/currency.effects'
 
 
 @NgModule({
@@ -22,7 +24,8 @@ import { UiSelectFeatureComponent } from './elements/ui-select-feature/ui-select
     CommonModule,
     AngularD3GraphLibModule,
     StoreModule.forFeature(fromDynamics.DYNAMICS_FEATURE_KEY, fromDynamics.dynamicsReducer),
-    EffectsModule.forFeature([DynamicsEffects]),
+    StoreModule.forFeature(fromCurrency.CURRENCIES_FEATURE_KEY, fromCurrency.currenciesReducer),
+    EffectsModule.forFeature([DynamicsEffects, CurrencyEffects]),
     RouterModule.forChild(exchangeRatesNbrbRoutes),
     MatOptionModule,
     MatSelectModule,

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { FormControl, Validators } from '@angular/forms'
 
 interface Animal {
@@ -12,13 +12,10 @@ interface Animal {
   styleUrls: ['./ui-select-feature.component.css'],
 })
 export class UiSelectFeatureComponent implements OnInit {
-  animalControl = new FormControl('', Validators.required)
-  items: Animal[] = [
-    { name: 'Dog', sound: 'Woof!' },
-    { name: 'Cat', sound: 'Meow!' },
-    { name: 'Cow', sound: 'Moo!' },
-    { name: 'Fox', sound: 'Wa-pa-pa-pa-pa-pa-pow!' },
-  ]
+  @Input() items: any
+  currenciesControl = new FormControl('', Validators.required)
+  @Output()
+  selectionChange: EventEmitter<any>
 
   constructor() { }
 
