@@ -1,5 +1,8 @@
 <!--<h2>chart works!</h2>-->
-<app-ui-select-feature [items]="dataSelect"></app-ui-select-feature>
+<div class="d-flex just-center">
+  <app-ui-select-feature [items]="dataSelect"></app-ui-select-feature>
+  <app-ui-datepicker></app-ui-datepicker>
+</div>
 <app-ui-bar-graph [data]="dataChart"></app-ui-bar-graph>
 <pre>{{dynamics['dynamics'] | json}}</pre>
 <pre>{{dataChart | json}}</pre>

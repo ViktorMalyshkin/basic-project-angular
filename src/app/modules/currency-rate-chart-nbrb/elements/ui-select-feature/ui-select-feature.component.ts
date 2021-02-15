@@ -2,8 +2,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { FormControl, Validators } from '@angular/forms'
 
 interface Animal {
-  name: string;
-  sound: string;
+  name: string,
+  sound: string,
 }
 
 @Component({

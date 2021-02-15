@@ -5,7 +5,7 @@
   },
   "schematics": {
     "@ngrx/schematics:container": {
-      "style": "scss"
+      "style": "sass"
     }
   },
   "version": 1,
@@ -33,7 +33,9 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/scss/index.scss",
+              "src/assets/sass/index.sass"
             ],
             "scripts": []
           },
