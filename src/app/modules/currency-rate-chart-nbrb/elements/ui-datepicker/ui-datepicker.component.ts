@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, EventEmitter, OnInit, Output } from '@angular/core'
 import { FormControl, FormGroup } from '@angular/forms'
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter'
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core'
@@ -8,7 +8,7 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
   templateUrl: './ui-datepicker.component.html',
   styleUrls: ['./ui-datepicker.component.css'],
   providers: [
-    { provide: MAT_DATE_LOCALE, useValue: 'en-UK' },
+    { provide: MAT_DATE_LOCALE, useValue: 'ru-RU' },
     {
       provide: DateAdapter,
       useClass: MomentDateAdapter,
@@ -26,9 +26,32 @@ export class UiDatepickerComponent implements OnInit {
   minDate = new Date()
   maxDate = new Date(2021, 1, 20)
 
+  @Output()
+  selectionRange = new EventEmitter<any>()
+
+  @Output()
+  selectionStartDate = new EventEmitter<any>()
+
+  @Output()
+  selectionEndDate = new EventEmitter<any>()
+
+  d: any
+
   constructor() {}
 
   ngOnInit(): void {
   }
 
+  selectionRangeEvent( $event ): void {
+    alert($event.value)
+    this.selectionRange.emit($event)
+  }
+
+  selectionStartDateEvent( $event): void {
+    this.selectionStartDate.emit($event)
+  }
+
+  selectionEndDateEvent( $event): void {
+    this.selectionEndDate.emit($event)
+  }
 }

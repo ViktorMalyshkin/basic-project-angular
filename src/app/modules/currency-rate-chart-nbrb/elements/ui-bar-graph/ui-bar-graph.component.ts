@@ -40,12 +40,12 @@ export class UiBarGraphComponent implements OnInit, OnChanges {
   private createChart(): void {
     d3.select('svg').remove()
 
-    const element = this.chartContainer.nativeElement
+    const element = this.chartContainer?.nativeElement
     const data = this.data
 
     const svg = d3.select(element).append('svg')
-      .attr('width', element.offsetWidth)
-      .attr('height', element.offsetHeight)
+      .attr('width', element?.offsetWidth)
+      .attr('height', element?.offsetHeight)
 
     const contentWidth = element.offsetWidth - this.margin.left - this.margin.right
     const contentHeight = element.offsetHeight - this.margin.top - this.margin.bottom

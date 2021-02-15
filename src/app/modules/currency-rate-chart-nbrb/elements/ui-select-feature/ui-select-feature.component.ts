@@ -13,13 +13,17 @@ interface Animal {
 })
 export class UiSelectFeatureComponent implements OnInit {
   @Input() items: any
+  @Input() hintTitle: any
   currenciesControl = new FormControl('', Validators.required)
   @Output()
-  selectionChange: EventEmitter<any>
+  selectionChange = new EventEmitter<any>()
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  selectionChangeEvent( $event ): void {
+    this.selectionChange.emit($event)
   }
 
 }

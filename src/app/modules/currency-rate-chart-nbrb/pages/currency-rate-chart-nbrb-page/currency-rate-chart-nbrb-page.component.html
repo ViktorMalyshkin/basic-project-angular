@@ -1,2 +1,4 @@
 <h2>Currency Rate Chart NBRB Page</h2>
-<app-chart [dynamics]="dynamics$ | async" [currencies]="currencies$ | async"></app-chart>
+<!--<pre>{{selectionCurrency | json}}</pre>-->
+<pre>{{currency | json}}</pre>
+<app-chart [dynamics]="dynamics$ | async" [currencies]="currencies$ | async" (params)="paramsEvent($event)"></app-chart>

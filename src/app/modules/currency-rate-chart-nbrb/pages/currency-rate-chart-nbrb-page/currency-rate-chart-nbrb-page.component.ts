@@ -17,9 +17,10 @@ import { selectDynamicsState } from '../../store/selectors/dynamics.selectors'
 export class CurrencyRateChartNbrbPageComponent implements OnInit {
   dynamics$: Observable<DynamicsState>
   currencies$: Observable<CurrenciesState>
-  currency = 145
+  currency = '145'
   startDate = '2016-6-2'
   endDate = '2016-6-30'
+  // selectionCurrency: any
 
   constructor( private store: Store, private _servise: DynamicsService ) {
     this.dynamics$ = this.store.select(selectDynamicsState)
@@ -31,4 +32,13 @@ export class CurrencyRateChartNbrbPageComponent implements OnInit {
     this.store.dispatch(new GetCurrencies())
   }
 
+  // selectionCurrencyEvent( $event: any ): void {
+  //   this.selectionCurrency = $event.value
+  //   this.currency = $event.value.description
+  //   console.log($event.value.description)
+  // }
+  paramsEvent( $event: any ): void {
+    alert(JSON.stringify($event.value))
+    this.store.dispatch(new GetDynamics($event.value))
+  }
 }
