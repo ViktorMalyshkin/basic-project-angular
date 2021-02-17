@@ -15,10 +15,10 @@ export const initialDynamicsState: DynamicsState = {
 
 export function dynamicsReducer( state = initialDynamicsState, action: DynamicsActions ): DynamicsState {
   switch (action.type) {
-
     case E_DYNAMICS_ACTION_TYPES.GET_DYNAMICS_SUCCESS:
       return { ...state, dynamics: action.payload }
-
+    case E_DYNAMICS_ACTION_TYPES.GET_DYNAMICS_FAILURE:
+      return { ...state }
     default:
       return state
   }

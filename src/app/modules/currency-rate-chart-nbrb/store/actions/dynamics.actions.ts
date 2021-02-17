@@ -4,6 +4,7 @@ import { IDynamicsModel } from '../../models/dynamics.model'
 export enum E_DYNAMICS_ACTION_TYPES {
   GET_DYNAMICS = '[Dynamics] GET Dynamics',
   GET_DYNAMICS_SUCCESS = '[Dynamics] GET Dynamics Success',
+  GET_DYNAMICS_FAILURE = '[Dynamics] GET Dynamics Failure',
 }
 
 export class GetDynamics implements Action {
@@ -18,4 +19,10 @@ export class GetDynamicsSuccess implements Action {
   constructor( public payload: IDynamicsModel[] ) {}
 }
 
-export type DynamicsActions = GetDynamics | GetDynamicsSuccess
+export class GetDynamicsFailure implements Action {
+  readonly type = E_DYNAMICS_ACTION_TYPES.GET_DYNAMICS_FAILURE
+}
+
+
+
+export type DynamicsActions = GetDynamics | GetDynamicsSuccess | GetDynamicsFailure

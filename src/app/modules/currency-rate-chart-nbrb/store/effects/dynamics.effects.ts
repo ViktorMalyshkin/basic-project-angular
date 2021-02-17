@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core'
 import { Actions, Effect, ofType } from '@ngrx/effects'
-import { of } from 'rxjs'
+import { forkJoin, Observable, of } from 'rxjs'
 
 import { switchMap } from 'rxjs/operators'
 import { IDynamicsModel } from '../../models/dynamics.model'
 import { DynamicsService } from '../../services/dynamics.service'
-import { DynamicsActions, E_DYNAMICS_ACTION_TYPES, GetDynamics, GetDynamicsSuccess } from '../actions/dynamics.actions'
+import { DynamicsActions, E_DYNAMICS_ACTION_TYPES, GetDynamics, GetDynamicsFailure, GetDynamicsSuccess } from '../actions/dynamics.actions'
 
+const currencyRub = {
+  idBefore: '190',
+  idModified: '298',
+  dateBefore: '2016-6-30',
+  dateModification: '2016-7-1',
+}
 
 @Injectable()
 export class DynamicsEffects {
@@ -15,32 +21,42 @@ export class DynamicsEffects {
   @Effect()
   getDynamics$ = this.actions$.pipe(
     ofType<GetDynamics>(E_DYNAMICS_ACTION_TYPES.GET_DYNAMICS),
-    switchMap(
-      ( action: ReturnType<any> ) => {
-
-        // postman.setNextRequest('https://www.nbrb.by/API/ExRates/Rates/Dynamics/298?startDate=2016-7-1&endDate=2016-7-30');
-
-        // let cur_id = action.payload.currency
-        // const cur_id_rub_before_2016_7_1 = '190'
-        // const cur_id_rub_after_2016_7_1 = '298'
-        // let startDate = action.payload.startDate
-        // const endDate = action.payload.endDate
-        //
-        // if (cur_id !== cur_id_rub_before_2016_7_1 || cur_id !== cur_id_rub_after_2016_7_1) {
-        //   console.log('Данный код является RUB')
-        //   const modification_date_rub_code = '2016-7-1'
-        //   if (startDate < modification_date_rub_code && modification_date_rub_code <= endDate) {
-        //     const startDate_of_rub = startDate
-        //     startDate = '2016-7-1'
-        //     cur_id !== cur_id_rub_after_2016_7_1 && (cur_id = cur_id_rub_after_2016_7_1)
-        //   }
-        // }
-
-
-        return this._service.getDynamics(action.payload.currency, action.payload.startDate, action.payload.endDate)
-      }),
-    switchMap(( modelsHttp: IDynamicsModel[] ) => of(new GetDynamicsSuccess(modelsHttp))),
+    switchMap(( action: ReturnType<any> ) => {
+        const { type, ...payload } = action
+        return this.checkForRussianCurrency(payload.currency, payload.startDate, payload.endDate)
+      },
+    ),
+    switchMap(( result ) => result ? of(new GetDynamicsSuccess(result)) : of(new GetDynamicsFailure())),
   )
 
   constructor( private actions$: Actions<DynamicsActions>, private _service: DynamicsService ) {}
+
+  checkForRussianCurrency( idCurrency: string, startDate: string, endDate: string ): Observable<IDynamicsModel[]> {
+    if (idCurrency === currencyRub.idBefore || idCurrency === currencyRub.idModified) {
+      this.checkRangeForRussianCurrency(idCurrency, startDate, endDate)
+    } else {
+      return this._service.getDynamics(idCurrency, startDate, endDate)
+    }
+  }
+
+  checkRangeForRussianCurrency( idCurrency: string, startDate: string, endDate: string ): Observable<IDynamicsModel[]> {
+    switch (true) {
+      case endDate <= currencyRub.dateBefore:
+        return this._service.getDynamics(currencyRub.idBefore, startDate, endDate)
+      case currencyRub.dateModification <= startDate:
+        return this._service.getDynamics(currencyRub.idModified, startDate, endDate)
+      case startDate <= currencyRub.dateModification && currencyRub.dateModification <= endDate:
+        const getDynamicsBefore: Observable<IDynamicsModel[]> = this._service.getDynamics(currencyRub.idBefore, startDate,
+          currencyRub.dateBefore)
+        const getDynamicsAfter: Observable<IDynamicsModel[]> = this._service.getDynamics(currencyRub.idModified, startDate,
+          currencyRub.dateModification)
+        const makeRequestInParallel = (): Observable<IDynamicsModel[]> => {
+          const observableDynamics: Observable<IDynamicsModel[]>[] = [getDynamicsBefore, getDynamicsAfter]
+          return forkJoin(...observableDynamics)
+        }
+        return makeRequestInParallel()
+    }
+  }
+
+
 }
