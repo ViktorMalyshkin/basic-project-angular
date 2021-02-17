@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { FormControl, FormGroup } from '@angular/forms'
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter'
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core'
@@ -25,6 +25,8 @@ export class UiDatepickerComponent implements OnInit {
 
   minDate = new Date(2020, 1, 20)
   maxDate = new Date()
+  @Input()
+  isDisabledDatepicker: boolean
 
   @Output()
   selectionRange = new EventEmitter<any>()
@@ -34,8 +36,6 @@ export class UiDatepickerComponent implements OnInit {
 
   @Output()
   selectionEndDate = new EventEmitter<any>()
-
-  d: any
 
   constructor() {}
 
@@ -47,11 +47,11 @@ export class UiDatepickerComponent implements OnInit {
     this.selectionRange.emit($event)
   }
 
-  selectionStartDateEvent( $event): void {
+  selectionStartDateEvent( $event ): void {
     this.selectionStartDate.emit($event)
   }
 
-  selectionEndDateEvent( $event): void {
+  selectionEndDateEvent( $event ): void {
     this.selectionEndDate.emit($event)
   }
 }

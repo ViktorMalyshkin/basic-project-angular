@@ -1,13 +1,13 @@
-<h2>chart works!</h2>
-<pre>{{dynamicsApiParams | json}}</pre>
 
 <div class="d-flex just-space-evenly">
   <app-ui-select-feature [items]="dataSelect" [hintTitle]="hintTitle" (selectionChange)="selectionCurrencyEvent($event)"
   ></app-ui-select-feature>
-  <app-ui-datepicker (selectionStartDate)="selectionStartDateEvent($event)" (selectionEndDate)="selectionEndDateEvent($event)"></app-ui-datepicker>
-  <button mat-raised-button (click)="buildChartEvent($event, dynamicsApiParams)">Basic</button>
+  <app-ui-datepicker [isDisabledDatepicker]='isDisabledDatepicker' (selectionStartDate)="selectionStartDateEvent($event)" (selectionEndDate)="selectionEndDateEvent($event)"></app-ui-datepicker>
+  <div class="d-flex just-center items-center"><button mat-raised-button [disabled]="isDisabledButton" (click)="buildChartEvent($event, dynamicsApiParams)">Basic</button></div>
 </div>
+<hr>
 <app-ui-bar-graph [data]="dataChart"></app-ui-bar-graph>
-<pre>{{dynamics[ 'dynamics' ] | json}}</pre>
-<pre>{{dataChart | json}}</pre>
+<pre>{{dynamicsApiParams | json}}</pre>
+<!--<pre>{{dynamics[ 'dynamics' ] | json}}</pre>-->
+<!--<pre>{{dataChart | json}}</pre>-->
 

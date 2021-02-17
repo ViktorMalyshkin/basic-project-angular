@@ -16,6 +16,8 @@ export class ChartComponent implements OnInit {
   dataChart: ChartDataModel[]
   dataSelect: any[]
   hintTitle: string
+  isDisabledDatepicker = true
+  isDisabledButton = true
 
   dynamicsApiParams: DynamicsApiParamsModel
 
@@ -23,7 +25,7 @@ export class ChartComponent implements OnInit {
 
   constructor( private _datePipe: DatePipe ) {
     this.hintTitle = 'Currency Code'
-    this.dynamicsApiParams = { currency: '', startDate: '', endDate: '' }
+    this.dynamicsApiParams = { currency: null, startDate: null, endDate: null }
   }
 
   ngOnInit(): void {
@@ -36,19 +38,30 @@ export class ChartComponent implements OnInit {
   }
 
   selectionCurrencyEvent( $event ): void {
-    this.dynamicsApiParams.currency = $event.value.Description
+    this.dynamicsApiParams.currency = $event.value ? $event.value.Description : null
+    this.checkIsDisabledDatepicker()
   }
 
   selectionStartDateEvent( $event: any ): void {
     this.dynamicsApiParams.startDate = $event.value
+    this.checkIsDisabledButton()
   }
 
   selectionEndDateEvent( $event: any ): void {
     this.dynamicsApiParams.endDate = $event.value
+    this.checkIsDisabledButton()
   }
 
   buildChartEvent( $event: MouseEvent, dynamicsApiParamsModel: DynamicsApiParamsModel ): void {
-    alert({event: $event , value: dynamicsApiParamsModel})
-    this.params.emit({event: $event , value: dynamicsApiParamsModel})
+    alert({ event: $event, value: dynamicsApiParamsModel })
+    this.params.emit({ event: $event, value: dynamicsApiParamsModel })
+  }
+
+  checkIsDisabledButton(): void {
+    this.isDisabledButton = !(this.dynamicsApiParams.startDate !== null && this.dynamicsApiParams.endDate !== null)
+  }
+
+  checkIsDisabledDatepicker(): void {
+    this.isDisabledDatepicker = !!this.dynamicsApiParams.currency !== null
   }
 }

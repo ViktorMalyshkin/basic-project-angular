@@ -1,4 +1,3 @@
-<p>ui-select-feature works!</p>
 <mat-form-field appearance="fill">
   <mat-label>Currency</mat-label>
   <mat-select [formControl]="currenciesControl" required (selectionChange)="selectionChangeEvent($event)">
@@ -11,5 +10,5 @@
   <mat-hint >{{hintTitle}}: {{currenciesControl.value?.Description}}</mat-hint>
 </mat-form-field>
 
-<p>Selection change:</p><pre class="text-left" *ngIf="currenciesControl.value">{{currenciesControl.value | json}}</pre>
+<!--<p>Selection change:</p><pre class="text-left" *ngIf="currenciesControl.value">{{currenciesControl.value | json}}</pre>-->
 
