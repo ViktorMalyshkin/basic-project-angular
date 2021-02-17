@@ -23,8 +23,8 @@ export class UiDatepickerComponent implements OnInit {
     end: new FormControl(),
   })
 
-  minDate = new Date()
-  maxDate = new Date(2021, 1, 20)
+  minDate = new Date(2020, 1, 20)
+  maxDate = new Date()
 
   @Output()
   selectionRange = new EventEmitter<any>()

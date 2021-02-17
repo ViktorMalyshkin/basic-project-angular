@@ -13,7 +13,7 @@ export class CurrencyService {
 
   public getCurrencies(): Observable<CurrensyModel[]> {
     if (environment.env_name === 'PROD') {
-      return this._http.get<CurrensyModel[]>(`${ environment.api_url }/exrates/currecies`)
+      return this._http.get<CurrensyModel[]>(`${ environment.api_url }/exrates/currencies`)
     } else {
       return of([
         {
