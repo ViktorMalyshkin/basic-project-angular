@@ -18,8 +18,8 @@ export class CurrencyRateChartNbrbPageComponent implements OnInit {
   dynamics$: Observable<DynamicsState>
   currencies$: Observable<CurrenciesState>
   currency = '145'
-  startDate = '2016-6-2'
-  endDate = '2016-6-30'
+  startDate = '2016-06-02T00:00:00'
+  endDate = '2016-06-30T00:00:00'
   // selectionCurrency: any
 
   constructor( private store: Store, private _servise: DynamicsService ) {
@@ -38,7 +38,7 @@ export class CurrencyRateChartNbrbPageComponent implements OnInit {
   //   console.log($event.value.description)
   // }
   paramsEvent( $event: any ): void {
-    alert(JSON.stringify($event.value))
+    // alert(JSON.stringify($event.value))
     this.store.dispatch(new GetDynamics($event.value))
   }
 }

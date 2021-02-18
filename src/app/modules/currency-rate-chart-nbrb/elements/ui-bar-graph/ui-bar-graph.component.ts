@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnChanges, OnInit, ViewChild, ViewEncapsulation } from '@angular/core'
+import { AfterViewInit, Component, ElementRef, Input, OnChanges, ViewChild, ViewEncapsulation } from '@angular/core'
 import * as d3 from 'd3'
 import { ChartDataModel } from '../../models/chart-data.model'
 
@@ -8,29 +8,29 @@ import { ChartDataModel } from '../../models/chart-data.model'
   templateUrl: './ui-bar-graph.component.html',
   styleUrls: ['./ui-bar-graph.component.scss'],
 })
-export class UiBarGraphComponent implements OnInit, OnChanges {
-  url = 'https://raw.githubusercontent.com/diveshpanwar/d3-graph-data/master/heat-map.csv'
-  description = 'USD'
-  title = 'Currency Rate Chart NBRB'
+export class UiBarGraphComponent implements OnChanges, AfterViewInit {
+  nameCurrency = 'USD'
+  titleChart = 'Currency Rate Chart NBRB'
 
   @Input()
   data: ChartDataModel[]
 
-  @ViewChild('chart')
-  private chartContainer: ElementRef
+  @ViewChild('chart', { static: false }) chartContainer: ElementRef
   margin = { top: 20, right: 20, bottom: 30, left: 40 }
 
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnChanges(): void {
-    if (!this.data) { return }
-    this.createChart()
-
+    if (this.chartContainer) {
+      this.createChart()
+    }
   }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
+    if (this.data) {
+      this.createChart()
+    }
   }
 
   onResize(): void {
@@ -40,7 +40,7 @@ export class UiBarGraphComponent implements OnInit, OnChanges {
   private createChart(): void {
     d3.select('svg').remove()
 
-    const element = this.chartContainer?.nativeElement
+    const element = this.chartContainer.nativeElement
     const data = this.data
 
     const svg = d3.select(element).append('svg')
@@ -52,7 +52,7 @@ export class UiBarGraphComponent implements OnInit, OnChanges {
 
     const x = d3
       .scaleBand()
-      .rangeRound([ 0, contentWidth])
+      .rangeRound([0, contentWidth])
       .domain(data.map(d => d.xAxis))
       .padding(0.1)
 

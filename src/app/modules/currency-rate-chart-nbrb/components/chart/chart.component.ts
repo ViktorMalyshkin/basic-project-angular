@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common'
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core'
 import { ChartDataModel } from '../../models/chart-data.model'
 import { CurrensyObjectModel } from '../../models/currensy.model'
 import { DynamicsApiParamsModel } from '../../models/dynamics-api-params.model'
@@ -10,7 +10,7 @@ import { DynamicsObjectModel } from '../../models/dynamics.model'
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.css'],
 })
-export class ChartComponent implements OnInit {
+export class ChartComponent implements OnInit, OnChanges {
   @Input() dynamics: DynamicsObjectModel
   @Input() currencies: CurrensyObjectModel
   dataChart: ChartDataModel[]
@@ -18,6 +18,8 @@ export class ChartComponent implements OnInit {
   hintTitle: string
   isDisabledDatepicker = true
   isDisabledButton = true
+  curDateStart: Date
+  curDateEnd: Date
 
   dynamicsApiParams: DynamicsApiParamsModel
 
@@ -28,33 +30,39 @@ export class ChartComponent implements OnInit {
     this.dynamicsApiParams = { currency: null, startDate: null, endDate: null }
   }
 
-  ngOnInit(): void {
+
+  ngOnChanges(): void {
     this.dataChart = this.dynamics.dynamics.map(( item ) => {
       return { xAxis: this._datePipe.transform(item.Date, 'MM/dd'), yAxis: item.Cur_OfficialRate }
     })
     this.dataSelect = this.currencies.currencies.map(( item ) => {
-      return { Name: item.Cur_QuotName, Description: item.Cur_Code }
+      return { Name: item.Cur_QuotName, Description: item.Cur_ID, Cur_DateStart: item.Cur_DateStart, Cur_DateEnd: item.Cur_DateEnd }
     })
   }
 
+  ngOnInit(): void {
+  }
+
   selectionCurrencyEvent( $event ): void {
-    this.dynamicsApiParams.currency = $event.value ? $event.value.Description : null
-    this.checkIsDisabledDatepicker()
+    if ($event.value) {
+      this.dynamicsApiParams.currency = $event.value.Description
+      this.curDateStart = new Date($event.value.Cur_DateStart)
+      this.curDateEnd = new Date($event.value.Cur_DateEnd)
+      this.checkIsDisabledDatepicker()
+    } else {
+      this.dynamicsApiParams.currency = null
+      this.checkIsDisabledDatepicker()
+    }
   }
 
   selectionStartDateEvent( $event: any ): void {
-    this.dynamicsApiParams.startDate = $event.value
+    this.dynamicsApiParams.startDate = this._datePipe.transform($event.value, 'yyyy-MM-dd')
     this.checkIsDisabledButton()
   }
 
   selectionEndDateEvent( $event: any ): void {
-    this.dynamicsApiParams.endDate = $event.value
+    this.dynamicsApiParams.endDate = this._datePipe.transform($event.value, 'yyyy-MM-dd')
     this.checkIsDisabledButton()
-  }
-
-  buildChartEvent( $event: MouseEvent, dynamicsApiParamsModel: DynamicsApiParamsModel ): void {
-    alert({ event: $event, value: dynamicsApiParamsModel })
-    this.params.emit({ event: $event, value: dynamicsApiParamsModel })
   }
 
   checkIsDisabledButton(): void {
@@ -62,6 +70,10 @@ export class ChartComponent implements OnInit {
   }
 
   checkIsDisabledDatepicker(): void {
-    this.isDisabledDatepicker = !!this.dynamicsApiParams.currency !== null
+    this.isDisabledDatepicker = this.dynamicsApiParams.currency === null
+  }
+
+  buildChartEvent( $event: MouseEvent, dynamicsApiParams: DynamicsApiParamsModel ): void {
+    this.params.emit({ event: $event, value: dynamicsApiParams })
   }
 }

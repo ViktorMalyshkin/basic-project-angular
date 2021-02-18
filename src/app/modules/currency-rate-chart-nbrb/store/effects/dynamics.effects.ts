@@ -22,8 +22,7 @@ export class DynamicsEffects {
   getDynamics$ = this.actions$.pipe(
     ofType<GetDynamics>(E_DYNAMICS_ACTION_TYPES.GET_DYNAMICS),
     switchMap(( action: ReturnType<any> ) => {
-        const { type, ...payload } = action
-        return this.checkForRussianCurrency(payload.currency, payload.startDate, payload.endDate)
+        return this.checkForRussianCurrency(action.payload.currency, action.payload.startDate, action.payload.endDate)
       },
     ),
     switchMap(( result ) => result ? of(new GetDynamicsSuccess(result)) : of(new GetDynamicsFailure())),

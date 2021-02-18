@@ -11,11 +11,13 @@ export class DynamicsService {
 
   constructor( private _http: HttpClient ) { }
 
-  public getDynamics(currency: any, startDate: any, endDate: any): Observable<IDynamicsModel[]> {
+  public getDynamics( currency: any, startDate: any, endDate: any ): Observable<IDynamicsModel[]> {
     if (environment.env_name === 'PROD') {
-      return this._http.get<IDynamicsModel[]>(`${environment.api_url}/ExRates/Rates/Dynamics/${currency}?startDate=${startDate}&endDate=${endDate}`)
+      return this._http.get<IDynamicsModel[]>(
+        `${ environment.api_url }/ExRates/Rates/Dynamics/${ currency }?startDate=${ startDate }&endDate=${ endDate }`)
     } else {
-      return of([
+      // TODO TEPM API
+      const array = [
         { Cur_ID: 145, Date: '2016-06-01T00:00:00', Cur_OfficialRate: 19788.00 },
         { Cur_ID: 145, Date: '2016-06-02T00:00:00', Cur_OfficialRate: 19877.00 },
         { Cur_ID: 145, Date: '2016-06-03T00:00:00', Cur_OfficialRate: 19921.00 },
@@ -46,7 +48,14 @@ export class DynamicsService {
         { Cur_ID: 145, Date: '2016-06-28T00:00:00', Cur_OfficialRate: 20036.00 },
         { Cur_ID: 145, Date: '2016-06-29T00:00:00', Cur_OfficialRate: 20041.00 },
         { Cur_ID: 145, Date: '2016-06-30T00:00:00', Cur_OfficialRate: 20053.00 },
-      ])
+      ]
+      const newArray = array.filter(( item ) => {
+        const date = Number(item.Date.split('T')[ 0 ].split('-').join(''))
+        const s = Number(startDate.split('T')[ 0 ].split('-').join(''))
+        const e = Number(endDate.split('T')[ 0 ].split('-').join(''))
+        return s <= date && date <= e
+      })
+      return of(newArray)
     }
   }
 }

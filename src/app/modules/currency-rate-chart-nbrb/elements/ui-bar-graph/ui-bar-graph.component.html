@@ -1,5 +1,3 @@
-<h2>UI-BAR-GRAPH</h2>
-<!--<pre>Data: {{data | json}}</pre>-->
-
-<!--<lib-bar-chart [url]="url" [description]="description" [title]="title" [width]="1000"></lib-bar-chart>-->
-<div #chart id="chart" (window:resize)='onResize()'></div>
+<h2>{{titleChart}}</h2>
+<div *ngIf="data" #chart id="chart" (window:resize)='onResize()'></div>
+<div *ngIf="!data">There is no data!</div>

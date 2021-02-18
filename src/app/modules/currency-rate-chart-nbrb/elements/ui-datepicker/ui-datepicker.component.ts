@@ -25,22 +25,35 @@ export class UiDatepickerComponent implements OnInit {
 
   minDate = new Date(2020, 1, 20)
   maxDate = new Date()
-  @Input()
-  isDisabledDatepicker: boolean
+
+  @Input() isDisabledDatepicker: boolean
+
+  @Input() set curDateStart( minDate: Date ) {
+    this.minDate = minDate
+  }
+  get curDateStart(): Date {
+    return this.minDate
+  }
+
+  @Input() set curDateEnd( maxDate: Date ) {
+    this.maxDate = maxDate
+  }
+  get curDateEnd(): Date {
+    return this.maxDate
+  }
 
   @Output()
   selectionRange = new EventEmitter<any>()
 
   @Output()
-  selectionStartDate = new EventEmitter<any>()
+  selectionStartDate = new EventEmitter<Date>()
 
   @Output()
-  selectionEndDate = new EventEmitter<any>()
+  selectionEndDate = new EventEmitter<Date>()
 
   constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   selectionRangeEvent( $event ): void {
     alert($event.value)
