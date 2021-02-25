@@ -1,0 +1,3 @@
+:host /deep/ router-outlet + *:not(nav) {
+  width:100%;
+}
