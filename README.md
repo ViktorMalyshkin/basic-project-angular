@@ -1,4 +1,5 @@
 # BasicProjectAngular
+[![Netlify Status](https://api.netlify.com/api/v1/badges/0fc0dfc2-7204-4ef1-ada2-739ad70ed43c/deploy-status)](https://app.netlify.com/sites/curanaldev/deploys)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.1.
 
