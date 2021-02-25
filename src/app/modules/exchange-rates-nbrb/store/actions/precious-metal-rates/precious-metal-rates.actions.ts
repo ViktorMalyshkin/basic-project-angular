@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store'
-import { IIngot } from '../../../models/ingot.model'
+import {PriceModel} from '../../../models/price.model'
 
 export enum EPreciousMetalRatesActionTypes {
   GetPreciousMetalRates = '[PreciousMetalRates] GET Precious Metal Rates',
@@ -13,7 +13,7 @@ export class GetPreciousMetalRates implements Action {
 export class GetPreciousMetalRatesSuccess implements Action {
   readonly type = EPreciousMetalRatesActionTypes.GetPreciousMetalRatesSuccess
 
-  constructor( public payload: IIngot[] ) {}
+  constructor( public payload: PriceModel[] ) {}
 }
 
 export type PreciousMetalRatesActions = GetPreciousMetalRates | GetPreciousMetalRatesSuccess

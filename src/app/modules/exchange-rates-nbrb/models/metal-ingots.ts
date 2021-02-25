@@ -1,3 +1,4 @@
+// TODO check model
 export interface IMetalIngots {
   MetalID: number
   Date: string

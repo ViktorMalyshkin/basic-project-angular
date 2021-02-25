@@ -1,9 +1,9 @@
-import { IRate } from '../../models/rate.model'
+import { RateModel } from '../../models/rate.model'
 
 export const CURRENCY_RATES_FEATURE_KEY = 'CURRENCY_RATES_FEATURE_KEY'
 
 export interface ICurrencyRatesState {
-  rates: IRate[]
+  rates: RateModel[]
 }
 
 export const initialCurrencyRatesState: ICurrencyRatesState = {

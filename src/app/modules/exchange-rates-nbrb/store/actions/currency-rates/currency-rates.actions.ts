@@ -1,5 +1,5 @@
-import { Action } from '@ngrx/store'
-import { IRate } from '../../../models/rate.model'
+import {Action} from '@ngrx/store'
+import {RateModel} from '../../../models/rate.model'
 
 export enum ECurrencyRatesActionTypes {
   GetCurrencyRates = '[CurrencyRates] GET Currency Rates',
@@ -13,7 +13,8 @@ export class GetCurrencyRates implements Action {
 export class GetCurrencyRatesSuccess implements Action {
   readonly type = ECurrencyRatesActionTypes.GetCurrencyRatesSuccess
 
-  constructor( public payload: IRate[] ) {}
+  constructor(public payload: RateModel[]) {
+  }
 }
 
 export type CurrencyRatesActions = GetCurrencyRates | GetCurrencyRatesSuccess

@@ -1,9 +1,9 @@
-import { IIngot } from '../../models/ingot.model'
+import {PriceModel} from '../../models/price.model'
 
 export const PRECIOUS_METAL_RATES_FEATURE_KEY = 'PRECIOUS_METAL_RATES_FEATURE_KEY'
 
 export interface IPreciousMetalRatesState {
-  ingots: IIngot[]
+  ingots: PriceModel[]
 }
 
 export const initialPreciousMetalRatesState: IPreciousMetalRatesState = {

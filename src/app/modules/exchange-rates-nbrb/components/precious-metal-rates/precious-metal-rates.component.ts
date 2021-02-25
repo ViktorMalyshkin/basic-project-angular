@@ -1,30 +1,24 @@
-import { Component, Input, OnInit } from '@angular/core'
-import { Store } from '@ngrx/store'
-import { DISPLAYED_COLUMNS_METAL_INGOTS } from '../../constants/displayed-columns.constants'
-import { IIngot } from '../../models/ingot.model'
-import { IMetalIngots } from '../../models/metal-ingots'
-import { IMetal } from '../../models/metal.model'
+import {Component, Input} from '@angular/core'
+import {DISPLAYED_COLUMNS_METAL_INGOTS} from '../../constants/displayed-columns.constants'
+import {PriceModel} from '../../models/price.model'
+import {IMetalIngots} from '../../models/metal-ingots'
+import {MetalModel} from '../../models/metal.model'
 
 @Component({
   selector: 'app-precious-metal-rates',
   templateUrl: './precious-metal-rates.component.html',
   styleUrls: ['./precious-metal-rates.component.css'],
 })
-export class PreciousMetalRatesComponent implements OnInit {
+export class PreciousMetalRatesComponent {
   DISPLAYED_COLUMNS = DISPLAYED_COLUMNS_METAL_INGOTS
-  @Input() ingots: IIngot[]
-  @Input() metals: IMetal[]
+  @Input() prices: PriceModel[]
+  @Input() metals: MetalModel[]
 
-  constructor( private _store: Store ) {
-  }
 
-  ngOnInit(): void {
-  }
-
-  initMetalIngots(metals: IMetal[], ingots: IIngot[]): IMetalIngots[] {
-    return ingots.map(( item ) => {
-      const nameMetal = metals[ item.MetalID ].Name
-      return Object.assign({ ...item, Name: nameMetal })
+  initMetalIngots(metals: MetalModel[], prices: PriceModel[]): IMetalIngots[] {
+    return prices.map((item) => {
+      const nameMetal = metals[item.id].name
+      return Object.assign({...item, name: nameMetal})
     })
   }
 

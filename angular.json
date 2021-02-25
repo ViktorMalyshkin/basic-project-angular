@@ -3,6 +3,11 @@
   "cli": {
     "defaultCollection": "@ngrx/schematics"
   },
+  "schematics": {
+    "@ngrx/schematics:container": {
+      "style": "sass"
+    }
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -29,7 +34,7 @@
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css",
-              "src/assets/scss/index.scss"
+              "src/assets/sass/index.sass"
             ],
             "scripts": []
           },

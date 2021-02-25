@@ -37,9 +37,7 @@ import { reducers } from './store/reducers'
     }),
     RouterModule.forRoot([
       { path: '**', redirectTo: '' },
-      // routes
     ]),
-    // Connects RouterModule with StoreModule, uses MinimalRouterStateSerializer by default
     StoreRouterConnectingModule.forRoot(),
     StoreModule.forRoot(reducers, { runtimeChecks: { strictStateImmutability: true, strictActionImmutability: true } }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
