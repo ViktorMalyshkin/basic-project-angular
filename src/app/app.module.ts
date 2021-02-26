@@ -1,12 +1,12 @@
 import { DatePipe } from '@angular/common'
 import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
+import { MatButtonModule } from '@angular/material/button'
 import { MatMenuModule } from '@angular/material/menu'
 import { MatSliderModule } from '@angular/material/slider'
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { RouterModule } from '@angular/router'
 import { EffectsModule } from '@ngrx/effects'
 import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store'
 
@@ -17,16 +17,17 @@ import { AppComponent } from './app.component'
 import { AppBarComponent } from './components/app-bar/app-bar.component'
 import { MainLayoutsComponent } from './layouts/main-layouts/main-layouts.component'
 import { ExchangeRatesNbrbModule } from './modules/exchange-rates-nbrb/exchange-rates-nbrb.module'
-import { AngularExampleComponent } from './pages/angular-example/angular-example.component'
+import { AppRoutingModule } from './routes/app-routing.module'
 import { AppEffects } from './store/effects/app.effects'
-import { reducers } from './store/reducers'
+import { reducers } from './store/reducers';
+import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     MainLayoutsComponent,
-    AngularExampleComponent,
     AppBarComponent,
+    DashboardPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,15 +39,14 @@ import { reducers } from './store/reducers'
     StoreModule.forRoot({
       router: routerReducer,
     }),
-    RouterModule.forRoot([
-      { path: '**', redirectTo: '' },
-    ]),
+    AppRoutingModule,
     StoreRouterConnectingModule.forRoot(),
     StoreModule.forRoot(reducers, { runtimeChecks: { strictStateImmutability: true, strictActionImmutability: true } }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     StoreRouterConnectingModule.forRoot(),
     EffectsModule.forRoot([AppEffects]),
     MatToolbarModule,
+    MatButtonModule,
 
   ],
   providers: [DatePipe],
