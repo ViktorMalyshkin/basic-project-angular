@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core'
 
 @Component({
   selector: 'app-app-bar',
@@ -8,8 +8,11 @@ import { Component, OnInit } from '@angular/core'
 export class AppBarComponent implements OnInit {
   title = 'CurAnal'
 
+  @ViewChild('button') isActive: ElementRef
 
-  constructor() { }
+  constructor() {
+    console.log('isActive', this.isActive)
+  }
 
   ngOnInit(): void {
   }

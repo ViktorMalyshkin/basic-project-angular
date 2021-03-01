@@ -2,5 +2,6 @@
   <span>{{title}}</span>
   <span class="spacer"></span>
 <!--  <button mat-raised-button routerLink="" class="ml-4i">Dashboard</button>-->
-  <button mat-raised-button routerLink="nbrb" routerLinkActive="active-button" class="ml-4i">NBRB</button>
+  <button mat-raised-button routerLink="nbrb" routerLinkActive="active-button" #nbrb="routerLinkActive" [disabled]="nbrb.isActive" class="ml-4i">NBRB</button>
+  <button mat-raised-button routerLink="chart" routerLinkActive="active-button" #chart="routerLinkActive" [disabled]="chart.isActive" class="ml-4i">Chart</button>
 </mat-toolbar>
