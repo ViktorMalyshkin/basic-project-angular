@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChartNbrbPageStubComponent } from './chart-nbrb-page-stub.component';
+import { NbrbPageComponent } from './nbrb-page.component';
 
-describe('ChartNbrbPageStubComponent', () => {
-  let component: ChartNbrbPageStubComponent;
-  let fixture: ComponentFixture<ChartNbrbPageStubComponent>;
+describe('NbrbPageComponent', () => {
+  let component: NbrbPageComponent;
+  let fixture: ComponentFixture<NbrbPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ChartNbrbPageStubComponent ]
+      declarations: [ NbrbPageComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ChartNbrbPageStubComponent);
+    fixture = TestBed.createComponent(NbrbPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
