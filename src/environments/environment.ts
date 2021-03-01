@@ -10,8 +10,8 @@ export const environment = {
     {
       id: 145,
       name: '1 Доллар США',
-      date_start: '2021-02-01T00:00:00',
-      date_end: '2021-02-24T00:00:00'
+      date_start: '2021-02-01',
+      date_end: '2021-02-24'
     },
 }
 
