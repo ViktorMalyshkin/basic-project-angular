@@ -1,4 +1,4 @@
-import { Component, DoCheck, OnChanges, OnInit, SimpleChanges } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs'
 import { environment } from '../../../../../environments/environment'
@@ -14,26 +14,19 @@ import { selectDynamicsState } from '../../store/selectors/dynamics.selectors'
   templateUrl: './currency-rate-chart-nbrb-page.component.html',
   styleUrls: ['./currency-rate-chart-nbrb-page.component.scss'],
 })
-export class CurrencyRateChartNbrbPageComponent implements OnChanges, OnInit {
+export class CurrencyRateChartNbrbPageComponent implements OnInit {
   dynamics$: Observable<DynamicsState>
   currencies$: Observable<CurrenciesState>
-  // TODO check model
   initialCurrencyChart: any
 
   constructor( private store: Store ) {
     this.initialCurrencyChart = environment.initial_currency_chart
   }
 
-  ngOnChanges( changes: SimpleChanges ): void {
-    console.log('ngOnChanges', changes)
-  }
-
   ngOnInit(): void {
     const receivingDynamics = this._receivingFromServerDynamics()
     const receivingCurrencies = this._receivingFromServerCurrencies()
-    debugger
     Promise.all([receivingDynamics, receivingCurrencies]).then(() => {
-      debugger
       this.dynamics$ = this.store.select(selectDynamicsState)
       this.currencies$ = this.store.select(selectCurrencyState)
     })
@@ -51,10 +44,6 @@ export class CurrencyRateChartNbrbPageComponent implements OnChanges, OnInit {
         endDate: this.initialCurrencyChart.date_end,
       }))
   }
-
-  // ngDoCheck(): void {
-  //   console.log('ngDoCheckghbdtn')
-  // }
 
   paramsEvent( $event: any ): void {
     this.store.dispatch(new GetDynamics($event.value))

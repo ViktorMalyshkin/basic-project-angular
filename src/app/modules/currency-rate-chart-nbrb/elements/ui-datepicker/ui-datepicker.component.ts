@@ -20,7 +20,6 @@ import { MatEndDate, MatStartDate } from '@angular/material/datepicker'
 })
 export class UiDatepickerComponent implements OnInit {
   range: FormGroup
-  // TODO
   minDate = new Date(2020, 1, 20)
   maxDate = new Date()
 

@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common'
-import { AfterViewInit, Component, DoCheck, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core'
+import { AfterViewInit, Component, EventEmitter, Input, OnChanges, Output, ViewChild } from '@angular/core'
 import { UiDatepickerComponent } from '../../elements/ui-datepicker/ui-datepicker.component'
 import { ChartDataModel } from '../../models/chart-data.model'
 import { CurrencyObjectModel } from '../../models/currency.model'
@@ -11,7 +11,7 @@ import { DynamicsObjectModel } from '../../models/dynamics.model'
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.sass'],
 })
-export class ChartComponent implements OnInit, OnChanges, DoCheck, AfterViewInit {
+export class ChartComponent implements OnChanges, AfterViewInit {
   @Input() dynamics: DynamicsObjectModel
   @Input() currencies: CurrencyObjectModel
   dataChart: ChartDataModel[]
@@ -37,8 +37,6 @@ export class ChartComponent implements OnInit, OnChanges, DoCheck, AfterViewInit
   }
 
   ngOnChanges(): void {
-    // Todo есть проблемы проверить через setTimeOut
-    // debugger
     this.dataSelect = this.currencies?.currencies.map(( item ) => {
       return { id: item.id, name: item.quot_name, date_start: item.date_start, date_end: item.date_end }
     })
@@ -47,42 +45,7 @@ export class ChartComponent implements OnInit, OnChanges, DoCheck, AfterViewInit
     })
   }
 
-  ngDoCheck(): void {
-    // debugger
-    // this.dataChart = this.dynamics.dynamics.map(( item ) => {
-    //   return { xAxis: this._datePipe.transform(item.date, 'MM/dd'), yAxis: item.rate }
-    // })
-    // this.dataSelect = this.currencies.currencies.map(( item ) => {
-    //   return { id: item.id, name: item.quot_name, date_start: item.date_start, date_end: item.date_end }
-    // })
-  }
-
-  ngOnInit(): void {
-    // this.initSelectedStartValue(dataSelect)
-    // const promise1 = new Promise(( resolve, reject ) => {
-    //   const dataSelect = this.currencies.currencies.map(( item ) => {
-    //     return { id: item.id, name: item.quot_name, date_start: item.date_start, date_end: item.date_end }
-    //   })
-    //   debugger
-    //   resolve(dataSelect)
-    // })
-    // promise1.then(( dataSelect ) => {
-    //   debugger
-    //   this.dataSelect = dataSelect
-    // }).then(( dataSelect ) => {
-    //   this.initSelectedStartValue(dataSelect)
-    // })
-    // // debugger
-    // this.dataChart = this.dynamics?.dynamics.map(( item ) => {
-    //   return { xAxis: this._datePipe.transform(item.date, 'MM/dd'), yAxis: item.rate }
-    // })
-    // // this.dataSelect = this.currencies.currencies.map(( item ) => {
-    // //   return { id: item.id, name: item.quot_name, date_start: item.date_start, date_end: item.date_end }
-    // // })
-    // // this.initSelectedStartValue()
-  }
-
-  ngAfterViewInit(): void{
+  ngAfterViewInit(): void {
     this.dataSelect = this.currencies.currencies.map(( item ) => {
       return { id: item.id, name: item.quot_name, date_start: item.date_start, date_end: item.date_end }
     })
@@ -98,7 +61,6 @@ export class ChartComponent implements OnInit, OnChanges, DoCheck, AfterViewInit
     if (value && this.dataSelect.length !== 0) {
       const selectedCurrency = dataSelect.find(item => item.id === value)
       this.currency = selectedCurrency.id.toString()
-      // debugger
       this.curDateStart = new Date(selectedCurrency.date_start)
       const today = new Date()
       const dateEnd = new Date(selectedCurrency.date_end)
@@ -106,7 +68,6 @@ export class ChartComponent implements OnInit, OnChanges, DoCheck, AfterViewInit
       this.checkIsDisabledDatepicker()
       this.resetDate()
     } else {
-      // debugger
       this.checkIsDisabledDatepicker()
     }
   }
@@ -140,7 +101,6 @@ export class ChartComponent implements OnInit, OnChanges, DoCheck, AfterViewInit
     this.isDisabledButton = true
   }
 
-  // TODO
   cleaningDynamicsApiParams(): void {
     this.selectionStartDateEvent({ value: null })
     this.selectionEndDateEvent({ value: null })
