@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DashboardPageComponent } from './dashboard-page.component';
+import { ChartNbrbPageStubComponent } from './chart-nbrb-page-stub.component';
 
-describe('DashboardPageComponent', () => {
-  let component: DashboardPageComponent;
-  let fixture: ComponentFixture<DashboardPageComponent>;
+describe('ChartNbrbPageStubComponent', () => {
+  let component: ChartNbrbPageStubComponent;
+  let fixture: ComponentFixture<ChartNbrbPageStubComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DashboardPageComponent ]
+      declarations: [ ChartNbrbPageStubComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardPageComponent);
+    fixture = TestBed.createComponent(ChartNbrbPageStubComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
