@@ -3,8 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
-};
+  production: false,
+  env_name: 'DEV',
+  api_url: 'https://www.nbrb.by/api',
+  initial_currency_chart:
+    {
+      id: 145,
+      name: '1 Доллар США',
+      date_start: '2021-02-01T00:00:00',
+      date_end: '2021-02-24T00:00:00'
+    },
+}
 
 /*
  * For easier debugging in development mode, you can import the following file
