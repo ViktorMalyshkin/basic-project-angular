@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { IndexGuard } from './index.guard';
+import { StateResolverGuard } from './state-resolver.guard';
 
-describe('IndexGuard', () => {
-  let guard: IndexGuard;
+describe('StateResolverGuard', () => {
+  let guard: StateResolverGuard;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    guard = TestBed.inject(IndexGuard);
+    guard = TestBed.inject(StateResolverGuard);
   });
 
   it('should be created', () => {
