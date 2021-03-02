@@ -17,4 +17,6 @@
   </div>
 </div>
 <hr>
-<app-ui-bar-graph [data]="dataChart"></app-ui-bar-graph>
+<h2>{{titleChart}}</h2>
+<div *ngIf="dataChart.length !== 0" appCurrencyChart [data]="dataChart"></div>
+<h3 *ngIf="dataChart.length === 0" class="uppercase white bg-brown r2">No data for the graph!</h3>

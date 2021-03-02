@@ -1,25 +1,30 @@
-import { AfterViewInit, Component, ElementRef, Input, OnChanges, ViewChild, ViewEncapsulation } from '@angular/core'
+import { AfterViewInit, Directive, ElementRef, HostBinding, HostListener, Input, OnChanges } from '@angular/core'
 import * as d3 from 'd3'
-import { ChartDataModel } from '../../models/chart-data.model'
+import { ChartDataModel } from '../models/chart-data.model'
 
-@Component({
-  selector: 'app-ui-bar-graph',
-  encapsulation: ViewEncapsulation.None,
-  templateUrl: './ui-bar-graph.component.html',
-  styleUrls: ['./ui-bar-graph.component.scss'],
+@Directive({
+  selector: '[appCurrencyChart]',
 })
-export class UiBarGraphComponent implements OnChanges, AfterViewInit {
-  nameCurrency = 'USD'
-  titleChart = 'Currency Rate Chart NBRB'
-
-  @Input()
-  data: ChartDataModel[]
-
-  @ViewChild('chart', { static: false }) chartContainer: ElementRef
+export class CurrencyChartDirective implements OnChanges, AfterViewInit {
   margin = { top: 20, right: 20, bottom: 30, left: 40 }
 
+  @Input() data: ChartDataModel[]
 
-  constructor() {}
+  @HostBinding('style') style: object
+
+  @HostListener('window:resize') onResize(): void {
+    this.createChart()
+  }
+
+  constructor( private chartContainer: ElementRef ) {
+    console.log(chartContainer)
+    this.style = {
+      height: 'inherit',
+      width: 'inherit',
+      minHeight: '480px',
+    }
+  }
+
 
   ngOnChanges(): void {
     if (this.chartContainer) {
@@ -28,28 +33,25 @@ export class UiBarGraphComponent implements OnChanges, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    if (this.data?.length !== 0) {
+    if (this.data.length !== 0) {
       this.createChart()
     }
   }
 
-  onResize(): void {
-    this.createChart()
-  }
-
   isData(): boolean {
-    return this.data?.length !== 0
+    return this.data.length !== 0
   }
 
   private createChart(): void {
     d3.select('svg').remove()
     if (this.isData()) {
       const element = this.chartContainer.nativeElement
+      console.log(this.chartContainer)
       const data = this.data
 
       const svg = d3.select(element).append('svg')
-        .attr('width', element?.offsetWidth)
-        .attr('height', element?.offsetHeight)
+        .attr('width', element.offsetWidth)
+        .attr('height', element.offsetHeight)
 
       const contentWidth = element.offsetWidth - this.margin.left - this.margin.right
       const contentHeight = element.offsetHeight - this.margin.top - this.margin.bottom
