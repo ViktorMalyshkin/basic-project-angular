@@ -3,6 +3,6 @@
 <!--           [initialCurrencyChart]='initialCurrencyChart' (params)="paramsEvent($event)"></app-chart>-->
 <h3>Receiving data from API</h3>
 <div class="d-flex just-center">
-  <pre>dynamics[0]: {{(dynamics$ | async)?.dynamics[ 0 ] | json}}</pre>
-  <pre>currencies[0]: {{(currencies$ | async)?.currencies[ 0 ] | json}}</pre>
+  <pre>dynamics: {{dynamics | json}}</pre>
+  <pre>currencies: {{currencies | json}}</pre>
 </div>
