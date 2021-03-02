@@ -18,10 +18,10 @@ export class CurrencyRateChartNbrbPageComponent implements OnInit, OnDestroy {
   private _destroy$ = new Subject<void>()
   public dynamics: DynamicsModel[] = []
   public currencies: CurrencyModel[] = []
-  private _initialCurrencyChart: any
+  initialCurrencyChart: any
 
   constructor( private _store: Store ) {
-    this._initialCurrencyChart = environment.initial_currency_chart
+    this.initialCurrencyChart = environment.initial_currency_chart
   }
 
   ngOnInit(): void {
