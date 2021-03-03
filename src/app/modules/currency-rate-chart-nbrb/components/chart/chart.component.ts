@@ -12,16 +12,16 @@ import { DynamicsModel } from '../../models/dynamics.model'
   styleUrls: ['./chart.component.sass'],
 })
 export class ChartComponent implements OnChanges, AfterViewInit {
+  titleChart = 'Currency Rate Chart NBRB'
+  hintTitle = 'Currency Code'
   @Input() dynamics: DynamicsModel[]
   @Input() currencies: CurrencyModel[]
   dataChart: ChartDataModel[]
   dataSelect: any
-  hintTitle: string
   isDisabledDatepicker = true
   isDisabledButton = true
   curDateStart: Date
   curDateEnd: Date
-  titleChart = 'Currency Rate Chart NBRB'
   dynamicsApiParams: DynamicsApiParamsModel = { currency: null, startDate: null, endDate: null }
 
   @Output() params = new EventEmitter<any>()
@@ -31,11 +31,8 @@ export class ChartComponent implements OnChanges, AfterViewInit {
   @Input() initialCurrencyChart: any
 
   @ViewChild(UiDatepickerComponent) childDatepicker: UiDatepickerComponent
-  disabledSelectCurrency = true
 
-  constructor( private _datePipe: DatePipe ) {
-    this.hintTitle = 'Currency Code'
-  }
+  constructor( private _datePipe: DatePipe ) {}
 
   ngOnChanges(): void {
     this.dataSelect = this.currencies.map(( item ) => {
@@ -47,22 +44,24 @@ export class ChartComponent implements OnChanges, AfterViewInit {
         date_end: item.date_end,
       }
     })
+    debugger
     this.dataChart = this.dynamics.map(( item ) => {
       return { xAxis: this._datePipe.transform(item.date, 'MM/dd'), yAxis: item.rate }
     })
-    if (this.dataSelect) {
-      this.disabledSelectCurrency = false
-    }
   }
 
   ngAfterViewInit(): void {
-    this.dataSelect = this.currencies.map(( item ) => {
-      return { id: item.id, name: item.quot_name, date_start: item.date_start, date_end: item.date_end }
-    })
-    if (this.dataSelect) {
-      this.disabledSelectCurrency = false
-    }
-    this.initSelectedStartValue(this.dataSelect)
+  //   Promise.resolve((this.currencies.map(( item ) => {
+  //     return { id: item.id, name: item.quot_name, date_start: item.date_start, date_end: item.date_end }
+  //   }))).then(( items ) => {
+  //     this.dataSelect = items
+  //   debugger
+  //     this.initSelectedStartValue(items)
+  //   })
+  //   // this.dataSelect = this.currencies.map(( item ) => {
+  //   //   return { id: item.id, name: item.quot_name, date_start: item.date_start, date_end: item.date_end }
+  //   // })
+  //   // this.initSelectedStartValue(this.dataSelect)
   }
 
   initSelectedStartValue( dataSelect ): void {
@@ -74,6 +73,7 @@ export class ChartComponent implements OnChanges, AfterViewInit {
     this.currency = value
     if (value && this.dataSelect.length !== 0) {
       const selectedCurrency = dataSelect.find(item => item.id === value)
+      debugger
       this.curDateStart = new Date(selectedCurrency.date_start)
       const today = new Date()
       const dateEnd = new Date(selectedCurrency.date_end)
@@ -123,5 +123,23 @@ export class ChartComponent implements OnChanges, AfterViewInit {
     this.childDatepicker?.resetDateRangeInput()
     this.startDate = null
     this.endDate = null
+  }
+
+
+  buildChartBasedParams( $event ): void {
+    this.dataChart = []
+    this.startDate = this._datePipe.transform($event.startDate, 'yyyy-MM-dd')
+    this.endDate = this._datePipe.transform($event.endDate, 'yyyy-MM-dd')
+    this.dynamicsApiParams = {
+      currency: this.currency,
+      startDate: this.startDate,
+      endDate: this.endDate,
+    }
+    this.params.emit({ event: $event, value: this.dynamicsApiParams })
+    this.cleaningDynamicsApiParams()
+  }
+
+  isDataChart( dataChart ): boolean {
+    return dataChart.length === 0
   }
 }
