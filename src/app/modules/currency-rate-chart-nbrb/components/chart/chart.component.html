@@ -1,0 +1,22 @@
+<div class="d-flex just-space-evenly">
+  <app-ui-select-feature [items]="dataSelect"
+                         [hintTitle]="hintTitle"
+                         [selectItem]="initialCurrencyChart"
+                         (selectionChange)="selectionCurrencyEvent($event, dataSelect)"
+  ></app-ui-select-feature>
+  <app-ui-datepicker [isDisabledDatepicker]='isDisabledDatepicker'
+                     [curDateStart]="curDateStart"
+                     [curDateEnd]="curDateEnd"
+                     [selectItem]="initialCurrencyChart"
+                     (selectionStartDate)="selectionStartDateEvent($event)"
+                     (selectionEndDate)="selectionEndDateEvent($event)"></app-ui-datepicker>
+  <div class="d-flex just-center items-start">
+    <button mat-raised-button class="uppercase" [disabled]="isDisabledButton" (click)="buildChartEvent($event)">
+      build a graph
+    </button>
+  </div>
+</div>
+<hr>
+<h2>{{titleChart}}</h2>
+<div *ngIf="dataChart.length !== 0" appCurrencyChart [data]="dataChart"></div>
+<h3 *ngIf="dataChart.length === 0" class="uppercase white bg-brown r2">No data for the graph!</h3>
