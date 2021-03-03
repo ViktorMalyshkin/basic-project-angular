@@ -8,7 +8,7 @@ const initialCurrencyChart = environment.initial_currency_chart
 
 export const exchangeRatesNbrbRoutes: Route[] = [
   {
-    path: '',
+    path: 'chart',
     component: CurrencyRateChartNbrbPageComponent,
     resolve: { state: StateResolverGuard },
     data: {
