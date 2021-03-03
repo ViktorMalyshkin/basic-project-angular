@@ -1,7 +1,10 @@
 import { DatePipe } from '@angular/common'
 import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
-import { MatSliderModule } from '@angular/material/slider'
+import { MatButtonModule } from '@angular/material/button'
+import { MatIconModule } from '@angular/material/icon'
+import { MatMenuModule } from '@angular/material/menu'
+import { MatToolbarModule } from '@angular/material/toolbar'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { EffectsModule } from '@ngrx/effects'
@@ -11,6 +14,12 @@ import { StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { environment } from '../environments/environment'
 import { AppComponent } from './app.component'
+import { AppBarComponent } from './components/app-bar/app-bar.component'
+import { MainLayoutsComponent } from './layouts/main-layouts/main-layouts.component'
+import { CurrencyRateChartNbrbModule } from './modules/currency-rate-chart-nbrb/currency-rate-chart-nbrb.module'
+import { ExchangeRatesNbrbModule } from './modules/exchange-rates-nbrb/exchange-rates-nbrb.module'
+import { StubComponent } from './pages/stub/stub.component'
+import { AppRoutingModule } from './routes/app-routing.module'
 import { AppEffects } from './store/effects/app.effects'
 import { reducers } from './store/reducers';
 import { NbrbPageComponent } from './pages/nbrb-page/nbrb-page.component'
@@ -41,6 +50,7 @@ import { NbrbPageComponent } from './pages/nbrb-page/nbrb-page.component'
     StoreRouterConnectingModule.forRoot(),
     EffectsModule.forRoot([AppEffects]),
     MatButtonModule,
+    MatMenuModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],

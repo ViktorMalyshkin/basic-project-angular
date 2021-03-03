@@ -17,7 +17,6 @@ export class CurrencyChartDirective implements OnChanges, AfterViewInit {
   }
 
   constructor( private chartContainer: ElementRef ) {
-    console.log(chartContainer)
     this.style = {
       height: 'inherit',
       width: 'inherit',
@@ -46,7 +45,6 @@ export class CurrencyChartDirective implements OnChanges, AfterViewInit {
     d3.select('svg').remove()
     if (this.isData()) {
       const element = this.chartContainer.nativeElement
-      console.log(this.chartContainer)
       const data = this.data
 
       const svg = d3.select(element).append('svg')
