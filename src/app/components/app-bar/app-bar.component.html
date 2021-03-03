@@ -1,0 +1,29 @@
+<mat-toolbar [class.mat-elevation-z16]="true">
+  <a routerLink class="decoration-none black">{{title}}</a>
+  <span class="spacer"></span>
+  <button mat-raised-button routerLink="dashboard" routerLinkActive #dashboard="routerLinkActive"
+          [disabled]="dashboard.isActive" class="ml-4i uppercase">dashboard
+  </button>
+  <button mat-raised-button routerLink="about" routerLinkActive #about="routerLinkActive"
+          [disabled]="about.isActive" class="ml-4i uppercase">about
+  </button>
+  <button mat-raised-button routerLink="exrates-banks" routerLinkActive #exrabanks="routerLinkActive"
+          [disabled]="exrabanks.isActive" class="ml-4i uppercase">Exchange rates of banks
+  </button>
+  <button mat-raised-button routerLink="smart-calc" routerLinkActive #smart_calc="routerLinkActive"
+          [disabled]="smart_calc.isActive" class="ml-4i uppercase">Smart Currency Calculator
+  </button>
+  <button mat-raised-button [matMenuTriggerFor]="beforeMenu" class="ml-4i uppercase">NBRB</button>
+  <mat-menu #beforeMenu="matMenu" xPosition="before">
+    <button mat-menu-item routerLink="nbrb/exrates-nbrb" routerLinkActive #nbrb="routerLinkActive" [disabled]="nbrb.isActive"
+            class="uppercase">Exchange Rates
+    </button>
+    <button mat-menu-item routerLink="nbrb/converter" routerLinkActive #converter="routerLinkActive"
+            [disabled]="converter.isActive"
+            class="uppercase">Currency Converter
+    </button>
+    <button mat-menu-item routerLink="nbrb/chart" routerLinkActive #chart="routerLinkActive" [disabled]="chart.isActive"
+            class="uppercase">dynamics graph
+    </button>
+  </mat-menu>
+</mat-toolbar>
