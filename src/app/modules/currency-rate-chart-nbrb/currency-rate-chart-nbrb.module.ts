@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { MatMomentDateModule } from '@angular/material-moment-adapter'
 import { MatAutocompleteModule } from '@angular/material/autocomplete'
 import { MatButtonModule } from '@angular/material/button'
+import { MatButtonToggleModule } from '@angular/material/button-toggle'
 import { MatNativeDateModule, MatOptionModule } from '@angular/material/core'
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatFormFieldModule } from '@angular/material/form-field'
@@ -25,11 +26,13 @@ import { exchangeRatesNbrbRoutes } from './routes'
 import { CurrencyEffects } from './store/effects/currency.effects'
 import { DynamicsEffects } from './store/effects/dynamics.effects'
 import * as fromCurrency from './store/reducers/currency.reducer'
-import * as fromDynamics from './store/reducers/dynamics.reducer'
+import * as fromDynamics from './store/reducers/dynamics.reducer';
+import { UiButtonToggleComponent } from './elements/ui-button-toggle/ui-button-toggle.component'
 
 @NgModule({
   declarations: [CurrencyRateChartNbrbPageComponent, ChartComponent, UiSelectFeatureComponent, UiDatepickerComponent,
-    CurrencyChartDirective],
+    CurrencyChartDirective,
+    UiButtonToggleComponent],
   imports: [
     CommonModule,
     AngularD3GraphLibModule,
@@ -51,6 +54,7 @@ import * as fromDynamics from './store/reducers/dynamics.reducer'
     MatIconModule,
     MatButtonModule,
     MatAutocompleteModule,
+    MatButtonToggleModule,
   ],
   providers: [],
 })

@@ -2,7 +2,7 @@
   <app-ui-select-feature [items]="dataSelect"
                          [hintTitle]="hintTitle"
                          [selectItem]="initialCurrencyChart"
-                         [disabledSelect]="disabledSelectCurrency"
+                         [disabledSelect]="isDataChart(dataChart)"
                          (selectionChange)="selectionCurrencyEvent($event, dataSelect)"
   ></app-ui-select-feature>
   <app-ui-datepicker [isDisabledDatepicker]='isDisabledDatepicker'
@@ -10,7 +10,8 @@
                      [curDateEnd]="curDateEnd"
                      [selectItem]="initialCurrencyChart"
                      (selectionStartDate)="selectionStartDateEvent($event)"
-                     (selectionEndDate)="selectionEndDateEvent($event)"></app-ui-datepicker>
+                     (selectionEndDate)="selectionEndDateEvent($event)"
+  ></app-ui-datepicker>
   <div class="d-flex just-center items-start">
     <button mat-raised-button class="uppercase" [disabled]="isDisabledButton" (click)="buildChartEvent($event)">
       build a graph
@@ -18,6 +19,10 @@
   </div>
 </div>
 <hr>
+<div class="text-center">
+  <app-ui-button-toggle (dates)="buildChartBasedParams($event)"></app-ui-button-toggle>
+</div>
+<hr>
 <h2 class="text-center">{{titleChart}}</h2>
-<div *ngIf="dataChart.length !== 0" appCurrencyChart [data]="dataChart"></div>
-<h3 *ngIf="dataChart.length === 0" class="text-center uppercase white bg-brown r2">No data for the graph!</h3>
+<div *ngIf="!isDataChart(dataChart)" appCurrencyChart [data]="dataChart"></div>
+<h3 *ngIf="isDataChart(dataChart)" class="text-center uppercase white bg-brown r2">No data for the graph!</h3>
