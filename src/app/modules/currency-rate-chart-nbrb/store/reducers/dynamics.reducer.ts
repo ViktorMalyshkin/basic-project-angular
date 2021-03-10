@@ -4,16 +4,15 @@ import { DynamicsActions, E_DYNAMICS_ACTION_TYPES } from '../actions/dynamics.ac
 
 export const DYNAMICS_FEATURE_KEY = 'DYNAMICS'
 
-export interface DynamicsState {
-  router?: RouterReducerState
+export interface IDynamicsState {
   dynamics: DynamicsModel[]
 }
 
-export const initialDynamicsState: DynamicsState = {
+export const initialDynamicsState: IDynamicsState = {
   dynamics: []
 }
 
-export function dynamicsReducer( state = initialDynamicsState, action: DynamicsActions ): DynamicsState {
+export function dynamicsReducer( state = initialDynamicsState, action: DynamicsActions ): IDynamicsState {
   switch (action.type) {
     case E_DYNAMICS_ACTION_TYPES.GET_DYNAMICS_SUCCESS:
       return { ...state, dynamics: action.payload }
