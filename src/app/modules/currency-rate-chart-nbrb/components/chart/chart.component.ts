@@ -2,9 +2,9 @@ import { DatePipe } from '@angular/common'
 import { AfterViewInit, Component, EventEmitter, Input, OnChanges, Output, ViewChild } from '@angular/core'
 import { UiDatepickerComponent } from '../../elements/ui-datepicker/ui-datepicker.component'
 import { ChartDataModel } from '../../models/chart-data.model'
-import { CurrencyObjectModel } from '../../models/currency.model'
+import { CurrencyModel, CurrencyObjectModel } from '../../models/currency.model'
 import { DynamicsApiParamsModel } from '../../models/dynamics-api-params.model'
-import { DynamicsObjectModel } from '../../models/dynamics.model'
+import { DynamicsModel, DynamicsObjectModel } from '../../models/dynamics.model'
 
 @Component({
   selector: 'app-chart',
@@ -12,8 +12,8 @@ import { DynamicsObjectModel } from '../../models/dynamics.model'
   styleUrls: ['./chart.component.sass'],
 })
 export class ChartComponent implements OnChanges, AfterViewInit {
-  @Input() dynamics: DynamicsObjectModel
-  @Input() currencies: CurrencyObjectModel
+  @Input() dynamics: DynamicsModel[]
+  @Input() currencies: CurrencyModel[]
   dataChart: ChartDataModel[]
   dataSelect: any
   hintTitle: string
@@ -21,7 +21,7 @@ export class ChartComponent implements OnChanges, AfterViewInit {
   isDisabledButton = true
   curDateStart: Date
   curDateEnd: Date
-
+  titleChart = 'Currency Rate Chart NBRB'
   dynamicsApiParams: DynamicsApiParamsModel = { currency: null, startDate: null, endDate: null }
 
   @Output() params = new EventEmitter<any>()
@@ -37,16 +37,16 @@ export class ChartComponent implements OnChanges, AfterViewInit {
   }
 
   ngOnChanges(): void {
-    this.dataSelect = this.currencies?.currencies.map(( item ) => {
+    this.dataSelect = this.currencies.map(( item ) => {
       return { id: item.id, name: item.quot_name, date_start: item.date_start, date_end: item.date_end }
     })
-    this.dataChart = this.dynamics?.dynamics.map(( item ) => {
+    this.dataChart = this.dynamics.map(( item ) => {
       return { xAxis: this._datePipe.transform(item.date, 'MM/dd'), yAxis: item.rate }
     })
   }
 
   ngAfterViewInit(): void {
-    this.dataSelect = this.currencies.currencies.map(( item ) => {
+    this.dataSelect = this.currencies.map(( item ) => {
       return { id: item.id, name: item.quot_name, date_start: item.date_start, date_end: item.date_end }
     })
     this.initSelectedStartValue(this.dataSelect)

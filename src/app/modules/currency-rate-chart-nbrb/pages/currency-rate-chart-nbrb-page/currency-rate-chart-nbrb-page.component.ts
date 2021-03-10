@@ -1,51 +1,45 @@
-import { Component, OnInit } from '@angular/core'
-import { Store } from '@ngrx/store'
-import { Observable } from 'rxjs'
+import { Component, OnDestroy, OnInit } from '@angular/core'
+import { select, Store } from '@ngrx/store'
+import { Subject } from 'rxjs'
+import { takeUntil } from 'rxjs/operators'
 import { environment } from '../../../../../environments/environment'
-import { GetCurrencies } from '../../store/actions/currency.actions'
+import { CurrencyModel } from '../../models/currency.model'
+import { DynamicsCurrencyModel } from '../../models/dynamics-currency.model'
+import { DynamicsModel } from '../../models/dynamics.model'
 import { GetDynamics } from '../../store/actions/dynamics.actions'
-import { CurrenciesState } from '../../store/reducers/currency.reducer'
-import { DynamicsState } from '../../store/reducers/dynamics.reducer'
-import { selectCurrencyState } from '../../store/selectors/currency.selectors'
-import { selectDynamicsState } from '../../store/selectors/dynamics.selectors'
+import { selectDynamicsCurrencies } from '../../store/selectors/index.selectors'
 
 @Component({
   selector: 'app-currency-rate-chart-nbrb-page',
   templateUrl: './currency-rate-chart-nbrb-page.component.html',
   styleUrls: ['./currency-rate-chart-nbrb-page.component.scss'],
 })
-export class CurrencyRateChartNbrbPageComponent implements OnInit {
-  dynamics$: Observable<DynamicsState>
-  currencies$: Observable<CurrenciesState>
+export class CurrencyRateChartNbrbPageComponent implements OnInit, OnDestroy {
+  private _destroy$ = new Subject<void>()
+  public dynamics: DynamicsModel[] = []
+  public currencies: CurrencyModel[] = []
   initialCurrencyChart: any
 
-  constructor( private store: Store ) {
+  constructor( private _store: Store ) {
     this.initialCurrencyChart = environment.initial_currency_chart
   }
 
   ngOnInit(): void {
-    const receivingDynamics = this._receivingFromServerDynamics()
-    const receivingCurrencies = this._receivingFromServerCurrencies()
-    Promise.all([receivingDynamics, receivingCurrencies]).then(() => {
-      this.dynamics$ = this.store.select(selectDynamicsState)
-      this.currencies$ = this.store.select(selectCurrencyState)
+    this._store.pipe(
+      select(selectDynamicsCurrencies),
+      takeUntil(this._destroy$),
+    ).subscribe(( dynamicsCurrency: DynamicsCurrencyModel ) => {
+      this.currencies = dynamicsCurrency.currencies
+      this.dynamics = dynamicsCurrency.dynamics
     })
   }
 
-  private async _receivingFromServerDynamics(): Promise<void> {
-    await this.store.dispatch(new GetCurrencies())
-  }
-
-  private async _receivingFromServerCurrencies(): Promise<void> {
-    await this.store.dispatch(new GetDynamics(
-      {
-        currency: this.initialCurrencyChart.id.toString(),
-        startDate: this.initialCurrencyChart.date_start,
-        endDate: this.initialCurrencyChart.date_end,
-      }))
+  ngOnDestroy(): void {
+    this._destroy$.next()
+    this._destroy$.complete()
   }
 
   paramsEvent( $event: any ): void {
-    this.store.dispatch(new GetDynamics($event.value))
+    this._store.dispatch(new GetDynamics($event.value))
   }
 }

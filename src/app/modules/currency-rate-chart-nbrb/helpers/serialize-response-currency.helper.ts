@@ -1,8 +1,9 @@
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 import { CurrencyModel } from '../models/currency.model'
+import { ResponseCurrencyModel } from '../models/response/response-currency.model'
 
-export const serializeResponseCurrencies = ( source: Observable<any> ): Observable<CurrencyModel[]> => {
+export const serializeResponseCurrencies = ( source: Observable<ResponseCurrencyModel[]> ): Observable<CurrencyModel[]> => {
   return source.pipe(
     map(items => items.map(item => {
         return {
