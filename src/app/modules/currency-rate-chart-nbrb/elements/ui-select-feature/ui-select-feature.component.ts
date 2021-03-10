@@ -11,6 +11,7 @@ export class UiSelectFeatureComponent implements OnInit {
   @Input() items: any
   @Input() hintTitle: any
   @Input() selectItem: any
+  @Input() disabledSelect: boolean
   @Output() selectionChange = new EventEmitter<any>()
 
   constructor() {}

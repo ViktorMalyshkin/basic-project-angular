@@ -1,19 +1,17 @@
-import { RouterReducerState } from '@ngrx/router-store'
 import { CurrencyModel } from '../../models/currency.model'
 import { CurrencyActions, E_CURRENCIES_ACTION_TYPES } from '../actions/currency.actions'
 
 export const CURRENCIES_FEATURE_KEY = 'CURRENCIES'
 
-export interface CurrenciesState {
-  router?: RouterReducerState
+export interface ICurrenciesState {
   currencies: CurrencyModel[]
 }
 
-export const initialCurrenciesState: CurrenciesState = {
+export const initialCurrenciesState: ICurrenciesState = {
   currencies: [],
 }
 
-export function currenciesReducer( state = initialCurrenciesState, action: CurrencyActions ): CurrenciesState {
+export function currenciesReducer( state = initialCurrenciesState, action: CurrencyActions ): ICurrenciesState {
   switch (action.type) {
 
     case E_CURRENCIES_ACTION_TYPES.GET_CURRENCIES_SUCCESS:

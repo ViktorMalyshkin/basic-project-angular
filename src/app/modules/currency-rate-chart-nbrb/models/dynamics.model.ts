@@ -3,7 +3,3 @@ export interface DynamicsModel {
   date: string,
   rate: number
 }
-
-export interface DynamicsObjectModel {
-  dynamics: DynamicsModel[]
-}
