@@ -3,8 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
-};
+  production: false,
+  env_name: 'DEV',
+  api_url: 'https://www.nbrb.by/api',
+}
 
 /*
  * For easier debugging in development mode, you can import the following file

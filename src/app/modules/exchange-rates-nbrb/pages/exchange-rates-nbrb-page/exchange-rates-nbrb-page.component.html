@@ -1,0 +1,7 @@
+<h1 class="ex-rates-nbrb-header">Exchange Rates NBRB Page</h1>
+<div class="ex-rates-nbrb-container">
+    <app-currency-rates [rates]="rates$ | async"></app-currency-rates>
+    <app-precious-metal-rates [prices]="prices$ | async" [metals]="metals$ | async"></app-precious-metal-rates>
+</div>
+
+
