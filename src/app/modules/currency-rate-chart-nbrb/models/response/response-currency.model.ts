@@ -18,10 +18,6 @@ export interface ResponseCurrencyModel {
   Cur_DateEnd: string,
 }
 
-export interface ResponseCurrencyObjectModel {
-  currencies: ResponseCurrencyModel[]
-}
-
 // {
 //   Cur_ID: 1,
 //   Cur_ParentID: 1,

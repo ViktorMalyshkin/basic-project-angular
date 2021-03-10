@@ -1,4 +1,3 @@
-import { RouterReducerState } from '@ngrx/router-store'
 import { DynamicsModel } from '../../models/dynamics.model'
 import { DynamicsActions, E_DYNAMICS_ACTION_TYPES } from '../actions/dynamics.actions'
 
@@ -9,7 +8,7 @@ export interface IDynamicsState {
 }
 
 export const initialDynamicsState: IDynamicsState = {
-  dynamics: []
+  dynamics: [],
 }
 
 export function dynamicsReducer( state = initialDynamicsState, action: DynamicsActions ): IDynamicsState {

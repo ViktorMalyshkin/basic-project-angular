@@ -13,7 +13,6 @@ import { MatInputModule } from '@angular/material/input'
 import { MatSelectModule } from '@angular/material/select'
 import { MatSliderModule } from '@angular/material/slider'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { RouterModule } from '@angular/router'
 import { EffectsModule } from '@ngrx/effects'
 import { StoreModule } from '@ngrx/store'
 import { AngularD3GraphLibModule } from 'angular-d3-graphs'
@@ -23,7 +22,6 @@ import { UiButtonToggleComponent } from './elements/ui-button-toggle/ui-button-t
 import { UiDatepickerComponent } from './elements/ui-datepicker/ui-datepicker.component'
 import { UiSelectFeatureComponent } from './elements/ui-select-feature/ui-select-feature.component'
 import { CurrencyRateChartNbrbPageComponent } from './pages/currency-rate-chart-nbrb-page/currency-rate-chart-nbrb-page.component'
-import { exchangeRatesNbrbRoutes } from './routes'
 import { MODULE_EFFECTS } from './store/effects'
 import * as fromCurrency from './store/reducers/currency.reducer'
 import * as fromDynamics from './store/reducers/dynamics.reducer'
@@ -38,7 +36,6 @@ import * as fromDynamics from './store/reducers/dynamics.reducer'
     StoreModule.forFeature(fromDynamics.DYNAMICS_FEATURE_KEY, fromDynamics.dynamicsReducer),
     StoreModule.forFeature(fromCurrency.CURRENCIES_FEATURE_KEY, fromCurrency.currenciesReducer),
     EffectsModule.forFeature(MODULE_EFFECTS),
-    RouterModule.forChild(exchangeRatesNbrbRoutes),
     MatOptionModule,
     MatSelectModule,
     ReactiveFormsModule,
