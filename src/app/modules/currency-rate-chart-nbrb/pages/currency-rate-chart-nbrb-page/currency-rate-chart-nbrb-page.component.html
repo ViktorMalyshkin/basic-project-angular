@@ -1,8 +1,3 @@
 <h2>Currency Rate Chart</h2>
-<!--<app-chart [dynamics]="dynamics$ | async" [currencies]="currencies$ | async"-->
-<!--           [initialCurrencyChart]='initialCurrencyChart' (params)="paramsEvent($event)"></app-chart>-->
-<h3>Receiving data from API</h3>
-<div class="d-flex just-center">
-  <pre>dynamics: {{dynamics | json}}</pre>
-  <pre>currencies: {{currencies | json}}</pre>
-</div>
+<app-chart [dynamics]="dynamics" [currencies]="currencies"
+           [initialCurrencyChart]='initialCurrencyChart' (params)="paramsEvent($event)"></app-chart>

@@ -1,12 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { select, Store } from '@ngrx/store'
 import { Subject } from 'rxjs'
-import { takeUntil, tap } from 'rxjs/operators'
+import { takeUntil } from 'rxjs/operators'
 import { environment } from '../../../../../environments/environment'
 import { CurrencyModel } from '../../models/currency.model'
 import { DynamicsCurrencyModel } from '../../models/dynamics-currency.model'
 import { DynamicsModel } from '../../models/dynamics.model'
-import { GetCurrencies } from '../../store/actions/currency.actions'
 import { GetDynamics } from '../../store/actions/dynamics.actions'
 import { selectDynamicsCurrencies } from '../../store/selectors/index.selectors'
 
@@ -19,30 +18,17 @@ export class CurrencyRateChartNbrbPageComponent implements OnInit, OnDestroy {
   private _destroy$ = new Subject<void>()
   public dynamics: DynamicsModel[] = []
   public currencies: CurrencyModel[] = []
-  private _initialCurrencyChart: any
+  initialCurrencyChart: any
 
   constructor( private _store: Store ) {
-    this._initialCurrencyChart = environment.initial_currency_chart
+    this.initialCurrencyChart = environment.initial_currency_chart
   }
 
   ngOnInit(): void {
     this._store.pipe(
       select(selectDynamicsCurrencies),
-      tap(( dynamicsCurrency: DynamicsCurrencyModel ) => {
-        if (dynamicsCurrency.currencies.length === 0) {this._store.dispatch(new GetCurrencies())}
-        if (dynamicsCurrency.dynamics.length === 0) {
-          this._store.dispatch(new GetDynamics(
-            {
-              currency: this._initialCurrencyChart.id.toString(),
-              startDate: this._initialCurrencyChart.date_start,
-              endDate: this._initialCurrencyChart.date_end,
-            }))
-        }
-      }),
       takeUntil(this._destroy$),
     ).subscribe(( dynamicsCurrency: DynamicsCurrencyModel ) => {
-      console.log('currencies', dynamicsCurrency.currencies)
-      console.log('dynamics', dynamicsCurrency.dynamics)
       this.currencies = dynamicsCurrency.currencies
       this.dynamics = dynamicsCurrency.dynamics
     })
