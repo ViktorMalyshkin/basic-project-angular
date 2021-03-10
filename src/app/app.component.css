@@ -1,3 +1,15 @@
 :host /deep/ router-outlet + *:not(nav) {
   width:100%;
 }
+
+.content {
+  margin: 8px auto 8px;
+  padding: 0 16px;
+  max-width: 960px;
+  width: 100%;
+  text-align: center;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

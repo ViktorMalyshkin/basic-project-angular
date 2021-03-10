@@ -3,8 +3,8 @@ import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { MatButtonModule } from '@angular/material/button'
 import { MatMenuModule } from '@angular/material/menu'
-import { MatSliderModule } from '@angular/material/slider'
 import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatIconModule } from '@angular/material/icon'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { EffectsModule } from '@ngrx/effects'
@@ -19,6 +19,7 @@ import { MainLayoutsComponent } from './layouts/main-layouts/main-layouts.compon
 import { ExchangeRatesNbrbModule } from './modules/exchange-rates-nbrb/exchange-rates-nbrb.module'
 import { StubComponent } from './pages/stub/stub.component'
 import { AppRoutingModule } from './routes/app-routing.module'
+import { CurrencyRateChartNbrbModule } from './modules/currency-rate-chart-nbrb/currency-rate-chart-nbrb.module'
 import { AppEffects } from './store/effects/app.effects'
 import { reducers } from './store/reducers';
 import { NbrbPageComponent } from './pages/nbrb-page/nbrb-page.component'
@@ -35,9 +36,11 @@ import { NbrbPageComponent } from './pages/nbrb-page/nbrb-page.component'
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatSliderModule,
     MatMenuModule,
     ExchangeRatesNbrbModule,
+    MatIconModule,
+    MatToolbarModule,
+    CurrencyRateChartNbrbModule,
     StoreModule.forRoot({
       router: routerReducer,
     }),
@@ -47,9 +50,7 @@ import { NbrbPageComponent } from './pages/nbrb-page/nbrb-page.component'
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     StoreRouterConnectingModule.forRoot(),
     EffectsModule.forRoot([AppEffects]),
-    MatToolbarModule,
     MatButtonModule,
-
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],

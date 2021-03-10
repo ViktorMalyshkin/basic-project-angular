@@ -108,8 +108,9 @@
       "options": [
         "ban-keywords",
         "check-format",
-        "allow-pascal-case",
-        "allow-leading-underscore"
+        "require-const-for-all-caps",
+        "allow-leading-underscore",
+        "allow-pascal-case"
       ]
     },
     "whitespace": {
