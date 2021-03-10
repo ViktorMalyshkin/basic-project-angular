@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common'
-import { AfterViewInit, Component, EventEmitter, Input, OnChanges, Output, ViewChild } from '@angular/core'
+import { Component, EventEmitter, Input, OnChanges, Output, ViewChild } from '@angular/core'
 import { UiDatepickerComponent } from '../../elements/ui-datepicker/ui-datepicker.component'
 import { ChartDataModel } from '../../models/chart-data.model'
 import { CurrencyModel } from '../../models/currency.model'
@@ -11,7 +11,7 @@ import { DynamicsModel } from '../../models/dynamics.model'
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.sass'],
 })
-export class ChartComponent implements OnChanges, AfterViewInit {
+export class ChartComponent implements OnChanges {
   titleChart = 'Currency Rate Chart NBRB'
   hintTitle = 'Currency Code'
   @Input() dynamics: DynamicsModel[]
@@ -44,24 +44,9 @@ export class ChartComponent implements OnChanges, AfterViewInit {
         date_end: item.date_end,
       }
     })
-    debugger
     this.dataChart = this.dynamics.map(( item ) => {
       return { xAxis: this._datePipe.transform(item.date, 'MM/dd'), yAxis: item.rate }
     })
-  }
-
-  ngAfterViewInit(): void {
-  //   Promise.resolve((this.currencies.map(( item ) => {
-  //     return { id: item.id, name: item.quot_name, date_start: item.date_start, date_end: item.date_end }
-  //   }))).then(( items ) => {
-  //     this.dataSelect = items
-  //   debugger
-  //     this.initSelectedStartValue(items)
-  //   })
-  //   // this.dataSelect = this.currencies.map(( item ) => {
-  //   //   return { id: item.id, name: item.quot_name, date_start: item.date_start, date_end: item.date_end }
-  //   // })
-  //   // this.initSelectedStartValue(this.dataSelect)
   }
 
   initSelectedStartValue( dataSelect ): void {
@@ -73,7 +58,6 @@ export class ChartComponent implements OnChanges, AfterViewInit {
     this.currency = value
     if (value && this.dataSelect.length !== 0) {
       const selectedCurrency = dataSelect.find(item => item.id === value)
-      debugger
       this.curDateStart = new Date(selectedCurrency.date_start)
       const today = new Date()
       const dateEnd = new Date(selectedCurrency.date_end)
