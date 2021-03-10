@@ -16,10 +16,10 @@ import { environment } from '../environments/environment'
 import { AppComponent } from './app.component'
 import { AppBarComponent } from './components/app-bar/app-bar.component'
 import { MainLayoutsComponent } from './layouts/main-layouts/main-layouts.component'
+import { CurrencyRateChartNbrbModule } from './modules/currency-rate-chart-nbrb/currency-rate-chart-nbrb.module'
 import { ExchangeRatesNbrbModule } from './modules/exchange-rates-nbrb/exchange-rates-nbrb.module'
 import { StubComponent } from './pages/stub/stub.component'
 import { AppRoutingModule } from './routes/app-routing.module'
-import { CurrencyRateChartNbrbModule } from './modules/currency-rate-chart-nbrb/currency-rate-chart-nbrb.module'
 import { AppEffects } from './store/effects/app.effects'
 import { reducers } from './store/reducers';
 import { NbrbPageComponent } from './pages/nbrb-page/nbrb-page.component'
@@ -51,6 +51,7 @@ import { NbrbPageComponent } from './pages/nbrb-page/nbrb-page.component'
     StoreRouterConnectingModule.forRoot(),
     EffectsModule.forRoot([AppEffects]),
     MatButtonModule,
+    MatMenuModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],

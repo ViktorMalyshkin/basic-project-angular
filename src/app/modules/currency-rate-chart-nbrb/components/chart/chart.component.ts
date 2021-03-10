@@ -1,27 +1,27 @@
 import { DatePipe } from '@angular/common'
-import { AfterViewInit, Component, EventEmitter, Input, OnChanges, Output, ViewChild } from '@angular/core'
+import { Component, EventEmitter, Input, OnChanges, Output, ViewChild } from '@angular/core'
 import { UiDatepickerComponent } from '../../elements/ui-datepicker/ui-datepicker.component'
 import { ChartDataModel } from '../../models/chart-data.model'
-import { CurrencyModel, CurrencyObjectModel } from '../../models/currency.model'
+import { CurrencyModel } from '../../models/currency.model'
 import { DynamicsApiParamsModel } from '../../models/dynamics-api-params.model'
-import { DynamicsModel, DynamicsObjectModel } from '../../models/dynamics.model'
+import { DynamicsModel } from '../../models/dynamics.model'
 
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.sass'],
 })
-export class ChartComponent implements OnChanges, AfterViewInit {
+export class ChartComponent implements OnChanges {
+  titleChart = 'Currency Rate Chart NBRB'
+  hintTitle = 'Currency Code'
   @Input() dynamics: DynamicsModel[]
   @Input() currencies: CurrencyModel[]
   dataChart: ChartDataModel[]
   dataSelect: any
-  hintTitle: string
   isDisabledDatepicker = true
   isDisabledButton = true
   curDateStart: Date
   curDateEnd: Date
-  titleChart = 'Currency Rate Chart NBRB'
   dynamicsApiParams: DynamicsApiParamsModel = { currency: null, startDate: null, endDate: null }
 
   @Output() params = new EventEmitter<any>()
@@ -32,24 +32,21 @@ export class ChartComponent implements OnChanges, AfterViewInit {
 
   @ViewChild(UiDatepickerComponent) childDatepicker: UiDatepickerComponent
 
-  constructor( private _datePipe: DatePipe ) {
-    this.hintTitle = 'Currency Code'
-  }
+  constructor( private _datePipe: DatePipe ) {}
 
   ngOnChanges(): void {
     this.dataSelect = this.currencies.map(( item ) => {
-      return { id: item.id, name: item.quot_name, date_start: item.date_start, date_end: item.date_end }
+      return {
+        id: item.id,
+        name: item.name_eng,
+        quot_name: item.quot_name_eng,
+        date_start: item.date_start,
+        date_end: item.date_end,
+      }
     })
     this.dataChart = this.dynamics.map(( item ) => {
       return { xAxis: this._datePipe.transform(item.date, 'MM/dd'), yAxis: item.rate }
     })
-  }
-
-  ngAfterViewInit(): void {
-    this.dataSelect = this.currencies.map(( item ) => {
-      return { id: item.id, name: item.quot_name, date_start: item.date_start, date_end: item.date_end }
-    })
-    this.initSelectedStartValue(this.dataSelect)
   }
 
   initSelectedStartValue( dataSelect ): void {
@@ -58,9 +55,9 @@ export class ChartComponent implements OnChanges, AfterViewInit {
   }
 
   selectionCurrencyEvent( value, dataSelect ): void {
+    this.currency = value
     if (value && this.dataSelect.length !== 0) {
       const selectedCurrency = dataSelect.find(item => item.id === value)
-      this.currency = selectedCurrency.id.toString()
       this.curDateStart = new Date(selectedCurrency.date_start)
       const today = new Date()
       const dateEnd = new Date(selectedCurrency.date_end)
@@ -87,7 +84,7 @@ export class ChartComponent implements OnChanges, AfterViewInit {
   }
 
   checkIsDisabledButton(): void {
-    this.isDisabledButton = !(this.startDate !== null && this.endDate !== null)
+    this.isDisabledButton = !(this.currency !== null && this.startDate !== null && this.endDate !== null)
   }
 
   buildChartEvent( $event: MouseEvent ): void {
@@ -108,5 +105,25 @@ export class ChartComponent implements OnChanges, AfterViewInit {
 
   resetDate(): void {
     this.childDatepicker?.resetDateRangeInput()
+    this.startDate = null
+    this.endDate = null
+  }
+
+
+  buildChartBasedParams( $event ): void {
+    this.dataChart = []
+    this.startDate = this._datePipe.transform($event.startDate, 'yyyy-MM-dd')
+    this.endDate = this._datePipe.transform($event.endDate, 'yyyy-MM-dd')
+    this.dynamicsApiParams = {
+      currency: this.currency,
+      startDate: this.startDate,
+      endDate: this.endDate,
+    }
+    this.params.emit({ event: $event, value: this.dynamicsApiParams })
+    this.cleaningDynamicsApiParams()
+  }
+
+  isDataChart( dataChart ): boolean {
+    return dataChart.length === 0
   }
 }
