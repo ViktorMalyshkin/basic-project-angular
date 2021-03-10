@@ -14,5 +14,5 @@
 
   <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
   <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
-  <mat-hint>Available : {{curDateStart | date:'dd.MM.yyyy'}} - {{curDateEnd | date: 'dd.MM.yyyy'}}</mat-hint>
+  <mat-hint>Available : {{minDate | date:'dd.MM.yyyy'}} - {{maxDate | date: 'dd.MM.yyyy'}}</mat-hint>
 </mat-form-field>
