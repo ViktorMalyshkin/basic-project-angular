@@ -17,7 +17,6 @@ export class CurrencyChartDirective implements OnChanges, AfterViewInit {
   }
 
   constructor( private chartContainer: ElementRef ) {
-    console.log(chartContainer)
     this.style = {
       height: 'inherit',
       width: 'inherit',
