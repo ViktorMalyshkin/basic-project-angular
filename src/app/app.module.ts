@@ -17,17 +17,19 @@ import { AppComponent } from './app.component'
 import { AppBarComponent } from './components/app-bar/app-bar.component'
 import { MainLayoutsComponent } from './layouts/main-layouts/main-layouts.component'
 import { ExchangeRatesNbrbModule } from './modules/exchange-rates-nbrb/exchange-rates-nbrb.module'
-import { ChartNbrbPageStubComponent } from './pages/chart-nbrb-page-stub/chart-nbrb-page-stub.component'
+import { StubComponent } from './pages/stub/stub.component'
 import { AppRoutingModule } from './routes/app-routing.module'
 import { AppEffects } from './store/effects/app.effects'
-import { reducers } from './store/reducers'
+import { reducers } from './store/reducers';
+import { NbrbPageComponent } from './pages/nbrb-page/nbrb-page.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     MainLayoutsComponent,
     AppBarComponent,
-    ChartNbrbPageStubComponent,
+    StubComponent,
+    NbrbPageComponent,
   ],
   imports: [
     BrowserModule,
