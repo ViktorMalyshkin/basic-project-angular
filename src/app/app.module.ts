@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common'
 import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { MatButtonModule } from '@angular/material/button'
+import { MatCardModule } from '@angular/material/card'
 import { MatIconModule } from '@angular/material/icon'
 import { MatMenuModule } from '@angular/material/menu'
 import { MatToolbarModule } from '@angular/material/toolbar'
@@ -57,6 +58,7 @@ import { reducers } from './store/reducers'
     StoreRouterConnectingModule.forRoot(),
     EffectsModule.forRoot([AppEffects]),
     MatButtonModule,
+    MatCardModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],
