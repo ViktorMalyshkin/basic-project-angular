@@ -1,11 +1,6 @@
 import { DatePipe } from '@angular/common'
 import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
-import { MatButtonModule } from '@angular/material/button'
-import { MatCardModule } from '@angular/material/card'
-import { MatIconModule } from '@angular/material/icon'
-import { MatMenuModule } from '@angular/material/menu'
-import { MatToolbarModule } from '@angular/material/toolbar'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { EffectsModule } from '@ngrx/effects'
@@ -19,6 +14,7 @@ import { AppBarComponent } from './components/app-bar/app-bar.component'
 import { CardsComponent } from './components/cards/cards.component'
 import { ElCardComponent } from './elements/el-card/el-card.component'
 import { MainLayoutsComponent } from './layouts/main-layouts/main-layouts.component'
+import { AppMaterialModule } from './modules/app-material/app-material.module'
 import { CurrencyRateChartNbrbModule } from './modules/currency-rate-chart-nbrb/currency-rate-chart-nbrb.module'
 import { ExchangeRatesNbrbModule } from './modules/exchange-rates-nbrb/exchange-rates-nbrb.module'
 import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component'
@@ -43,10 +39,8 @@ import { reducers } from './store/reducers'
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatMenuModule,
     ExchangeRatesNbrbModule,
-    MatIconModule,
-    MatToolbarModule,
+    AppMaterialModule,
     CurrencyRateChartNbrbModule,
     StoreModule.forRoot({
       router: routerReducer,
@@ -57,8 +51,6 @@ import { reducers } from './store/reducers'
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     StoreRouterConnectingModule.forRoot(),
     EffectsModule.forRoot([AppEffects]),
-    MatButtonModule,
-    MatCardModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],
