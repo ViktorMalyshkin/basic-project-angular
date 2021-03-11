@@ -45,7 +45,6 @@ export class CurrencyChartDirective implements OnChanges, AfterViewInit {
     d3.select('svg').remove()
     if (this.isData()) {
       const element = this.chartContainer.nativeElement
-      console.log(this.chartContainer)
       const data = this.data
 
       const svg = d3.select(element).append('svg')

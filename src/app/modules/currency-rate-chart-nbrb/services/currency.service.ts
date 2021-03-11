@@ -14,7 +14,8 @@ export class CurrencyService {
   }
 
   public getCurrencies(): Observable<CurrencyModel[]> {
-    return this._http.get<ResponseCurrencyModel[]>(`${ environment.api_url }/exrates/currencies`).pipe(serializeResponseCurrencies)
+    return this._http.get<ResponseCurrencyModel[]>(`${ environment.api_url }/exrates/currencies`)
+      .pipe(serializeResponseCurrencies)
   }
 }
 

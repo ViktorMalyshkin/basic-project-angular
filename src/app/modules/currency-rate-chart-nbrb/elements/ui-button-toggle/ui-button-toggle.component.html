@@ -1,0 +1,7 @@
+<mat-button-toggle-group name="uiButtonToggle">
+  <mat-button-toggle value="week" (change)="basicDataSelection($event, 'week')">CURRENT WEEK</mat-button-toggle>
+  <mat-button-toggle value="month" (change)="basicDataSelection($event, 'month')">CURRENT MONTH</mat-button-toggle>
+  <mat-button-toggle value="quarter-of-year" (change)="basicDataSelection($event, 'quarter-of-year')">CURRENT 3 MONTHS</mat-button-toggle>
+  <mat-button-toggle value="half-year" (change)="basicDataSelection($event, 'half-year')">CURRENT 6 MONTHS</mat-button-toggle>
+  <mat-button-toggle value="year" (change)="basicDataSelection($event, 'year')">CURRENT YEAR</mat-button-toggle>
+</mat-button-toggle-group>
