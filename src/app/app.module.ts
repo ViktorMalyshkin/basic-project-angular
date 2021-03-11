@@ -15,6 +15,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { environment } from '../environments/environment'
 import { AppComponent } from './app.component'
 import { AppBarComponent } from './components/app-bar/app-bar.component'
+import { CardsComponent } from './components/cards/cards.component'
 import { MainLayoutsComponent } from './layouts/main-layouts/main-layouts.component'
 import { CurrencyRateChartNbrbModule } from './modules/currency-rate-chart-nbrb/currency-rate-chart-nbrb.module'
 import { ExchangeRatesNbrbModule } from './modules/exchange-rates-nbrb/exchange-rates-nbrb.module'
@@ -33,6 +34,7 @@ import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.co
     StubComponent,
     NbrbPageComponent,
     DashboardPageComponent,
+    CardsComponent,
   ],
   imports: [
     BrowserModule,
