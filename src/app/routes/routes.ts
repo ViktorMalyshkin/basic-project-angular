@@ -19,7 +19,7 @@ export const routes: Routes = [
   {
     path: 'nbrb', component: NbrbPageComponent,
     children: [
-      { path: 'exrates-nbrb', component: ExchangeRatesNbrbPageComponent },
+      { path: 'exrates', component: ExchangeRatesNbrbPageComponent },
       {
         path: 'chart',
         component: CurrencyRateChartNbrbPageComponent,

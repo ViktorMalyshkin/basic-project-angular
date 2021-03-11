@@ -1,1 +1,5 @@
-<app-el-card></app-el-card>
+<div class="d-flex just-space-evenly items-center flex-wrap">
+  <ng-template ngFor let-item [ngForOf]="items">
+    <app-el-card class="ma-8" [item]="item"></app-el-card>
+  </ng-template>
+</div>
