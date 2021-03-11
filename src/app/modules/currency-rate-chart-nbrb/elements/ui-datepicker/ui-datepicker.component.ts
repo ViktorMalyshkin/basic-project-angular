@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core'
+import { Component, DoCheck, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core'
 import { FormControl, FormGroup } from '@angular/forms'
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter'
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core'
@@ -18,7 +18,7 @@ import { MatEndDate, MatStartDate } from '@angular/material/datepicker'
     { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
   ],
 })
-export class UiDatepickerComponent implements OnInit {
+export class UiDatepickerComponent implements DoCheck {
   range: FormGroup
   minDate = new Date(2020, 1, 20)
   maxDate = new Date()
@@ -62,7 +62,7 @@ export class UiDatepickerComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
+  ngDoCheck(): void {
     this.range = new FormGroup({
       start: new FormControl(this.selectItem.date_start),
       end: new FormControl(this.selectItem.date_end),

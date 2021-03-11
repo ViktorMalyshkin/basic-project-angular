@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common'
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core'
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core'
 import { UiDatepickerComponent } from '../../elements/ui-datepicker/ui-datepicker.component'
 import { ChartDataModel } from '../../models/chart-data.model'
 import { CurrencyForChartModel } from '../../models/currency.model'
@@ -10,26 +10,35 @@ import { DynamicsApiParamsModel } from '../../models/dynamics-api-params.model'
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.sass'],
 })
-export class ChartComponent {
+export class ChartComponent implements OnInit, OnChanges {
   titleChart = 'Currency Rate Chart NBRB'
   hintTitle = 'Currency Code'
-  @Input() currenciesForChart: CurrencyForChartModel[]
-  @Input() chartData: ChartDataModel[]
-  isDisabledDatepicker = true
-  isDisabledButton = true
+  isDisabledDatepicker = false
+  isDisabledButton = false
   curDateStart: Date
   curDateEnd: Date
   dynamicsApiParams: DynamicsApiParamsModel = { currency: null, startDate: null, endDate: null }
 
+  @Input() initialCurrencyChart: any
+  @Input() currenciesForChart: CurrencyForChartModel[]
+  @Input() chartData: ChartDataModel[]
   @Output() params = new EventEmitter<any>()
   private currency: string | null = null
   private startDate: string | null = null
   private endDate: string | null = null
-  @Input() initialCurrencyChart: any
 
   @ViewChild(UiDatepickerComponent) childDatepicker: UiDatepickerComponent
 
   constructor( private _datePipe: DatePipe ) {}
+
+  ngOnChanges(): void {
+    this.checkIsDisabledDatepicker()
+    this.checkIsDisabledButton()
+  }
+
+  ngOnInit(): void {
+    this.currency = this.initialCurrencyChart.id
+  }
 
   initSelectedStartValue( dataSelect ): void {
     this.selectionCurrencyEvent(this.initialCurrencyChart.id, dataSelect)
@@ -86,6 +95,7 @@ export class ChartComponent {
   }
 
   resetDate(): void {
+    debugger
     this.childDatepicker?.resetDateRangeInput()
     this.startDate = null
     this.endDate = null
@@ -94,8 +104,12 @@ export class ChartComponent {
 
   buildChartBasedParams( $event ): void {
     this.chartData = []
+    debugger
     this.startDate = this._datePipe.transform($event.startDate, 'yyyy-MM-dd')
     this.endDate = this._datePipe.transform($event.endDate, 'yyyy-MM-dd')
+    this.initialCurrencyChart = Object.assign(this.initialCurrencyChart, {
+      date_start: this.startDate, date_end: this.endDate
+    })
     this.dynamicsApiParams = {
       currency: this.currency,
       startDate: this.startDate,

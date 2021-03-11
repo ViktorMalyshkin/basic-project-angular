@@ -1,5 +1,5 @@
 <mat-form-field appearance="fill">
-  <mat-label>Currency</mat-label>
+  <mat-label>Select Currency</mat-label>
   <mat-select [formControl]="currenciesControl" required (selectionChange)="selectionChangeEvent($event.value)" [disabled]="disabledSelect">
     <mat-option *ngFor="let item of items" [value]="item.id">
       {{item['name_en']}}
