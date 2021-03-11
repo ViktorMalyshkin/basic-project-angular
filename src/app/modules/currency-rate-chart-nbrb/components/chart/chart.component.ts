@@ -44,7 +44,6 @@ export class ChartComponent implements OnChanges, AfterViewInit {
         date_end: item.date_end,
       }
     })
-    debugger
     this.dataChart = this.dynamics.map(( item ) => {
       return { xAxis: this._datePipe.transform(item.date, 'MM/dd'), yAxis: item.rate }
     })
@@ -73,7 +72,6 @@ export class ChartComponent implements OnChanges, AfterViewInit {
     this.currency = value
     if (value && this.dataSelect.length !== 0) {
       const selectedCurrency = dataSelect.find(item => item.id === value)
-      debugger
       this.curDateStart = new Date(selectedCurrency.date_start)
       const today = new Date()
       const dateEnd = new Date(selectedCurrency.date_end)
