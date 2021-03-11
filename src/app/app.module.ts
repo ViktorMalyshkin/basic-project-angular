@@ -2,9 +2,10 @@ import { DatePipe } from '@angular/common'
 import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { MatButtonModule } from '@angular/material/button'
+import { MatCardModule } from '@angular/material/card'
+import { MatIconModule } from '@angular/material/icon'
 import { MatMenuModule } from '@angular/material/menu'
 import { MatToolbarModule } from '@angular/material/toolbar'
-import { MatIconModule } from '@angular/material/icon'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { EffectsModule } from '@ngrx/effects'
@@ -15,14 +16,17 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { environment } from '../environments/environment'
 import { AppComponent } from './app.component'
 import { AppBarComponent } from './components/app-bar/app-bar.component'
+import { CardsComponent } from './components/cards/cards.component'
+import { ElCardComponent } from './elements/el-card/el-card.component'
 import { MainLayoutsComponent } from './layouts/main-layouts/main-layouts.component'
+import { CurrencyRateChartNbrbModule } from './modules/currency-rate-chart-nbrb/currency-rate-chart-nbrb.module'
 import { ExchangeRatesNbrbModule } from './modules/exchange-rates-nbrb/exchange-rates-nbrb.module'
+import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component'
+import { NbrbPageComponent } from './pages/nbrb-page/nbrb-page.component'
 import { StubComponent } from './pages/stub/stub.component'
 import { AppRoutingModule } from './routes/app-routing.module'
-import { CurrencyRateChartNbrbModule } from './modules/currency-rate-chart-nbrb/currency-rate-chart-nbrb.module'
 import { AppEffects } from './store/effects/app.effects'
-import { reducers } from './store/reducers';
-import { NbrbPageComponent } from './pages/nbrb-page/nbrb-page.component'
+import { reducers } from './store/reducers'
 
 @NgModule({
   declarations: [
@@ -31,6 +35,9 @@ import { NbrbPageComponent } from './pages/nbrb-page/nbrb-page.component'
     AppBarComponent,
     StubComponent,
     NbrbPageComponent,
+    DashboardPageComponent,
+    ElCardComponent,
+    CardsComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +58,7 @@ import { NbrbPageComponent } from './pages/nbrb-page/nbrb-page.component'
     StoreRouterConnectingModule.forRoot(),
     EffectsModule.forRoot([AppEffects]),
     MatButtonModule,
+    MatCardModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],

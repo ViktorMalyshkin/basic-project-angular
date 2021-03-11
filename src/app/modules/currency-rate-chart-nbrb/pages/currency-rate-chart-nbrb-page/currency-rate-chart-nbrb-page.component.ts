@@ -3,11 +3,11 @@ import { select, Store } from '@ngrx/store'
 import { Subject } from 'rxjs'
 import { takeUntil } from 'rxjs/operators'
 import { environment } from '../../../../../environments/environment'
-import { CurrencyModel } from '../../models/currency.model'
-import { DynamicsCurrencyModel } from '../../models/dynamics-currency.model'
-import { DynamicsModel } from '../../models/dynamics.model'
+import { ChartDataModel } from '../../models/chart-data.model'
+import { CurrencyForChartModel } from '../../models/currency.model'
+import { ChartDataAndCurrenciesModel } from '../../models/chart-data-and-currencies.model'
 import { GetDynamics } from '../../store/actions/dynamics.actions'
-import { selectDynamicsCurrencies } from '../../store/selectors/index.selectors'
+import { selectChartDataAndCurrencies } from '../../store/selectors/index.selectors'
 
 @Component({
   selector: 'app-currency-rate-chart-nbrb-page',
@@ -16,8 +16,8 @@ import { selectDynamicsCurrencies } from '../../store/selectors/index.selectors'
 })
 export class CurrencyRateChartNbrbPageComponent implements OnInit, OnDestroy {
   private _destroy$ = new Subject<void>()
-  public dynamics: DynamicsModel[] = []
-  public currencies: CurrencyModel[] = []
+  public chartData: ChartDataModel[] = []
+  public currenciesForChart: CurrencyForChartModel[] = []
   initialCurrencyChart: any
 
   constructor( private _store: Store ) {
@@ -26,11 +26,11 @@ export class CurrencyRateChartNbrbPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this._store.pipe(
-      select(selectDynamicsCurrencies),
+      select(selectChartDataAndCurrencies),
       takeUntil(this._destroy$),
-    ).subscribe(( dynamicsCurrency: DynamicsCurrencyModel ) => {
-      this.currencies = dynamicsCurrency.currencies
-      this.dynamics = dynamicsCurrency.dynamics
+    ).subscribe(( chartDataAndCurrencies: ChartDataAndCurrenciesModel ) => {
+      this.chartData = chartDataAndCurrencies.chartData
+      this.currenciesForChart = chartDataAndCurrencies.currenciesForChart
     })
   }
 
