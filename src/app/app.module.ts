@@ -18,11 +18,11 @@ import { AppBarComponent } from './components/app-bar/app-bar.component'
 import { MainLayoutsComponent } from './layouts/main-layouts/main-layouts.component'
 import { CurrencyRateChartNbrbModule } from './modules/currency-rate-chart-nbrb/currency-rate-chart-nbrb.module'
 import { ExchangeRatesNbrbModule } from './modules/exchange-rates-nbrb/exchange-rates-nbrb.module'
+import { NbrbPageComponent } from './pages/nbrb-page/nbrb-page.component'
 import { StubComponent } from './pages/stub/stub.component'
 import { AppRoutingModule } from './routes/app-routing.module'
 import { AppEffects } from './store/effects/app.effects'
-import { reducers } from './store/reducers';
-import { NbrbPageComponent } from './pages/nbrb-page/nbrb-page.component'
+import { reducers } from './store/reducers'
 
 @NgModule({
   declarations: [

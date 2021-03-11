@@ -1,17 +1,24 @@
-export interface CurrencyModel {
-  id: number,
+export interface CurrencyModel extends CurrencyForChartModel{
+  id_parent: number,
   code: string,
   abbreviation: string,
   name: string,
-  name_eng: string,
+  name_by: string,
   quot_name: string,
-  quot_name_eng: string,
-  date_start: string,
-  date_end: string,
+  quot_name_by: string,
+  quot_name_en: string,
+  name_multi: string,
+  name_multi_by: string,
+  name_multi_en: string,
+  scale: number,
+  periodicity: number,
 }
 
-export interface CurrencyObjectModel {
-  currencies: CurrencyModel[]
+export interface CurrencyForChartModel {
+  id: number,
+  name_en: string,
+  date_start: string,
+  date_end: string,
 }
 
 // {
