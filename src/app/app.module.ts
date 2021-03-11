@@ -16,15 +16,16 @@ import { environment } from '../environments/environment'
 import { AppComponent } from './app.component'
 import { AppBarComponent } from './components/app-bar/app-bar.component'
 import { CardsComponent } from './components/cards/cards.component'
+import { ElCardComponent } from './elements/el-card/el-card.component'
 import { MainLayoutsComponent } from './layouts/main-layouts/main-layouts.component'
 import { CurrencyRateChartNbrbModule } from './modules/currency-rate-chart-nbrb/currency-rate-chart-nbrb.module'
 import { ExchangeRatesNbrbModule } from './modules/exchange-rates-nbrb/exchange-rates-nbrb.module'
+import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component'
 import { NbrbPageComponent } from './pages/nbrb-page/nbrb-page.component'
 import { StubComponent } from './pages/stub/stub.component'
 import { AppRoutingModule } from './routes/app-routing.module'
 import { AppEffects } from './store/effects/app.effects'
-import { reducers } from './store/reducers';
-import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component'
+import { reducers } from './store/reducers'
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.co
     StubComponent,
     NbrbPageComponent,
     DashboardPageComponent,
+    ElCardComponent,
     CardsComponent,
   ],
   imports: [
