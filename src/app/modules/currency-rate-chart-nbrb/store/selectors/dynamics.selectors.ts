@@ -1,14 +1,6 @@
-import { RouterReducerState } from '@ngrx/router-store'
-import { createFeatureSelector, createSelector } from '@ngrx/store'
-import { DynamicsModel } from '../../models/dynamics.model'
-import { DynamicsState } from '../reducers/dynamics.reducer'
+import { createFeatureSelector } from '@ngrx/store'
 import * as fromDynamics from '../reducers/dynamics.reducer'
 
-export const selectDynamicsState = createFeatureSelector<fromDynamics.DynamicsState>(
+export const selectDynamicsState = createFeatureSelector<fromDynamics.IDynamicsState>(
   fromDynamics.DYNAMICS_FEATURE_KEY,
-)
-
-export const selectDynamics = createSelector(
-  selectDynamicsState,
-  (state: DynamicsState) => state.dynamics
 )
