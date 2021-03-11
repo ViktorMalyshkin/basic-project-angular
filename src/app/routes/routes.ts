@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router'
 import { environment } from '../../environments/environment'
+import { ConverterPageComponent } from '../modules/converter-nbrb/page/converter-page/converter-page.component'
 import { StateResolverGuard } from '../modules/currency-rate-chart-nbrb/guards/state-resolver.guard'
 import { CurrencyRateChartNbrbPageComponent } from '../modules/currency-rate-chart-nbrb/pages/currency-rate-chart-nbrb-page/currency-rate-chart-nbrb-page.component'
 import { E_DYNAMICS_ACTION_TYPES } from '../modules/currency-rate-chart-nbrb/store/actions/dynamics.actions'
@@ -32,7 +33,7 @@ export const routes: Routes = [
           },
         },
       },
-      { path: 'converter', component: StubComponent },
+      { path: 'converter', component: ConverterPageComponent },
     ],
   },
   { path: '**', redirectTo: '/dashboard' },
