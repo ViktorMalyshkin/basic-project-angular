@@ -4,6 +4,7 @@ import { StateResolverGuard } from '../modules/currency-rate-chart-nbrb/guards/s
 import { CurrencyRateChartNbrbPageComponent } from '../modules/currency-rate-chart-nbrb/pages/currency-rate-chart-nbrb-page/currency-rate-chart-nbrb-page.component'
 import { E_DYNAMICS_ACTION_TYPES } from '../modules/currency-rate-chart-nbrb/store/actions/dynamics.actions'
 import { ExchangeRatesNbrbPageComponent } from '../modules/exchange-rates-nbrb/pages/exchange-rates-nbrb-page/exchange-rates-nbrb-page.component'
+import { DashboardPageComponent } from '../pages/dashboard-page/dashboard-page.component'
 import { NbrbPageComponent } from '../pages/nbrb-page/nbrb-page.component'
 import { StubComponent } from '../pages/stub/stub.component'
 
@@ -11,7 +12,7 @@ const initialCurrencyChart = environment.initial_currency_chart
 
 export const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component: StubComponent },
+  { path: 'dashboard', component: DashboardPageComponent },
   { path: 'about', component: StubComponent },
   { path: 'exrates-banks', component: StubComponent },
   { path: 'smart-calc', component: StubComponent },
