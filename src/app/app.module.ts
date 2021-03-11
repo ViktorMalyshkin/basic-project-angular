@@ -22,7 +22,8 @@ import { NbrbPageComponent } from './pages/nbrb-page/nbrb-page.component'
 import { StubComponent } from './pages/stub/stub.component'
 import { AppRoutingModule } from './routes/app-routing.module'
 import { AppEffects } from './store/effects/app.effects'
-import { reducers } from './store/reducers'
+import { reducers } from './store/reducers';
+import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component'
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { reducers } from './store/reducers'
     AppBarComponent,
     StubComponent,
     NbrbPageComponent,
+    DashboardPageComponent,
   ],
   imports: [
     BrowserModule,
