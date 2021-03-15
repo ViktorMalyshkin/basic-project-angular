@@ -15,6 +15,7 @@ import { CardsComponent } from './components/cards/cards.component'
 import { ElCardComponent } from './elements/el-card/el-card.component'
 import { MainLayoutsComponent } from './layouts/main-layouts/main-layouts.component'
 import { AppMaterialModule } from './modules/app-material/app-material.module'
+import { ConverterNbrbModule } from './modules/converter-nbrb/converter-nbrb.module'
 import { CurrencyRateChartNbrbModule } from './modules/currency-rate-chart-nbrb/currency-rate-chart-nbrb.module'
 import { ExchangeRatesNbrbModule } from './modules/exchange-rates-nbrb/exchange-rates-nbrb.module'
 import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component'
@@ -37,15 +38,16 @@ import { reducers } from './store/reducers'
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
     BrowserAnimationsModule,
-    ExchangeRatesNbrbModule,
     AppMaterialModule,
+    HttpClientModule,
+    ExchangeRatesNbrbModule,
     CurrencyRateChartNbrbModule,
+    ConverterNbrbModule,
+    AppRoutingModule,
     StoreModule.forRoot({
       router: routerReducer,
     }),
-    AppRoutingModule,
     StoreRouterConnectingModule.forRoot(),
     StoreModule.forRoot(reducers, { runtimeChecks: { strictStateImmutability: true, strictActionImmutability: true } }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
