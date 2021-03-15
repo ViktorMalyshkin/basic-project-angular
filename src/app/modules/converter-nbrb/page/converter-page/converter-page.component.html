@@ -1,2 +1,4 @@
 <p>converter-page works!</p>
 <app-converter [items]="rates$ | async"></app-converter>
+
+<pre>{{rates$ | async | json}}</pre>

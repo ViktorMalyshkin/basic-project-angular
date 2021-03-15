@@ -1,0 +1,16 @@
+<form [formGroup]="item">
+  <mat-form-field appearance="outline">
+    <input matInput type="text" class="example-right-align" formControlName="rate">
+    <!--              <span matPrefix>$&nbsp;</span>-->
+    <span matSuffix>{{item.value[ 'abbreviation' ]}}</span>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-select [(value)]="item.value.name">
+      <mat-option *ngFor="let n of names" [value]="n.name">{{n.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-icon-button color="warn" aria-label="Example icon button with a delete icon">
+    <mat-icon>delete</mat-icon>
+  </button>
+</form>
+

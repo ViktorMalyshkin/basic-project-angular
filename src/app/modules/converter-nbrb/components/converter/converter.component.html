@@ -16,22 +16,28 @@
 <!--<pre>{{items | json}}</pre>-->
 
 
-<form [formGroup]="form">
+<form [formGroup]="formGroup">
   <div formArrayName="currency">
+<!--    <pre>{{currency.value | json}}</pre>-->
     <div *ngFor="let item of currency.controls; let i=index" class="d-flex just-center">
-      <mat-form-field appearance="outline">
-        <label>
-          <input matInput type="number" class="example-right-align" [formControlName]="i" [formControl]="item">
-        </label>
-        <!--      <span matPrefix>$&nbsp;</span>-->
-        <!--      <span matSuffix>.00</span>-->
-      </mat-form-field>
+      <app-el-currency [names]="items" [item]="item" [formGroupName]="i"></app-el-currency>
+<!--      <pre>{{item.rate | json}}</pre>-->
+      <!--      <form [formGroup]="item" [formControlName]="i">-->
+      <!--        <mat-form-field appearance="outline">-->
+      <!--          <label>-->
+      <!--            <input matInput type="number" class="example-right-align" formControlName="rate" formControl="rate">-->
+      <!--          </label>-->
+      <!--          &lt;!&ndash;      <span matPrefix>$&nbsp;</span>&ndash;&gt;-->
+      <!--          &lt;!&ndash;      <span matSuffix>.00</span>&ndash;&gt;-->
+      <!--        </mat-form-field>-->
 
-<!--      <mat-form-field appearance="outline">-->
-<!--        <mat-select>-->
-<!--          <mat-option value="option">Option</mat-option>-->
-<!--        </mat-select>-->
-<!--      </mat-form-field>-->
+      <!--      </form>-->
+      <!--      <pre>{{item.value |json}}</pre>-->
+      <!--      <mat-form-field appearance="outline">-->
+      <!--        <mat-select>-->
+      <!--          <mat-option value="option">Option</mat-option>-->
+      <!--        </mat-select>-->
+      <!--      </mat-form-field>-->
     </div>
     <button (click)="addNewCurrency()">+ Add Currency</button>
   </div>
