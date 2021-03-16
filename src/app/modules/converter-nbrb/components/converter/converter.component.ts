@@ -10,6 +10,10 @@ import { RateModel } from '../../models/rate.model'
 })
 export class ConverterComponent implements OnInit {
   rates: RateModel[]
+  formGroup = this.fb.group({
+    currency: this.fb.array([]),
+  })
+
   @Input() tempRates: RateModel[]
 
 
@@ -25,10 +29,7 @@ export class ConverterComponent implements OnInit {
 
   constructor( private fb: FormBuilder ) {}
 
-  formGroup = this.fb.group({
-    currency: this.fb.array([
-    ]),
-  })
+  ngOnInit(): void {}
 
   get currency(): FormArray {
     return this.formGroup.get('currency') as FormArray
@@ -53,11 +54,13 @@ export class ConverterComponent implements OnInit {
   }
 
   addNewCurrency(): void {
-    this.currency.push(this.fb.control(''))
+    this.currency.push(
+      this.fb.group({
+        rate: this.fb.control(0),
+        abbreviation: this.fb.control(''),
+        scale: this.fb.control(0),
+        name: this.fb.control(''),
+      }),
+    )
   }
-
-  ngOnInit(): void {
-    // this.initFormArray(this.tempRates)
-  }
-
 }
