@@ -1,13 +1,11 @@
 <form [formGroup]="item">
 
 
-
   <mat-form-field appearance="outline">
-    <input matInput type="text" class="example-right-align" formControlName="rate" (ngModelChange)="changeInput($event, index)">
+    <input matInput type="text" class="example-right-align" formControlName="rate"
+           (ngModelChange)="changeInput($event, index)" (focus)="isFocus($event)">
     <span matSuffix>{{item.value[ 'abbreviation' ]}}</span>
   </mat-form-field>
-
-
 
 
   <mat-form-field appearance="outline">
@@ -15,7 +13,8 @@
       <mat-option *ngFor="let n of names" [value]="n.name">{{n.name}}</mat-option>
     </mat-select>
   </mat-form-field>
-  <button mat-icon-button color="warn" aria-label="Example icon button with a delete icon" (click)="deleteCurrency(index)">
+  <button mat-icon-button color="warn" aria-label="Example icon button with a delete icon"
+          (click)="deleteCurrency(index)">
     <mat-icon>delete</mat-icon>
   </button>
 </form>

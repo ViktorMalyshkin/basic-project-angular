@@ -26,4 +26,9 @@ export class ElCurrencyComponent implements OnInit {
   changeInput( $event: number, index: number ): void {
     this.changeRateInput.emit({ index, newRate: $event })
   }
+
+  isFocus( $event ): void {
+    console.log($event)
+    debugger
+  }
 }

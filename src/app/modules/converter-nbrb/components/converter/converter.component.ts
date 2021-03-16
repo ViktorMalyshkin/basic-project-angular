@@ -65,11 +65,17 @@ export class ConverterComponent implements OnInit {
   }
 
   changeRateInput( $event ): void { // {index, newRate}
+    this.changeValueInputs($event.index, $event.newRate)
     debugger
     console.log($event)
   }
 
   deleteCurrency( $event: number ): void {
     this.currency.removeAt($event)
+  }
+
+  changeValueInputs( index: number, newRate: number ): void {
+    // this.currency.controls[index].patchValue({ rate: newRate + 1 })
+    this.currency.controls[ index - 1 ].patchValue({ rate: newRate + 10 })
   }
 }
