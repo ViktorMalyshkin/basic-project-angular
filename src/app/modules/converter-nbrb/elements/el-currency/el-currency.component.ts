@@ -8,6 +8,7 @@ import { RateModel } from '../../models/rate.model'
   styleUrls: ['./el-currency.component.css'],
 })
 export class ElCurrencyComponent implements OnInit {
+  isActive = false
   @Input() item: FormGroup
   @Input() index: number
   @Input() names: RateModel[]
@@ -23,12 +24,17 @@ export class ElCurrencyComponent implements OnInit {
     this.delete.emit(index)
   }
 
-  changeInput( $event: number, index: number ): void {
-    this.changeRateInput.emit({ index, newRate: $event })
+  changeInput( $event: number, index: number, isActive: boolean ): void {
+    if (isActive) {
+      this.changeRateInput.emit({ index, newRate: $event })
+    }
   }
 
-  isFocus( $event ): void {
-    console.log($event)
-    debugger
+  isFocusIn( $event ): void {
+    this.isActive = true
+  }
+
+  isFocusOut( $event ): void {
+    this.isActive = false
   }
 }
