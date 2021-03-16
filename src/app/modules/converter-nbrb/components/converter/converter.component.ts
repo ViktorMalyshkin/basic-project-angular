@@ -63,4 +63,10 @@ export class ConverterComponent implements OnInit {
       }),
     )
   }
+
+  deleteCurrency($event: number): void {
+    console.log($event)
+    this.currency.removeAt($event)
+    debugger
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { FormGroup } from '@angular/forms'
 import { RateModel } from '../../models/rate.model'
 
@@ -9,12 +9,17 @@ import { RateModel } from '../../models/rate.model'
 })
 export class ElCurrencyComponent implements OnInit {
   @Input() item: FormGroup
-  @Input() formGroupName: any
+  @Input() index: number
   @Input() names: RateModel[]
+  @Output() delete = new EventEmitter<any>()
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  deleteCurrency( index: number ): void {
+    this.delete.emit(index)
   }
 
 }

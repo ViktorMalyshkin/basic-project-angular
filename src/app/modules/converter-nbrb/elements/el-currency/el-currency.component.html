@@ -9,7 +9,7 @@
       <mat-option *ngFor="let n of names" [value]="n.name">{{n.name}}</mat-option>
     </mat-select>
   </mat-form-field>
-  <button mat-icon-button color="warn" aria-label="Example icon button with a delete icon">
+  <button mat-icon-button color="warn" aria-label="Example icon button with a delete icon" (click)="deleteCurrency(index)">
     <mat-icon>delete</mat-icon>
   </button>
 </form>

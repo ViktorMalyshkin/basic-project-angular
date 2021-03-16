@@ -1,7 +1,7 @@
 <form [formGroup]="formGroup">
   <div formArrayName="currency" class="text-center">
     <div *ngFor="let item of currency.controls; let i=index" class="d-flex just-center">
-      <app-el-currency [names]="items" [item]="item" [formGroupName]="i"></app-el-currency>
+      <app-el-currency [names]="items" [item]="item" [index]="i" (delete)="deleteCurrency($event)"></app-el-currency>
     </div>
     <button mat-flat-button color="primary" (click)="addNewCurrency()">
       Add Currency
