@@ -64,9 +64,12 @@ export class ConverterComponent implements OnInit {
     )
   }
 
-  deleteCurrency($event: number): void {
-    console.log($event)
-    this.currency.removeAt($event)
+  changeRateInput( $event ): void { // {index, newRate}
     debugger
+    console.log($event)
+  }
+
+  deleteCurrency( $event: number ): void {
+    this.currency.removeAt($event)
   }
 }

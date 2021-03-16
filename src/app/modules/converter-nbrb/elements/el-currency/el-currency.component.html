@@ -1,9 +1,15 @@
 <form [formGroup]="item">
+
+
+
   <mat-form-field appearance="outline">
-    <input matInput type="text" class="example-right-align" formControlName="rate">
-    <!--              <span matPrefix>$&nbsp;</span>-->
+    <input matInput type="text" class="example-right-align" formControlName="rate" (ngModelChange)="changeInput($event, index)">
     <span matSuffix>{{item.value[ 'abbreviation' ]}}</span>
   </mat-form-field>
+
+
+
+
   <mat-form-field appearance="outline">
     <mat-select [(value)]="item.value.name">
       <mat-option *ngFor="let n of names" [value]="n.name">{{n.name}}</mat-option>

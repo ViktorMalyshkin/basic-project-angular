@@ -12,6 +12,7 @@ export class ElCurrencyComponent implements OnInit {
   @Input() index: number
   @Input() names: RateModel[]
   @Output() delete = new EventEmitter<any>()
+  @Output() changeRateInput = new EventEmitter<any>()
 
   constructor() { }
 
@@ -22,4 +23,7 @@ export class ElCurrencyComponent implements OnInit {
     this.delete.emit(index)
   }
 
+  changeInput( $event: number, index: number ): void {
+    this.changeRateInput.emit({ index, newRate: $event })
+  }
 }
