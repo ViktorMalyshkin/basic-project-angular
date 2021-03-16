@@ -27,18 +27,6 @@ export class ConverterComponent implements OnInit {
 
   formGroup = this.fb.group({
     currency: this.fb.array([
-      this.fb.group({
-        rate: this.fb.control(1),
-        abbreviation: this.fb.control('BYN'),
-        scale: this.fb.control(1),
-        name: this.fb.control('Беларусский рубль'),
-      }),
-      this.fb.group({
-        rate: this.fb.control(2.1),
-        abbreviation: this.fb.control('USD'),
-        scale: this.fb.control(1),
-        name: this.fb.control('Доллар США'),
-      }),
     ]),
   })
 
@@ -46,25 +34,22 @@ export class ConverterComponent implements OnInit {
     return this.formGroup.get('currency') as FormArray
   }
 
-  initFormArray( rates ): FormArray {
-    const listOfCurAbbreviations = environment.initial_converter.listOfCurAbbreviations
-    const formItems = rates.filter(( item ) => listOfCurAbbreviations.includes(item.abbreviation))
-    debugger
-    console.log('initFormArray', formItems)
-
-    const arr = []
-    do {
-      arr.push(
-        this.fb.group({
-          rate: this.fb.control(2.1),
-          abbreviation: this.fb.control('USD'),
-          scale: this.fb.control(1),
-          name: this.fb.control('Доллар США'),
-        }),
-      )
-      console.log(arr)
-    } while (arr.length === 6)
-    return null
+  initFormArray( rates ): void {
+    if (this.currency.length === 0) {
+      const listOfCurAbbreviations = environment.initial_converter.listOfCurAbbreviations
+      const formItems = rates.filter(( item ) => listOfCurAbbreviations.includes(item.abbreviation))
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < formItems.length; i++) {
+        this.currency.push(
+          this.fb.group({
+            rate: this.fb.control(formItems[ i ].rate),
+            abbreviation: this.fb.control(formItems[ i ].abbreviation),
+            scale: this.fb.control(formItems[ i ].scale),
+            name: this.fb.control(formItems[ i ].name),
+          }),
+        )
+      }
+    }
   }
 
   addNewCurrency(): void {
@@ -72,7 +57,7 @@ export class ConverterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.initFormArray(this.items)
+    // this.initFormArray(this.tempRates)
   }
 
 }

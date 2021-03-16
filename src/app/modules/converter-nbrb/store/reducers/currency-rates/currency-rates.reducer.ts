@@ -14,7 +14,20 @@ export const initialCurrencyRatesState: ICurrencyRatesState = {
 export function currencyRatesReducers( state = initialCurrencyRatesState, action: CurrencyRatesActions ): ICurrencyRatesState {
   switch (action.type) {
     case ECurrencyRatesActionTypes.GetCurrencyRatesSuccess:
-      return { ...state, rates: action.payload }
+      return {
+        ...state,
+        rates: [
+          {
+            id: 1,
+            date: '2021-03-16T00:00:00',
+            abbreviation: 'BYN',
+            scale: 1,
+            name: 'Беларусский рубль',
+            rate: 1,
+          },
+          ...action.payload,
+        ],
+      }
     default:
       return state
   }

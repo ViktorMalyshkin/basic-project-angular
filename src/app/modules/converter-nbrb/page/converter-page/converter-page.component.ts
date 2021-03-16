@@ -13,220 +13,220 @@ export class ConverterPageComponent implements OnInit {
   rates$: Observable<RateModel[]>
   tempRates: [
     {
-      'Cur_ID': 1,
-      'Date': '2021-03-16T00:00:00',
-      'Cur_Abbreviation': 'BYN',
-      'Cur_Scale': 1,
-      'Cur_Name': 'Беларусский рубль',
-      'Cur_OfficialRate': 1
+      'id': 1,
+      'date': '2021-03-16T00:00:00',
+      'abbreviation': 'BYN',
+      'scale': 1,
+      'name': 'Беларусский рубль',
+      'rate': 1
     },
     {
-      'Cur_ID': 170,
-      'Date': '2021-03-16T00:00:00',
-      'Cur_Abbreviation': 'AUD',
-      'Cur_Scale': 1,
-      'Cur_Name': 'Австралийский доллар',
-      'Cur_OfficialRate': 2.0102
+      'id': 170,
+      'date': '2021-03-16T00:00:00',
+      'abbreviation': 'AUD',
+      'scale': 1,
+      'name': 'Австралийский доллар',
+      'rate': 2.0102
     },
     {
-      'Cur_ID': 191,
-      'Date': '2021-03-16T00:00:00',
-      'Cur_Abbreviation': 'BGN',
-      'Cur_Scale': 1,
-      'Cur_Name': 'Болгарский лев',
-      'Cur_OfficialRate': 1.5819
+      'id': 191,
+      'date': '2021-03-16T00:00:00',
+      'abbreviation': 'BGN',
+      'scale': 1,
+      'name': 'Болгарский лев',
+      'rate': 1.5819
     },
     {
-      'Cur_ID': 290,
-      'Date': '2021-03-16T00:00:00',
-      'Cur_Abbreviation': 'UAH',
-      'Cur_Scale': 100,
-      'Cur_Name': 'Гривен',
-      'Cur_OfficialRate': 9.3869
+      'id': 290,
+      'date': '2021-03-16T00:00:00',
+      'abbreviation': 'UAH',
+      'scale': 100,
+      'name': 'Гривен',
+      'rate': 9.3869
     },
     {
-      'Cur_ID': 291,
-      'Date': '2021-03-16T00:00:00',
-      'Cur_Abbreviation': 'DKK',
-      'Cur_Scale': 10,
-      'Cur_Name': 'Датских крон',
-      'Cur_OfficialRate': 4.1600
+      'id': 291,
+      'date': '2021-03-16T00:00:00',
+      'abbreviation': 'DKK',
+      'scale': 10,
+      'name': 'Датских крон',
+      'rate': 4.1600
     },
     {
-      'Cur_ID': 145,
-      'Date': '2021-03-16T00:00:00',
-      'Cur_Abbreviation': 'USD',
-      'Cur_Scale': 1,
-      'Cur_Name': 'Доллар США',
-      'Cur_OfficialRate': 2.5940
+      'id': 145,
+      'date': '2021-03-16T00:00:00',
+      'abbreviation': 'USD',
+      'scale': 1,
+      'name': 'Доллар США',
+      'rate': 2.5940
     },
     {
-      'Cur_ID': 292,
-      'Date': '2021-03-16T00:00:00',
-      'Cur_Abbreviation': 'EUR',
-      'Cur_Scale': 1,
-      'Cur_Name': 'Евро',
-      'Cur_OfficialRate': 3.0947
+      'id': 292,
+      'date': '2021-03-16T00:00:00',
+      'abbreviation': 'EUR',
+      'scale': 1,
+      'name': 'Евро',
+      'rate': 3.0947
     },
     {
-      'Cur_ID': 293,
-      'Date': '2021-03-16T00:00:00',
-      'Cur_Abbreviation': 'PLN',
-      'Cur_Scale': 10,
-      'Cur_Name': 'Злотых',
-      'Cur_OfficialRate': 6.7523
+      'id': 293,
+      'date': '2021-03-16T00:00:00',
+      'abbreviation': 'PLN',
+      'scale': 10,
+      'name': 'Злотых',
+      'rate': 6.7523
     },
     {
-      'Cur_ID': 355,
-      'Date': '2021-03-16T00:00:00',
-      'Cur_Abbreviation': 'JPY',
-      'Cur_Scale': 100,
-      'Cur_Name': 'Иен',
-      'Cur_OfficialRate': 2.3775
+      'id': 355,
+      'date': '2021-03-16T00:00:00',
+      'abbreviation': 'JPY',
+      'scale': 100,
+      'name': 'Иен',
+      'rate': 2.3775
     },
     {
-      'Cur_ID': 303,
-      'Date': '2021-03-16T00:00:00',
-      'Cur_Abbreviation': 'IRR',
-      'Cur_Scale': 100000,
-      'Cur_Name': 'Иранских риалов',
-      'Cur_OfficialRate': 6.1762
+      'id': 303,
+      'date': '2021-03-16T00:00:00',
+      'abbreviation': 'IRR',
+      'scale': 100000,
+      'name': 'Иранских риалов',
+      'rate': 6.1762
     },
     {
-      'Cur_ID': 294,
-      'Date': '2021-03-16T00:00:00',
-      'Cur_Abbreviation': 'ISK',
-      'Cur_Scale': 100,
-      'Cur_Name': 'Исландских крон',
-      'Cur_OfficialRate': 2.0156
+      'id': 294,
+      'date': '2021-03-16T00:00:00',
+      'abbreviation': 'ISK',
+      'scale': 100,
+      'name': 'Исландских крон',
+      'rate': 2.0156
     },
     {
-      'Cur_ID': 23,
-      'Date': '2021-03-16T00:00:00',
-      'Cur_Abbreviation': 'CAD',
-      'Cur_Scale': 1,
-      'Cur_Name': 'Канадский доллар',
-      'Cur_OfficialRate': 2.0829
+      'id': 23,
+      'date': '2021-03-16T00:00:00',
+      'abbreviation': 'CAD',
+      'scale': 1,
+      'name': 'Канадский доллар',
+      'rate': 2.0829
     },
     {
-      'Cur_ID': 304,
-      'Date': '2021-03-16T00:00:00',
-      'Cur_Abbreviation': 'CNY',
-      'Cur_Scale': 10,
-      'Cur_Name': 'Китайских юаней',
-      'Cur_OfficialRate': 3.9912
+      'id': 304,
+      'date': '2021-03-16T00:00:00',
+      'abbreviation': 'CNY',
+      'scale': 10,
+      'name': 'Китайских юаней',
+      'rate': 3.9912
     },
     {
-      'Cur_ID': 72,
-      'Date': '2021-03-16T00:00:00',
-      'Cur_Abbreviation': 'KWD',
-      'Cur_Scale': 1,
-      'Cur_Name': 'Кувейтский динар',
-      'Cur_OfficialRate': 8.5860
+      'id': 72,
+      'date': '2021-03-16T00:00:00',
+      'abbreviation': 'KWD',
+      'scale': 1,
+      'name': 'Кувейтский динар',
+      'rate': 8.5860
     },
     {
-      'Cur_ID': 296,
-      'Date': '2021-03-16T00:00:00',
-      'Cur_Abbreviation': 'MDL',
-      'Cur_Scale': 10,
-      'Cur_Name': 'Молдавских леев',
-      'Cur_OfficialRate': 1.4727
+      'id': 296,
+      'date': '2021-03-16T00:00:00',
+      'abbreviation': 'MDL',
+      'scale': 10,
+      'name': 'Молдавских леев',
+      'rate': 1.4727
     },
     {
-      'Cur_ID': 286,
-      'Date': '2021-03-16T00:00:00',
-      'Cur_Abbreviation': 'NZD',
-      'Cur_Scale': 1,
-      'Cur_Name': 'Новозеландский доллар',
-      'Cur_OfficialRate': 1.8672
+      'id': 286,
+      'date': '2021-03-16T00:00:00',
+      'abbreviation': 'NZD',
+      'scale': 1,
+      'name': 'Новозеландский доллар',
+      'rate': 1.8672
     },
     {
-      'Cur_ID': 297,
-      'Date': '2021-03-16T00:00:00',
-      'Cur_Abbreviation': 'NOK',
-      'Cur_Scale': 10,
-      'Cur_Name': 'Норвежских крон',
-      'Cur_OfficialRate': 3.0732
+      'id': 297,
+      'date': '2021-03-16T00:00:00',
+      'abbreviation': 'NOK',
+      'scale': 10,
+      'name': 'Норвежских крон',
+      'rate': 3.0732
     },
     {
-      'Cur_ID': 298,
-      'Date': '2021-03-16T00:00:00',
-      'Cur_Abbreviation': 'RUB',
-      'Cur_Scale': 100,
-      'Cur_Name': 'Российских рублей',
-      'Cur_OfficialRate': 3.5453
+      'id': 298,
+      'date': '2021-03-16T00:00:00',
+      'abbreviation': 'RUB',
+      'scale': 100,
+      'name': 'Российских рублей',
+      'rate': 3.5453
     },
     {
-      'Cur_ID': 299,
-      'Date': '2021-03-16T00:00:00',
-      'Cur_Abbreviation': 'XDR',
-      'Cur_Scale': 1,
-      'Cur_Name': 'СДР (Специальные права заимствования)',
-      'Cur_OfficialRate': 3.7048
+      'id': 299,
+      'date': '2021-03-16T00:00:00',
+      'abbreviation': 'XDR',
+      'scale': 1,
+      'name': 'СДР (Специальные права заимствования)',
+      'rate': 3.7048
     },
     {
-      'Cur_ID': 119,
-      'Date': '2021-03-16T00:00:00',
-      'Cur_Abbreviation': 'SGD',
-      'Cur_Scale': 1,
-      'Cur_Name': 'Сингапурcкий доллар',
-      'Cur_OfficialRate': 1.9284
+      'id': 119,
+      'date': '2021-03-16T00:00:00',
+      'abbreviation': 'SGD',
+      'scale': 1,
+      'name': 'Сингапурcкий доллар',
+      'rate': 1.9284
     },
     {
-      'Cur_ID': 300,
-      'Date': '2021-03-16T00:00:00',
-      'Cur_Abbreviation': 'KGS',
-      'Cur_Scale': 100,
-      'Cur_Name': 'Сомов',
-      'Cur_OfficialRate': 3.0580
+      'id': 300,
+      'date': '2021-03-16T00:00:00',
+      'abbreviation': 'KGS',
+      'scale': 100,
+      'name': 'Сомов',
+      'rate': 3.0580
     },
     {
-      'Cur_ID': 301,
-      'Date': '2021-03-16T00:00:00',
-      'Cur_Abbreviation': 'KZT',
-      'Cur_Scale': 1000,
-      'Cur_Name': 'Тенге',
-      'Cur_OfficialRate': 6.1887
+      'id': 301,
+      'date': '2021-03-16T00:00:00',
+      'abbreviation': 'KZT',
+      'scale': 1000,
+      'name': 'Тенге',
+      'rate': 6.1887
     },
     {
-      'Cur_ID': 302,
-      'Date': '2021-03-16T00:00:00',
-      'Cur_Abbreviation': 'TRY',
-      'Cur_Scale': 10,
-      'Cur_Name': 'Турецких лир',
-      'Cur_OfficialRate': 3.4573
+      'id': 302,
+      'date': '2021-03-16T00:00:00',
+      'abbreviation': 'TRY',
+      'scale': 10,
+      'name': 'Турецких лир',
+      'rate': 3.4573
     },
     {
-      'Cur_ID': 143,
-      'Date': '2021-03-16T00:00:00',
-      'Cur_Abbreviation': 'GBP',
-      'Cur_Scale': 1,
-      'Cur_Name': 'Фунт стерлингов',
-      'Cur_OfficialRate': 3.6145
+      'id': 143,
+      'date': '2021-03-16T00:00:00',
+      'abbreviation': 'GBP',
+      'scale': 1,
+      'name': 'Фунт стерлингов',
+      'rate': 3.6145
     },
     {
-      'Cur_ID': 305,
-      'Date': '2021-03-16T00:00:00',
-      'Cur_Abbreviation': 'CZK',
-      'Cur_Scale': 100,
-      'Cur_Name': 'Чешских крон',
-      'Cur_OfficialRate': 11.8156
+      'id': 305,
+      'date': '2021-03-16T00:00:00',
+      'abbreviation': 'CZK',
+      'scale': 100,
+      'name': 'Чешских крон',
+      'rate': 11.8156
     },
     {
-      'Cur_ID': 306,
-      'Date': '2021-03-16T00:00:00',
-      'Cur_Abbreviation': 'SEK',
-      'Cur_Scale': 10,
-      'Cur_Name': 'Шведских крон',
-      'Cur_OfficialRate': 3.0392
+      'id': 306,
+      'date': '2021-03-16T00:00:00',
+      'abbreviation': 'SEK',
+      'scale': 10,
+      'name': 'Шведских крон',
+      'rate': 3.0392
     },
     {
-      'Cur_ID': 130,
-      'Date': '2021-03-16T00:00:00',
-      'Cur_Abbreviation': 'CHF',
-      'Cur_Scale': 1,
-      'Cur_Name': 'Швейцарский франк',
-      'Cur_OfficialRate': 2.7910
+      'id': 130,
+      'date': '2021-03-16T00:00:00',
+      'abbreviation': 'CHF',
+      'scale': 1,
+      'name': 'Швейцарский франк',
+      'rate': 2.7910
     }
   ]
 

@@ -14,7 +14,7 @@ export const environment = {
       date_end: '2021-02-24',
     },
   initial_converter: {
-    listOfCurAbbreviations: ['UAH', 'USD', 'EUR', 'PLN', 'RUB'],
+    listOfCurAbbreviations: ['BYN', 'UAH', 'USD', 'EUR', 'PLN', 'RUB'],
   },
 }
 
