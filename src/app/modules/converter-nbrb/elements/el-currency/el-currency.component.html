@@ -2,7 +2,7 @@
 
 
   <mat-form-field appearance="outline">
-    <input matInput type="text" class="example-right-align" formControlName="rate"
+    <input matInput type="text" class="example-right-align" formControlName="amount"
            (ngModelChange)="changeInput($event, index, isActive)" (focusin)="isFocusIn($event)" (focusout)="isFocusOut($event)">
     <span matSuffix>{{item.value[ 'abbreviation' ]}}</span>
   </mat-form-field>

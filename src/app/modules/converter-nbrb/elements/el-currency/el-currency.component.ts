@@ -26,7 +26,7 @@ export class ElCurrencyComponent implements OnInit {
 
   changeInput( $event: number, index: number, isActive: boolean ): void {
     if (isActive) {
-      this.changeRateInput.emit({ index, newRate: $event })
+      this.changeRateInput.emit({ index, newAmount: $event })
     }
   }
 
