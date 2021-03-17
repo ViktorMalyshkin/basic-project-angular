@@ -14,17 +14,27 @@ export class ConverterComponent implements OnInit {
     currency: this.fb.array([]),
   })
 
-  @Input() tempRates: RateModel[]
-
-
+  // Temp
   @Input()
-  set items( rates: RateModel[] ) {
+  set tempRates( rates: RateModel[] ) {
     this.rates = rates
     this.initFormArray(rates)
   }
 
-  get items(): RateModel[] {
+  get tempRates(): RateModel[] {
     return this.rates
+  }
+
+  // TODO
+  @Input()
+  set items( rates: RateModel[] ) {
+    // this.rates = rates
+    // this.initFormArray(rates)
+  }
+
+  get items(): RateModel[] {
+    // return this.rates
+    return null
   }
 
   constructor( private fb: FormBuilder ) {}
@@ -44,7 +54,7 @@ export class ConverterComponent implements OnInit {
         this.currency.push(
           this.fb.group({
             id: this.fb.control(formItems[ i ].id),
-            amount: this.fb.control(formItems[ i ].rate),
+            amount: this.fb.control(this.rounded(1 * formItems[ i ].scale / formItems[ i ].rate)),
             abbreviation: this.fb.control(formItems[ i ].abbreviation),
             scale: this.fb.control(formItems[ i ].scale),
             name: this.fb.control(formItems[ i ].name),
@@ -74,44 +84,24 @@ export class ConverterComponent implements OnInit {
     return this.rates.length === 0
   }
 
-  changeRateInput( $event ): void { // {index, newRate}
-    const currentDifferent = this.findDifference($event.index, $event.newRate)
-    const different = this.rounded(currentDifferent)
-    this.changeValueInputs($event.index, $event.newAmount, different)
-  }
-
-  findDifference( index: number, newRate: number ): number {
-    const rate = this.currency.controls[ index ].value
-    const currentRate = this.rates.find(( item ) => item.id === rate.id).rate
-    return rate.scale * newRate / currentRate
-  }
-
   rounded( num: number ): number {
     return +num.toFixed(4)
   }
 
-  changeValueInputs( index: number, newAmount: number, different: number ): void {
+  changeAmountInput( { index, newAmount } ): void {
     const idRate = this.currency.controls[ index ].value.id
-    const rateOfNewAmount = this.rates.find(( item ) => item.id === idRate).rate
-    for (const currencyKey in this.currency.controls) {
-      const key = Number(currencyKey)
-
+    const rateItem = this.rates.find(( item ) => item.id === idRate)
+    const rateOfNewAmount = rateItem.rate
+    const scaleOfNewAmount = rateItem.scale
+    for (const keyString in this.currency.controls) {
+      const key = Number(keyString)
       if (key !== index) {
         const rate = this.currency.controls[ key ].value
         const currentRate = this.rates.find(( item ) => item.id === rate.id).rate
-        console.log(currentRate)
-        // const newRate = this.rounded(currentRate * different)
-        const newCurrentAmount = this.rounded(newAmount * rateOfNewAmount / currentRate)
-        console.log(newCurrentAmount)
-        this.currency.controls[ key ].patchValue({ amount: newCurrentAmount})
-
-
-        // newAmount * rateOfNewAmount / currentRate
-      } else {
-        console.log(currencyKey)
+        const currentScale = this.rates.find(( item ) => item.id === rate.id).scale
+        const newCurrentAmount = this.rounded((newAmount * rateOfNewAmount * currentScale) / (currentRate * scaleOfNewAmount))
+        this.currency.controls[ key ].patchValue({ amount: newCurrentAmount })
       }
-
     }
-
   }
 }

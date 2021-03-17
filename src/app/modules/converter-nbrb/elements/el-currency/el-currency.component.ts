@@ -13,7 +13,7 @@ export class ElCurrencyComponent implements OnInit {
   @Input() index: number
   @Input() names: RateModel[]
   @Output() delete = new EventEmitter<any>()
-  @Output() changeRateInput = new EventEmitter<any>()
+  @Output() changeAmountInput = new EventEmitter<any>()
 
   constructor() { }
 
@@ -26,7 +26,7 @@ export class ElCurrencyComponent implements OnInit {
 
   changeInput( $event: number, index: number, isActive: boolean ): void {
     if (isActive) {
-      this.changeRateInput.emit({ index, newAmount: $event })
+      this.changeAmountInput.emit({ index, newAmount: $event })
     }
   }
 
