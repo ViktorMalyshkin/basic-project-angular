@@ -14,27 +14,14 @@ export class ConverterComponent implements OnInit {
     currency: this.fb.array([]),
   })
 
-  // Temp
   @Input()
-  set tempRates( rates: RateModel[] ) {
+  set items( rates: RateModel[] ) {
     this.rates = rates
     this.initFormArray(rates)
   }
 
-  get tempRates(): RateModel[] {
-    return this.rates
-  }
-
-  // TODO
-  @Input()
-  set items( rates: RateModel[] ) {
-    // this.rates = rates
-    // this.initFormArray(rates)
-  }
-
   get items(): RateModel[] {
-    // return this.rates
-    return null
+    return this.rates
   }
 
   constructor( private fb: FormBuilder ) {}
@@ -49,15 +36,14 @@ export class ConverterComponent implements OnInit {
     if (this.currency.length === 0) {
       const listOfCurAbbreviations = environment.initial_converter.listOfCurAbbreviations
       const formItems = rates.filter(( item ) => listOfCurAbbreviations.includes(item.abbreviation))
-      // tslint:disable-next-line:prefer-for-of
-      for (let i = 0; i < formItems.length; i++) {
+      for (const item of formItems) {
         this.currency.push(
           this.fb.group({
-            id: this.fb.control(formItems[ i ].id),
-            amount: this.fb.control(this.rounded(1 * formItems[ i ].scale / formItems[ i ].rate)),
-            abbreviation: this.fb.control(formItems[ i ].abbreviation),
-            scale: this.fb.control(formItems[ i ].scale),
-            name: this.fb.control(formItems[ i ].name),
+            id: this.fb.control(item.id),
+            amount: this.fb.control(this.rounded(item.scale / item.rate)),
+            abbreviation: this.fb.control(item.abbreviation),
+            scale: this.fb.control(item.scale),
+            name: this.fb.control(item.name),
           }),
         )
       }
@@ -86,8 +72,8 @@ export class ConverterComponent implements OnInit {
     this.currency.removeAt($event)
   }
 
-  isRates(): boolean {
-    return this.rates.length === 0
+  isRates( rates: RateModel[] ): boolean {
+    return rates.length === 0
   }
 
   rounded( num: number ): number {
@@ -99,12 +85,10 @@ export class ConverterComponent implements OnInit {
     const originalRateItem = this.rates.find(( item ) => item.id === idRate)
     const rateOfNewAmount = originalRateItem.rate
     const scaleOfNewAmount = originalRateItem.scale
-    for (const indexFormItemString in this.currency.controls) {
-      const indexFormItem = Number(indexFormItemString)
-      if (indexFormItem !== index) {
-        const id = this.currency.controls[ indexFormItem ].value.id
-        const newCurrentAmount = this.updateAmount(id, newAmount, rateOfNewAmount, scaleOfNewAmount)
-        this.currency.controls[ indexFormItem ].patchValue({ amount: newCurrentAmount })
+    for (const [indexFormItemString, itemFormItem] of this.currency.controls.entries()) {
+      if (indexFormItemString !== index) {
+        const newCurrentAmount = this.updateAmount(itemFormItem.value.id, newAmount, rateOfNewAmount, scaleOfNewAmount)
+        itemFormItem.patchValue({ amount: newCurrentAmount })
       }
     }
   }
@@ -135,16 +119,4 @@ export class ConverterComponent implements OnInit {
   isExist( id ): boolean {
     return !this.currency.controls.find(( item ) => item.value.id === id)
   }
-
-  // checkQuantityOfItems( items: RateModel[] ): RateModel[] {
-  //   let ratesSet: RateModel[] = Array(...items)
-  //   debugger
-  //   for (const indexString in this.currency.controls) {
-  //     const index = Number(indexString)
-  //     const id = this.currency.controls[ index ].value.id
-  //     ratesSet = ratesSet.filter(( item ) => item.id !== id)
-  //   }
-  //   debugger
-  //   return ratesSet
-  // }
 }

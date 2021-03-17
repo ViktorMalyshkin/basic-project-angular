@@ -1,7 +1,7 @@
-<form [formGroup]="formGroup">
+<form *ngIf="!isRates(rates)" [formGroup]="formGroup">
   <div formArrayName="currency" class="text-center">
     <div *ngFor="let item of currency.controls; let i=index" class="d-flex just-center">
-      <app-el-currency [names]="tempRates"
+      <app-el-currency [names]="rates"
                        [currencyForm]="currency"
                        [item]="item"
                        [index]="i"
@@ -10,20 +10,12 @@
                        (delete)="deleteCurrency($event)"
       ></app-el-currency>
     </div>
-<!--    <button mat-flat-button color="primary" (click)="addNewCurrency()" [disabled]="isRates()">-->
-<!--      Add Currency-->
-<!--    </button>-->
-    <button mat-raised-button [matMenuTriggerFor]="aboveMenu" [disabled]="isRates()">Add Currency</button>
+    <button mat-raised-button [matMenuTriggerFor]="aboveMenu" [disabled]="isRates(rates)">Add Currency</button>
     <mat-menu #aboveMenu="matMenu" yPosition="above">
-      <span *ngFor="let item of tempRates">
+      <span *ngFor="let item of rates">
         <button *ngIf="isExist(item.id)" mat-menu-item (click)="addNewCurrency(item)">{{item.abbreviation}} - {{item.name}}</button>
       </span>
     </mat-menu>
   </div>
 </form>
-
-<!--<mat-selection-list>-->
-<!--  <mat-option *ngFor="let shoe of names">-->
-<!--    {{shoe.name}}-->
-<!--  </mat-option>-->
-<!--</mat-selection-list>-->
+<h3 *ngIf="isRates(rates)" class="text-center uppercase white bg-brown r2">No data for the graph!</h3>
