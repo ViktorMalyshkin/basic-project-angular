@@ -9,7 +9,7 @@
 
 
   <mat-form-field appearance="outline">
-    <mat-select [(value)]="item.value.name" (selectionChange)="changeSelect($event, item.value.id, index)">
+    <mat-select formControlName="name" id="name" (ngModelChange)="qwe($event)" (selectionChange)="changeSelect($event, item.value.id, index)">
       <mat-option *ngFor="let n of names" [value]="n.name">{{n.name}}</mat-option>
     </mat-select>
   </mat-form-field>

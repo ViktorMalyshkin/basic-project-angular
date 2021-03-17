@@ -39,8 +39,10 @@ export class ElCurrencyComponent implements OnInit {
     this.isActive = false
   }
 
-  changeSelect( $event, id: number, index: number ): void {
-    debugger
-    this.changeNameSelect.emit({name: $event, id, index})
+  changeSelect( $event, id, index ): void {
+    this.changeNameSelect.emit({ name: $event.value, id, indexFormItem: index })
+  }
+
+  qwe( $event ): void {
   }
 }

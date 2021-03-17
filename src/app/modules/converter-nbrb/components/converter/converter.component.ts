@@ -93,36 +93,36 @@ export class ConverterComponent implements OnInit {
     const originalRateItem = this.rates.find(( item ) => item.id === idRate)
     const rateOfNewAmount = originalRateItem.rate
     const scaleOfNewAmount = originalRateItem.scale
-    for (const keyString in this.currency.controls) {
-      const key = Number(keyString)
-      if (key !== index) {
-        const rate = this.currency.controls[ key ].value
-        const currentRate = this.rates.find(( item ) => item.id === rate.id).rate
-        const currentScale = this.rates.find(( item ) => item.id === rate.id).scale
-        const newCurrentAmount = this.rounded((newAmount * rateOfNewAmount * currentScale) / (currentRate * scaleOfNewAmount))
-        this.currency.controls[ key ].patchValue({ amount: newCurrentAmount })
+    for (const indexFormItemString in this.currency.controls) {
+      const indexFormItem = Number(indexFormItemString)
+      if (indexFormItem !== index) {
+        const id = this.currency.controls[ indexFormItem ].value.id
+        const newCurrentAmount = this.updateAmount(id,  newAmount, rateOfNewAmount, scaleOfNewAmount)
+        this.currency.controls[ indexFormItem ].patchValue({ amount: newCurrentAmount })
       }
     }
   }
 
-
-  changeNameSelect( { name, idOldItem, indexFormItems } ): void {
-    debugger
-    console.log(this.currency.controls[ indexFormItems ].value)
-    // найти
-    const id = this.currency.controls[ indexFormItems ].value.id
-    const rateItem = this.rates.find(( item ) => item.id === idOldItem)
-
-    debugger
-
-    // const currentId = this.currency.controls[ index ].value.id
-    // const originalRateItem = this.rates.find(( item ) => item.id === currentId)
-
-    this.currency.controls[ indexFormItems ].patchValue({
-      id: rateItem.id,
-      amount: 555,
-      abbreviation: rateItem.abbreviation,
-      scale: rateItem.scale,
+  changeNameSelect( $event ): void {
+    const originalRateItem = this.rates.find(( item ) => item.name === $event.name)
+    const indexFormItem = $event.indexFormItem
+    const newAmount = this.currency.controls[ indexFormItem ].value.amount // true
+    const idOfAmount = this.rates.find(( item ) => item.name === $event.name).id // false
+    const idOfNewAmount = this.currency.controls[ indexFormItem ].value.id // false
+    const rateOfNewAmount = this.rates.find(( item ) => item.id === idOfNewAmount).rate
+    const scaleOfNewAmount = this.currency.controls[ indexFormItem ].value.scale
+    const newCurrentAmount = this.updateAmount(idOfAmount, newAmount, rateOfNewAmount, scaleOfNewAmount)
+    this.currency.controls[ indexFormItem ].patchValue({
+      id: originalRateItem.id,
+      amount: newCurrentAmount,
+      abbreviation: originalRateItem.abbreviation,
+      scale: originalRateItem.scale,
     })
+  }
+
+  updateAmount(id, newAmount, rateOfNewAmount, scaleOfNewAmount): number {
+    const currentRate = this.rates.find(( item ) => item.id === id).rate
+    const currentScale = this.rates.find(( item ) => item.id === id).scale
+    return this.rounded((newAmount * rateOfNewAmount * currentScale) / (currentRate * scaleOfNewAmount))
   }
 }
