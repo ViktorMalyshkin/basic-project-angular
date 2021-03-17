@@ -2,6 +2,7 @@
   <div formArrayName="currency" class="text-center">
     <div *ngFor="let item of currency.controls; let i=index" class="d-flex just-center">
       <app-el-currency [names]="tempRates"
+                       [currencyForm]="currency"
                        [item]="item"
                        [index]="i"
                        (changeAmountInput)='changeAmountInput($event)'
@@ -9,8 +10,20 @@
                        (delete)="deleteCurrency($event)"
       ></app-el-currency>
     </div>
-    <button mat-flat-button color="primary" (click)="addNewCurrency()" [disabled]="isRates()">
-      Add Currency
-    </button>
+<!--    <button mat-flat-button color="primary" (click)="addNewCurrency()" [disabled]="isRates()">-->
+<!--      Add Currency-->
+<!--    </button>-->
+    <button mat-raised-button [matMenuTriggerFor]="aboveMenu" [disabled]="isRates()">Add Currency</button>
+    <mat-menu #aboveMenu="matMenu" yPosition="above">
+      <span *ngFor="let item of tempRates">
+        <button *ngIf="isExist(item.id)" mat-menu-item (click)="addNewCurrency(item)">{{item.abbreviation}} - {{item.name}}</button>
+      </span>
+    </mat-menu>
   </div>
 </form>
+
+<!--<mat-selection-list>-->
+<!--  <mat-option *ngFor="let shoe of names">-->
+<!--    {{shoe.name}}-->
+<!--  </mat-option>-->
+<!--</mat-selection-list>-->

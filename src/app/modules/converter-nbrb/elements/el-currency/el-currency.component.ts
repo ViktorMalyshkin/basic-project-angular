@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
-import { FormGroup } from '@angular/forms'
+import { FormArray, FormGroup } from '@angular/forms'
 import { RateModel } from '../../models/rate.model'
 
 @Component({
@@ -12,6 +12,7 @@ export class ElCurrencyComponent implements OnInit {
   @Input() item: FormGroup
   @Input() index: number
   @Input() names: RateModel[]
+  @Input() currencyForm: FormArray
   @Output() delete = new EventEmitter<any>()
   @Output() changeAmountInput = new EventEmitter<any>()
   @Output() changeNameSelect = new EventEmitter<any>()
@@ -43,6 +44,7 @@ export class ElCurrencyComponent implements OnInit {
     this.changeNameSelect.emit({ name: $event.value, id, indexFormItem: index })
   }
 
-  qwe( $event ): void {
+  isExist( id ): boolean {
+    return !this.currencyForm.controls.find(( item ) => item.value.id === id)
   }
 }

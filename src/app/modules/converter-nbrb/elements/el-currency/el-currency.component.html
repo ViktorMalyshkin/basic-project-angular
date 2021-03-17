@@ -3,19 +3,20 @@
 
   <mat-form-field appearance="outline">
     <input matInput type="text" class="example-right-align" formControlName="amount"
-           (ngModelChange)="changeInput($event, index, isActive)" (focusin)="isFocusIn($event)" (focusout)="isFocusOut($event)">
+           (ngModelChange)="changeInput($event, index, isActive)" (focusin)="isFocusIn($event)"
+           (focusout)="isFocusOut($event)">
     <span matSuffix>{{item.value[ 'abbreviation' ]}}</span>
   </mat-form-field>
 
 
   <mat-form-field appearance="outline">
-    <mat-select formControlName="name" id="name" (ngModelChange)="qwe($event)" (selectionChange)="changeSelect($event, item.value.id, index)">
-      <mat-option *ngFor="let n of names" [value]="n.name">{{n.name}}</mat-option>
+    <mat-select formControlName="name" (selectionChange)="changeSelect($event, item.value.id, index)">
+        <mat-option *ngFor="let n of names" [value]="n.name" [disabled]="!isExist(n.id)">{{n.name}}</mat-option>
     </mat-select>
   </mat-form-field>
+
   <button mat-icon-button color="warn" aria-label="Example icon button with a delete icon"
           (click)="deleteCurrency(index)">
     <mat-icon>delete</mat-icon>
   </button>
 </form>
-

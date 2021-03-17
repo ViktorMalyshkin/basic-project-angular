@@ -64,14 +64,20 @@ export class ConverterComponent implements OnInit {
     }
   }
 
-  addNewCurrency(): void {
+  addNewCurrency( rate: RateModel ): void {
+    const newAmount = this.currency.controls[ 0 ].value.amount // true
+    const idOfAmount = rate.id
+    const idOfNewAmount = this.currency.controls[ 0 ].value.id // false
+    const rateOfNewAmount = this.rates.find(( item ) => item.id === idOfNewAmount).rate
+    const scaleOfNewAmount = this.currency.controls[ 0 ].value.scale
+    const newCurrentAmount = this.updateAmount(idOfAmount, newAmount, rateOfNewAmount, scaleOfNewAmount)
     this.currency.push(
       this.fb.group({
-        id: this.fb.control(''),
-        amount: this.fb.control(0),
-        abbreviation: this.fb.control(''),
-        scale: this.fb.control(0),
-        name: this.fb.control(''),
+        id: this.fb.control(rate.id),
+        amount: this.fb.control(newCurrentAmount),
+        abbreviation: this.fb.control(rate.abbreviation),
+        scale: this.fb.control(rate.scale),
+        name: this.fb.control(rate.name),
       }),
     )
   }
@@ -97,7 +103,7 @@ export class ConverterComponent implements OnInit {
       const indexFormItem = Number(indexFormItemString)
       if (indexFormItem !== index) {
         const id = this.currency.controls[ indexFormItem ].value.id
-        const newCurrentAmount = this.updateAmount(id,  newAmount, rateOfNewAmount, scaleOfNewAmount)
+        const newCurrentAmount = this.updateAmount(id, newAmount, rateOfNewAmount, scaleOfNewAmount)
         this.currency.controls[ indexFormItem ].patchValue({ amount: newCurrentAmount })
       }
     }
@@ -120,9 +126,25 @@ export class ConverterComponent implements OnInit {
     })
   }
 
-  updateAmount(id, newAmount, rateOfNewAmount, scaleOfNewAmount): number {
+  updateAmount( id, newAmount, rateOfNewAmount, scaleOfNewAmount ): number {
     const currentRate = this.rates.find(( item ) => item.id === id).rate
     const currentScale = this.rates.find(( item ) => item.id === id).scale
     return this.rounded((newAmount * rateOfNewAmount * currentScale) / (currentRate * scaleOfNewAmount))
   }
+
+  isExist( id ): boolean {
+    return !this.currency.controls.find(( item ) => item.value.id === id)
+  }
+
+  // checkQuantityOfItems( items: RateModel[] ): RateModel[] {
+  //   let ratesSet: RateModel[] = Array(...items)
+  //   debugger
+  //   for (const indexString in this.currency.controls) {
+  //     const index = Number(indexString)
+  //     const id = this.currency.controls[ index ].value.id
+  //     ratesSet = ratesSet.filter(( item ) => item.id !== id)
+  //   }
+  //   debugger
+  //   return ratesSet
+  // }
 }

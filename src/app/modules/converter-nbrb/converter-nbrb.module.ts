@@ -6,6 +6,8 @@ import { MatOptionModule } from '@angular/material/core'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatIconModule } from '@angular/material/icon'
 import { MatInputModule } from '@angular/material/input'
+import { MatListModule } from '@angular/material/list'
+import { MatMenuModule } from '@angular/material/menu'
 import { MatSelectModule } from '@angular/material/select'
 import { EffectsModule } from '@ngrx/effects'
 import { StoreModule } from '@ngrx/store'
@@ -29,7 +31,9 @@ import { ElCurrencyComponent } from './elements/el-currency/el-currency.componen
     ReactiveFormsModule,
     MatButtonModule,
     MatIconModule,
+    MatListModule,
     FormsModule,
+    MatMenuModule,
   ],
 })
 export class ConverterNbrbModule {}
