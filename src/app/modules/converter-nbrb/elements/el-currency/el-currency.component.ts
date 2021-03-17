@@ -14,6 +14,7 @@ export class ElCurrencyComponent implements OnInit {
   @Input() names: RateModel[]
   @Output() delete = new EventEmitter<any>()
   @Output() changeAmountInput = new EventEmitter<any>()
+  @Output() changeNameSelect = new EventEmitter<any>()
 
   constructor() { }
 
@@ -36,5 +37,10 @@ export class ElCurrencyComponent implements OnInit {
 
   isFocusOut( $event ): void {
     this.isActive = false
+  }
+
+  changeSelect( $event, id: number, index: number ): void {
+    debugger
+    this.changeNameSelect.emit({name: $event, id, index})
   }
 }

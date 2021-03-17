@@ -90,9 +90,9 @@ export class ConverterComponent implements OnInit {
 
   changeAmountInput( { index, newAmount } ): void {
     const idRate = this.currency.controls[ index ].value.id
-    const rateItem = this.rates.find(( item ) => item.id === idRate)
-    const rateOfNewAmount = rateItem.rate
-    const scaleOfNewAmount = rateItem.scale
+    const originalRateItem = this.rates.find(( item ) => item.id === idRate)
+    const rateOfNewAmount = originalRateItem.rate
+    const scaleOfNewAmount = originalRateItem.scale
     for (const keyString in this.currency.controls) {
       const key = Number(keyString)
       if (key !== index) {
@@ -103,5 +103,26 @@ export class ConverterComponent implements OnInit {
         this.currency.controls[ key ].patchValue({ amount: newCurrentAmount })
       }
     }
+  }
+
+
+  changeNameSelect( { name, idOldItem, indexFormItems } ): void {
+    debugger
+    console.log(this.currency.controls[ indexFormItems ].value)
+    // найти
+    const id = this.currency.controls[ indexFormItems ].value.id
+    const rateItem = this.rates.find(( item ) => item.id === idOldItem)
+
+    debugger
+
+    // const currentId = this.currency.controls[ index ].value.id
+    // const originalRateItem = this.rates.find(( item ) => item.id === currentId)
+
+    this.currency.controls[ indexFormItems ].patchValue({
+      id: rateItem.id,
+      amount: 555,
+      abbreviation: rateItem.abbreviation,
+      scale: rateItem.scale,
+    })
   }
 }
