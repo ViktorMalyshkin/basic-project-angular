@@ -47,4 +47,8 @@ export class ElCurrencyComponent implements OnInit {
   isExist( id ): boolean {
     return !this.currencyForm.controls.find(( item ) => item.value.id === id)
   }
+
+  isCheckCurrencyFormForLengthOfTwo(): boolean {
+    return this.currencyForm.controls.length === 2
+  }
 }
