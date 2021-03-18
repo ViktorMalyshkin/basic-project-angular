@@ -1,11 +1,10 @@
 <mat-form-field appearance="fill">
   <mat-label>Currency</mat-label>
-  <mat-select [formControl]="currenciesControl" required (selectionChange)="selectionChangeEvent($event.value)">
+  <mat-select [formControl]="currenciesControl" required (selectionChange)="selectionChangeEvent($event.value)" [disabled]="disabledSelect">
     <mat-option *ngFor="let item of items" [value]="item.id">
-      {{item.name}} {{item.id}}
+      {{item['name_en']}}
     </mat-option>
   </mat-select>
   <mat-error *ngIf="currenciesControl.hasError('required')">Please choose a currency</mat-error>
-<!--  <mat-hint >{{hintTitle}}: {{currenciesControl.value?.id}}</mat-hint>-->
-  <mat-hint >{{hintTitle}}: {{currenciesControl.value}}</mat-hint>
+<!--  <mat-hint >{{hintTitle}}: {{currenciesControl.value}}</mat-hint>-->
 </mat-form-field>

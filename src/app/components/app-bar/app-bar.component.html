@@ -15,7 +15,7 @@
   </button>
   <button mat-raised-button [matMenuTriggerFor]="beforeMenu" class="ml-4i uppercase">NBRB</button>
   <mat-menu #beforeMenu="matMenu" xPosition="before">
-    <button mat-menu-item routerLink="nbrb/exrates-nbrb" routerLinkActive #nbrb="routerLinkActive" [disabled]="nbrb.isActive"
+    <button mat-menu-item routerLink="nbrb/exrates" routerLinkActive #nbrb="routerLinkActive" [disabled]="nbrb.isActive"
             class="uppercase">Exchange Rates
     </button>
     <button mat-menu-item routerLink="nbrb/converter" routerLinkActive #converter="routerLinkActive"

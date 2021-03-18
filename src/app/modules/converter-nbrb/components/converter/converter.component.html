@@ -1,0 +1,21 @@
+<form *ngIf="!isRates(rates)" [formGroup]="formGroup">
+  <div formArrayName="currency" class="text-center">
+    <div *ngFor="let item of currency.controls; let i=index" class="d-flex just-center">
+      <app-el-currency [names]="rates"
+                       [currencyForm]="currency"
+                       [item]="item"
+                       [index]="i"
+                       (changeAmountInput)='changeAmountInput($event)'
+                       (changeNameSelect)="changeNameSelect($event)"
+                       (delete)="deleteCurrency($event)"
+      ></app-el-currency>
+    </div>
+    <button mat-raised-button [matMenuTriggerFor]="aboveMenu" [disabled]="isRates(rates)">Add Currency</button>
+    <mat-menu #aboveMenu="matMenu" yPosition="above">
+      <span *ngFor="let item of rates">
+        <button *ngIf="isExist(item.id)" mat-menu-item (click)="addNewCurrency(item)">{{item.abbreviation}} - {{item.name}}</button>
+      </span>
+    </mat-menu>
+  </div>
+</form>
+<h3 *ngIf="isRates(rates)" class="text-center uppercase white bg-brown r2">No data for the graph!</h3>

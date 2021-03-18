@@ -11,8 +11,11 @@ export const environment = {
       id: 145,
       name: '1 Доллар США',
       date_start: '2021-02-01',
-      date_end: '2021-02-24'
+      date_end: '2021-02-24',
     },
+  initial_converter: {
+    listOfCurAbbreviations: ['BYN', 'UAH', 'USD', 'EUR', 'PLN', 'RUB'],
+  },
 }
 
 /*

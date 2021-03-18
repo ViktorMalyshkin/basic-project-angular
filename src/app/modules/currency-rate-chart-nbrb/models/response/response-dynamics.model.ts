@@ -3,7 +3,3 @@ export interface ResponseDynamicsModel {
   Date: string,
   Cur_OfficialRate: number
 }
-
-export interface ResponseDynamicsObjectModel {
-  dynamics: ResponseDynamicsModel[]
-}
